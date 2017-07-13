@@ -1,0 +1,56 @@
+footer {
+	  position: absolute;
+    bottom: 0;
+    height: 60px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: $bgFooter;
+    border-top: $footerBorderTop;
+    white-space: nowrap;
+    box-shadow: 0 -2px 5px -11px rgba($footerBoxShadow, 0.6), 0px -10px 25px -10px rgba(#0072bd, 0.4);
+    overflow-x: hidden;
+
+    span {
+        font-size: 10px;
+        color: #ccc;
+        line-height: 60px;
+    }
+
+    .powered {
+        margin: 7px 10px 0;
+        @include transition(all 300ms ease);
+    }
+
+    .container {
+        height: 100%;
+        background: #fff;
+        padding: 0px;
+        margin: 0 auto;
+        max-width: $screenFullWidth;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+    }
+
+    .powered {
+        width: 137px;
+        position: relative;
+        text-decoration: none;
+        height: 40px;
+        display: inline-block;
+        background: url('assets/img/angular.svg') no-repeat center center;
+        background-size: contain;
+
+        &:hover {
+            @include transform(scale(1.1));
+        }
+    }
+
+    @include respond-to($screenTablet) {
+        .powered {
+            width: 120px;
+            height: 30px;
+            margin: 10px 10px 0;
+        }
+    }
+}

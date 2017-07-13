@@ -1,0 +1,15 @@
+@include keyframes(spinner) {
+  0% { @include transform(rotate(0deg)); }
+  50% { @include transform(rotate(180deg)); }
+  100% { @include transform(rotate(360deg)); }
+}
+
+.spin {
+	color: darken($colorPrimary, 30%);
+	display: inline-block;
+	@include animation(spinner 1s linear infinite);
+}
+
+.btn-primary .spin {
+	color: #fff;
+}

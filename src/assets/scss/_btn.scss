@@ -1,0 +1,155 @@
+$btnColor: #222;
+$btnBorderColor: #ccc;
+$btnBackground: #fff;
+$btnPadding: 8px 12px;
+$btnFontSize: 14px;
+
+$btnXxsFontSize: 9px;
+$btnXxsPadding: 2px 4px;
+
+$btnXsFontSize: 11px;
+$btnXsPadding: 4px 8px;
+
+$btnSmFontSize: 12px;
+$btnSmPadding: 6px 10px;
+
+$btnLgFontSize: 17px;
+$btnLgPadding: 10px 22px;
+
+$btnPrimaryColor: #fff;
+$btnPrimaryBackground: #333;
+$btnPrimaryBorderColor: #000;
+
+$btnSuccessColor: #fff;
+$btnSuccessBackground: #28a745;
+$btnSuccessBorderColor: rgba(27,31,35,0.2);
+
+$btnDangerColor: #fff;
+$btnDangerBackground: #ca1f1f;
+$btnDangerBorderColor: rgba($btnDangerBackground,0.2);
+
+$btnDisabledColor: #a9a9a9;
+$btnDisabledBackground: #f7f7f7;
+$btnDisabledBorderColor: rgba($btnDisabledBackground,0.2);
+
+.btn {
+	background: $btnBackground;
+	color: $btnColor;
+	border: 1px solid $btnBorderColor;
+	display: inline-block;
+	font-size: $btnFontSize;
+  padding: $btnPadding;
+  margin: 0 2px;
+  @include border-radius(4px);
+  @include user-select(none);
+
+  &:hover {
+  	border-color: darken($btnBorderColor, 5%);
+  	background: darken($btnBackground, 2%);
+  	color: darken($btnColor, 2%);
+  	box-shadow: 1px 1px 5px $btnBorderColor;
+  	cursor: pointer;
+  }
+
+  &:active {
+  	background: darken($btnBackground, 10%);
+  }
+
+  &-rounded {
+  	@include border-radius(100px);
+  }
+
+  &-block {
+  	display: block;
+  }
+
+  &-xs {
+  	font-size: $btnXsFontSize;
+  	line-height: $btnXsFontSize;
+  	padding: $btnXsPadding;
+  }
+
+  &-xxs {
+  	font-size: $btnXxsFontSize;
+  	line-height: ($btnXxsFontSize + 1);
+  	padding: $btnXxsPadding;
+  }
+
+  &-sm {
+  	font-size: $btnSmFontSize;
+  	line-height: $btnSmFontSize;
+  	padding: $btnSmPadding;
+  }
+
+  &-lg {
+  	font-size: $btnLgFontSize;
+  	line-height: $btnLgFontSize;
+  	padding: $btnLgPadding;
+  }
+
+  &-primary {
+		color: $btnPrimaryColor;
+		background: $btnPrimaryBackground;
+		border-color: $btnPrimaryBorderColor;
+		&:hover {
+	  	border-color: darken($btnPrimaryBorderColor, 5%);
+	  	background: darken($btnPrimaryBackground, 2%);
+	  	color: darken($btnPrimaryColor, 2%);
+
+      &.btn-darken {
+        box-shadow: 1px 1px 5px darken($btnPrimaryBackground, 20%);
+      }
+	  }
+	  &:active {
+	  	background: darken($btnPrimaryBackground, 10%);
+	  }
+  }
+
+  &-success {
+		color: $btnSuccessColor;
+		background: $btnSuccessBackground;
+		border-color: $btnSuccessBorderColor;
+		&:hover {
+	  	border-color: darken($btnSuccessBorderColor, 5%);
+	  	background: darken($btnSuccessBackground, 2%);
+	  	color: darken($btnSuccessColor, 2%);
+      &.btn-darken {
+        box-shadow: 1px 1px 5px darken($btnSuccessBackground, 20%);
+      }
+	  }
+	  &:active {
+	  	background: darken($btnSuccessBackground, 10%);
+	  }
+  }
+
+  &-danger {
+		color: $btnDangerColor;
+		background: $btnDangerBackground;
+		border-color: $btnDangerBorderColor;
+		&:hover {
+	  	border-color: darken($btnDangerBorderColor, 5%);
+	  	background: darken($btnDangerBackground, 2%);
+	  	color: darken($btnDangerColor, 2%);
+      &.btn-darken {
+        box-shadow: 1px 1px 5px darken($btnDangerBackground, 20%);
+      }
+	  }
+	  &:active {
+	  	background: darken($btnDangerBackground, 10%);
+	  }
+  }
+
+  &-disabled,
+  &:disabled {
+		color: $btnDisabledColor;
+		background: $btnDisabledBackground;
+		border-color: $btnDisabledBorderColor;
+		&:hover {
+			cursor: not-allowed;
+	  	color: $btnDisabledColor;
+			background: $btnDisabledBackground;
+			border-color: $btnDisabledBorderColor;
+			box-shadow: none;
+	  }
+  }
+}

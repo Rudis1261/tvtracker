@@ -1,0 +1,22 @@
+ul.bbcode {
+	padding: 0;
+	margin: 0 0 0 28px;
+	+ ul.bbcode {
+		margin-top: -10px;
+	}
+}
+
+pre {
+  box-shadow: 1px 1px 1px #fff, 1px 1px 10px #efefef;
+  @include border-radius(2px);
+}
+
+.video.bbcode {
+  padding: 3px;
+  background: #000;
+  @include border-radius(3px);
+
+  @include respond-to($screenTablet) {
+    max-width: 100%;
+  }
+}

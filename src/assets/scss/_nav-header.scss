@@ -1,0 +1,251 @@
+header {
+  $mobileHeaderNavPadding: 6px;
+  height: $headerHeight;
+  background: darken($bgNav, 1%);
+  border-bottom: 1px solid $bgNav;
+  color: $colorNav;
+  position: fixed;
+  top: 0;
+  display: block;
+  z-index: 1000;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 2px 7px -2px $headerBoxShadow, 0px 10px 20px -10px rgba(#ccc, 0.2);
+
+  .container {
+    padding: 0;
+    height: 100%;
+    background: $bgNav;
+    border-left: 1px solid darken($bgNav, 3%);
+    border-right: 1px solid darken($bgNav, 3%);
+  }
+
+  ul.menu,
+  ul.brand,
+  ul.nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul.nav {
+    i {
+      color: $colorNav;
+      padding: 10px 20px;
+      height: 40px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  ul.brand {
+    float: left;
+  }
+
+  ul.menu {
+    @include respond-from($screenTablet) {
+      display: none;
+    }
+    margin: 15px 13px 0;
+    display: block;
+    height: 33px;
+    float: right;
+    padding: 4px 6px 0;
+    cursor: pointer;
+
+    li {
+      height: 3px;
+      width: 28px;
+      background: #fff;
+      content: " ";
+      margin-bottom: 6px;
+      position: relative;
+      @include transition(all 200ms ease);
+      @include transform-origin(center center);
+    }
+
+    &.open {
+      li {
+        margin-bottom: 0;
+      }
+      li:nth-of-type(1) {
+        top: 9px;
+        @include transform(rotate(-45deg));
+      }
+      li:nth-of-type(2) {
+        display: none;
+      }
+      li:nth-of-type(3) {
+        top: 6px;
+        @include transform(rotate(45deg));
+      }
+    }
+  }
+
+  ul.brand {
+    padding: 15px 0 0 10px;
+
+    li {
+      display: block;
+      float: left;
+    }
+
+    li.brand-name {
+      div {
+        font-size: 10px;
+        margin: -3px 0 0 0px;
+      }
+    }
+  }
+
+  .logo-container {
+    position: relative;
+    .logo {
+      position: relative;
+      display: inline-block;
+      width: 39px;
+      margin: -4px 10px 0 3px;
+      height: 49px;
+      //background: url("assets/img/logo_white.png") no-repeat center bottom;
+      background-size: 38.18px 43px;
+      content: " ";
+      z-index: 2;
+    }
+  }
+
+  ul.nav {
+
+    // Mobile Nav
+    @include respond-to($screenTablet) {
+      @include border-radius(0 0 4px 0);
+
+      position: absolute;
+      top: $headerHeight;
+      left: -30px;
+      width: 0%;
+      overflow: hidden;
+      background: lighten($bgNav, 5%);
+      border-top: 1px solid $bgNav;
+      border-right: 1px solid darken($bgNav, 20%);
+      border-bottom: 9px solid darken($bgNav, 5%);
+      box-shadow: 0 6px 13px -2px $primary;
+      @include transition(all 200ms ease);
+
+      &.open {
+        left: 0;
+        right: 10%;
+        width: 90%;
+        z-index: 999;
+      }
+
+      li {
+        padding: 0;
+        margin: 0;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid darken($bgNav, 10%);
+        border-top: 1px solid lighten($bgNav, 10%);
+
+        &:first-of-type {
+          border-top: none;
+        }
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+
+        a {
+          line-height: 30px;
+          padding: $mobileHeaderNavPadding ($mobileHeaderNavPadding * 2);
+          text-decoration: none;
+          display: block;
+          color: $colorNav;
+          font-size: 14px;
+
+          &:hover {
+            padding-left: ($mobileHeaderNavPadding * 2.2);
+            color: darken($colorNav, 10%);
+          }
+
+          &.active {
+            background: lighten($bgNav, 10%);
+          }
+
+          img {
+            display: inline-block;
+            height: 25px;
+            margin: 0 8px -6px 0;
+          }
+          .container {
+            background: lime;
+          }
+        }
+
+        &.login {
+          min-height: 40px;
+        }
+
+        i {
+          padding: 11px 11px 11px 13px;
+          line-height: 19px;
+          display: inline-block;
+          width: 100%;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .container {
+
+    // Desktop Nav
+    @include respond-from($screenTablet) {
+
+      ul.nav {
+        display: block;
+        line-height: $headerHeight;
+
+        li {
+          line-height: $headerHeight;
+          height: $headerHeight;
+          display: inline-block;
+          border-right: 1px solid darken($bgNav, 5%);
+          float: left;
+
+          a {
+            line-height: $headerHeight;
+            text-decoration: none;
+            color: $colorNav;
+            padding: 0 15px;
+            display: block;
+            @include border-radius(3px);
+            @include transition(all 100ms ease);
+
+            &.active {
+              background: lighten($bgNav, 5%);
+              border-bottom: 3px solid $badass;
+            }
+
+            &:hover {
+              background: darken($bgNav, 2%);
+              border-bottom: 3px solid darken($primary, 5%);
+            }
+
+            img {
+              display: inline-block;
+              height: 25px;
+              margin: 0 8px -6px 0;
+            }
+          }
+          &:first-of-type {
+            margin-left: 30px;
+            border-left: 1px solid darken($bgNav, 5%);
+          }
+        }
+      }
+    }
+  }
+}

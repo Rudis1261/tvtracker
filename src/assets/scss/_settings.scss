@@ -1,0 +1,81 @@
+// FONT FAMILIES
+//$headingFont: 'Open Sans', Verdana, Arial;
+$headingFont: 'Helvetica', Verdana, Arial;
+//$bodyFont: 'Open Sans', Verdana, Arial;
+$bodyFont: 'Helvetica', Verdana, Arial;
+
+// FONT SIZES
+$font-xxs: 10px;
+$font-xs: 11px;
+$font-sm: 12px;
+$font-md: 14px;
+$font-lg: 16px;
+$font-xl: 18px;
+$font-xxl: 22px;
+
+// BREAKPOINTS
+$screenMobile: 320px;
+$screenMobileLg: 480px;
+$screenSlim: 640px;
+$screenTablet: 768px;
+$screenDesktop: 1024px;
+$screenDesktopLg: 1280px;
+$screenJumbo: 1440px;
+$screenFull: 960px;
+$screenFullPage: $screenFull;
+$screenFullWidth: $screenFullPage;
+
+// COLORS
+$colorPrimary: #63acff;
+$linkPrimary: $colorPrimary;
+$bad: #4cb8ff;
+$badass: #bada55;
+$primary: #4cb8ff;
+$blue: #4cb8ff;
+
+$siteBackground: #fdfdff;
+
+$colorNav: #222;
+$bgNav: #fff;
+
+$grey: #ccc;
+$greyDark: #555;
+$greyDarkest: #333;
+$white: #fff;
+$youtubeRed: #a51111;
+
+// SOCIAL
+$socialColors: (
+    'twitter': #00aced,
+    'facebook': #3b5998,
+    'googleplus': #dd4b39,
+    'google': #DD4B39,
+    'github': #000,
+    'pinterest': #cb2027,
+    'linkedin': #007bb6,
+    'youtube': #bb0000,
+    'vimeo': #1ab7ea,
+    'tumblr': #32506d,
+    'instagram': #bc2a8d,
+    'flickr': #ff0084,
+    'dribbble': #ea4c89,
+    'quora': #a82400,
+    'foursquare': #0072b1,
+    'forrst': #5B9A68,
+    'vk': #45668e,
+    'wordpress': #21759b,
+    'stumbleupon': #EB4823,
+    'yahoo': #7B0099,
+    'blogger': #fb8f3d,
+    'soundcloud': #ff3a00
+);
+
+// LAYOUT
+$headerHeight: 60px;
+$gutterSize: 20px;
+
+// FOOTER
+$bgFooter: #f1f1f1;
+$footerBorderTop: 1px solid #4cb8ff;
+$footerBoxShadow: lime;
+$headerBoxShadow: $colorPrimary;

@@ -1,0 +1,212 @@
+$icomoon-font-path: "assets/scss/fonts" !default;
+$icomoon-font-hash: 'uzhe99';
+$icomoon-font-version: 'v2';
+
+$icon-align-left: "\e906";
+$icon-align-right: "\e907";
+$icon-link: "\e908";
+$icon-magic: "\e911";
+$icon-header: "\e909";
+$icon-underline: "\e90a";
+$icon-italic: "\e90b";
+$icon-bold: "\e90c";
+$icon-embed: "\e90d";
+$icon-code: "\e90d";
+$icon-html: "\e90d";
+$icon-xml: "\e90d";
+$icon-play: "\e90e";
+$icon-video: "\e90e";
+$icon-movie: "\e90e";
+$icon-images: "\e90f";
+$icon-pictures: "\e90f";
+$icon-photos: "\e90f";
+$icon-graphics: "\e90f";
+$icon-list: "\e910";
+$icon-todo: "\e910";
+$icon-bullet: "\e910";
+$icon-menu: "\e910";
+$icon-options: "\e910";
+$icon-remove: "\e905";
+$icon-remove-circle: "\e903";
+$icon-trash: "\e904";
+$icon-spinner: "\e902";
+$icon-logout: "\e901";
+$icon-login: "\e900";
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('#{$icomoon-font-path}/icomoon.#{$icomoon-font-version}.eot?#{$icomoon-font-hash}');
+  src:  url('#{$icomoon-font-path}/icomoon.#{$icomoon-font-version}.eot?#{$icomoon-font-hash}#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/icomoon.#{$icomoon-font-version}.ttf?#{$icomoon-font-hash}') format('truetype'),
+    url('#{$icomoon-font-path}/icomoon.#{$icomoon-font-version}.woff?#{$icomoon-font-hash}') format('woff'),
+    url('#{$icomoon-font-path}/icomoon.#{$icomoon-font-version}.svg?#{$icomoon-font-hash}#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-align-left {
+  &:before {
+    content: $icon-align-left;
+  }
+}
+.icon-align-right {
+  &:before {
+    content: $icon-align-right;
+  }
+}
+.icon-link {
+  &:before {
+    content: $icon-link;
+  }
+}
+.icon-magic {
+  &:before {
+    content: $icon-magic;
+  }
+}
+.icon-header {
+  &:before {
+    content: $icon-header;
+  }
+}
+.icon-underline {
+  &:before {
+    content: $icon-underline;
+  }
+}
+.icon-italic {
+  &:before {
+    content: $icon-italic;
+  }
+}
+.icon-bold {
+  &:before {
+    content: $icon-bold;
+  }
+}
+.icon-embed {
+  &:before {
+    content: $icon-embed;
+  }
+}
+.icon-code {
+  &:before {
+    content: $icon-code;
+  }
+}
+.icon-html {
+  &:before {
+    content: $icon-html;
+  }
+}
+.icon-xml {
+  &:before {
+    content: $icon-xml;
+  }
+}
+.icon-play {
+  &:before {
+    content: $icon-play;
+  }
+}
+.icon-video {
+  &:before {
+    content: $icon-video;
+  }
+}
+.icon-movie {
+  &:before {
+    content: $icon-movie;
+  }
+}
+.icon-images {
+  &:before {
+    content: $icon-images;
+  }
+}
+.icon-pictures {
+  &:before {
+    content: $icon-pictures;
+  }
+}
+.icon-photos {
+  &:before {
+    content: $icon-photos;
+  }
+}
+.icon-graphics {
+  &:before {
+    content: $icon-graphics;
+  }
+}
+.icon-list {
+  &:before {
+    content: $icon-list;
+  }
+}
+.icon-todo {
+  &:before {
+    content: $icon-todo;
+  }
+}
+.icon-bullet {
+  &:before {
+    content: $icon-bullet;
+  }
+}
+.icon-menu {
+  &:before {
+    content: $icon-menu;
+  }
+}
+.icon-options {
+  &:before {
+    content: $icon-options;
+  }
+}
+.icon-remove {
+  &:before {
+    content: $icon-remove;
+  }
+}
+.icon-remove-circle {
+  &:before {
+    content: $icon-remove-circle;
+  }
+}
+.icon-trash {
+  &:before {
+    content: $icon-trash;
+  }
+}
+.icon-spinner {
+  &:before {
+    content: $icon-spinner;
+  }
+}
+.icon-logout {
+  &:before {
+    content: $icon-logout;
+  }
+}
+.icon-login {
+  &:before {
+    content: $icon-login;
+  }
+}
+

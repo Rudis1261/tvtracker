@@ -1,0 +1,55 @@
+.about-page {
+	.profile {
+
+    &__likes img,
+	 	img {
+			padding: 3px;
+		  border: 1px solid #ddd;
+		  box-shadow: 1px 1px 4px rgba(117, 117, 117, 0.2);
+		  @include border-radius(3px);
+		}
+
+		&__name {
+			margin: 5px 0 5px;
+			color: #333;
+			font-size: 24px;
+		}
+
+		&__position {
+			font-style: italic;
+			font-size: 0.7em;
+			margin: 5px 0 30px;
+		}
+
+		&__body {
+			white-space: pre-wrap;
+		}
+
+    &__likes {
+      padding-top: 15px;
+      @include flex-display();
+      @include flex-wrap(wrap);
+      @include justify-content(center);
+      @include align-items(flex-start);
+
+      &--title {
+        margin: 10px 0 15px;
+        font-size: 20px;
+        color: #555;
+      }
+    }
+
+    &__contact {
+      font-size: 23px;
+      background: #efefef;
+      margin: 10px auto 25px;
+      padding: 10px;
+      @include border-radius(3px);
+
+      @include respond-from($screenTablet) {
+        padding: 20px 25px;
+        margin: 50px 50px 75px;
+      }
+    }
+	}
+}

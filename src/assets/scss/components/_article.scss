@@ -1,0 +1,86 @@
+.article {
+	.lazy-loader {
+		padding: 3px;
+		overflow: hidden;
+		border: 1px solid #ccc;
+		margin: 0 10px 0 0;
+		@include border-radius(2px);
+	}
+
+	h3 > .btn {
+		position: relative;
+		top: -5px;
+	}
+
+	.author-details {
+		min-height: 90px;
+
+		&-container {
+			padding: 6px 0 0;
+		}
+
+		&.text-right {
+			lazy {
+				width: 100%;
+				img {
+					margin: 0;
+				}
+			}
+		}
+
+		.email {
+			position: relative;
+	    top: -5px;
+      color: #666;
+		}
+
+		.publish-date {
+			color: $colorPrimary;
+		}
+	}
+
+	&-index-container {
+		margin-bottom: 30px;
+		border-bottom: 1px solid #ccc;
+	}
+
+  &-body {
+    padding-bottom: 20px;
+    word-break: break-word;
+    white-space: pre-wrap;
+
+    .read-more {
+      color: #666;
+    }
+
+    a {
+      color: $colorPrimary;
+      &:hover {
+        color: darken($colorPrimary, 10%);
+      }
+    }
+  }
+
+  &-edit-preview {
+  	max-height: 600px;
+  	margin-bottom: 10px;
+  	overflow-y: auto;
+  	background: #efefef;
+  	padding: 10px;
+  	border: 1px solid darken(#efefef, 5%);
+  	@include border-radius(4px);
+  }
+
+  &-edit-modal {
+  	textarea {
+  		&.saving {
+	  		border-color: $colorPrimary;
+	  		box-shadow: 1px 1px 10px darken($colorPrimary, 10%);
+	  	}
+	  	
+	  	@include respond-from($screenTablet) {
+	  		min-height: 300px;
+	  	}
+  	} 
+  }
+}

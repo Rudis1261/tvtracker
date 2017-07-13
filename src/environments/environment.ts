@@ -4,5 +4,16 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiEndPoint: "http://dev.tvt2.co.za",
+  authEndPoint: "http://dev.tvt2.co.za/auth/login",
+  logoutEndPoint: "http://dev.tvt2.co.za/auth/logout",
+  firebase: {
+    apiKey: "AIzaSyDtO3Dk6M67rcnUiWn5MmCtWrMk_ZHrpI8",
+    authDomain: "tvtrackerv2.firebaseapp.com",
+    databaseURL: "https://tvtrackerv2.firebaseio.com",
+    projectId: "tvtrackerv2",
+    storageBucket: "tvtrackerv2.appspot.com",
+    messagingSenderId: "646419066300"
+  }
 };

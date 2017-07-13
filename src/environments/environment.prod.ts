@@ -1,3 +1,14 @@
 export const environment = {
-  production: true
+  production: true,
+  apiEndPoint: "https://api.tvtracker.co.za",
+  authEndPoint: "https://api.tvtracker.co.za/auth/login",
+  logoutEndPoint: "https://api.tvtracker.co.za/auth/logout",
+  firebase: {
+    apiKey: "AIzaSyDtO3Dk6M67rcnUiWn5MmCtWrMk_ZHrpI8",
+    authDomain: "tvtrackerv2.firebaseapp.com",
+    databaseURL: "https://tvtrackerv2.firebaseio.com",
+    projectId: "tvtrackerv2",
+    storageBucket: "tvtrackerv2.appspot.com",
+    messagingSenderId: "646419066300"
+  }
 };
