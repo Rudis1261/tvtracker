@@ -29,10 +29,6 @@ export class AuthService {
       return Observable.of(this.user);
     }
 
-    if (!username || !password) {
-      return Observable.throw('No username / password provided');
-    }
-
     return this.http.post(
       ENV.authEndPoint, {
         'username': username,
