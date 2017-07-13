@@ -168,7 +168,6 @@ header {
 
           &:hover {
             padding-left: ($mobileHeaderNavPadding * 2.2);
-            color: darken($bgNav, 1%);
             border-left: 3px solid $badass;
           }
 
@@ -181,9 +180,6 @@ header {
             display: inline-block;
             height: 25px;
             margin: 0 8px -6px 0;
-          }
-          .container {
-            background: lime;
           }
         }
 
