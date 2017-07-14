@@ -1,8 +1,8 @@
+$mobileHeaderNavPadding: 6px;
+
 header {
-  $mobileHeaderNavPadding: 6px;
-  height: $headerHeight;
-  background: darken($bgNav, 1%);
-  border-bottom: 1px solid $bgNav;
+  height: 120px;
+  background: #eee;
   color: $colorNav;
   position: fixed;
   top: 0;
@@ -10,14 +10,10 @@ header {
   z-index: 1000;
   width: 100%;
   margin: 0 auto;
-  box-shadow: 0 2px 7px -2px $headerBoxShadow, 0px 10px 20px -10px rgba(#ccc, 0.2);
 
   .container {
     padding: 0;
     height: 100%;
-    background: $bgNav;
-    border-left: 1px solid darken($bgNav, 3%);
-    border-right: 1px solid darken($bgNav, 3%);
   }
 
   ul.menu,
@@ -32,7 +28,7 @@ header {
     i {
       color: $colorNav;
       padding: 10px 20px;
-      height: 40px;
+      height: 80px;
       &:hover {
         cursor: pointer;
       }
@@ -47,7 +43,7 @@ header {
     @include respond-from($screenTablet) {
       display: none;
     }
-    margin: 15px 13px 0;
+    margin: 12px 10px 0;
     display: block;
     height: 33px;
     float: right;
@@ -67,6 +63,9 @@ header {
 
     &.open {
       li {
+        background: #ddd;
+      }
+      li {
         margin-bottom: 0;
       }
       li:nth-of-type(1) {
@@ -85,10 +84,6 @@ header {
 
   ul.brand {
     padding: 16px 0 0 21px;
-
-    @include respond-to($screenTablet) {
-      padding: 16px 0 0 10px;
-    }
 
     li {
       display: block;
@@ -111,19 +106,27 @@ header {
       width: 39px;
       margin: -5px 6px 0 3px;
       height: 39px;
-      background: url("assets/img/logo.png") no-repeat center bottom;
-      background-size: 39px 39px;
       content: " ";
       z-index: 2;
     }
   }
+}
 
-  ul.nav {
+@include respond-to($screenTablet) {
+  header {
+    height: 54px;
+    box-shadow: 0 1px 8px 1px rgba(#000,.1);
+    background: rgba(255, 255, 255, 0.85);
 
-    // Mobile Nav
-    @include respond-to($screenTablet) {
-      @include border-radius(0 0 4px 0);
+    .container {
+      height: 54px;
+    }
 
+    ul.brand {
+      padding: 13px 0 0 8px;
+    }
+
+    ul.nav {
       position: absolute;
       top: $headerHeight;
       left: -30px;
@@ -131,17 +134,17 @@ header {
       overflow: hidden;
       background: lighten($bgNav, 5%);
       border-top: 1px solid $bgNav;
-      border-right: 1px solid darken($bgNav, 20%);
-      border-bottom: 9px solid darken($bgNav, 5%);
-      box-shadow: 4px 5px 10px -4px $primary;
+      border-bottom: 9px solid #fff;
+      box-shadow: 0 3px 7px rgba(0, 0, 0, 0.05);
       @include transition(all 200ms ease);
 
       &.open {
         left: 0;
-        right: 10%;
-        width: 90%;
+        right: 0;
+        width: 100%;
         z-index: 999;
-        padding: 3px 0 0;
+        padding: 0;
+        top: 54px;
       }
 
       li {
@@ -161,23 +164,22 @@ header {
         }
 
         a {
-          background: darken(#fff, 4%);
           line-height: 30px;
           padding: $mobileHeaderNavPadding ($mobileHeaderNavPadding * 2);
           text-decoration: none;
           display: block;
           color: $colorNav;
           font-size: 14px;
-          border-left: 3px solid transparent;
+          border-left: 5px solid transparent;
 
           &:hover {
             padding-left: ($mobileHeaderNavPadding * 2.2);
-            border-left: 3px solid $badass;
+            border-left: 5px solid $badass;
           }
 
           &.active {
             background: darken($bgNav, 1%);
-            border-left: 3px solid $badass;
+            border-left: 5px solid $badass;
           }
 
           img {
@@ -203,52 +205,97 @@ header {
       }
     }
   }
+}
 
-  .container {
+@include respond-from($screenTablet) {
+  header {
+    background: rgba(255, 255, 255, 0.55);
+    height: 60px;
+    border-bottom: 1px solid #fff;
 
-    // Desktop Nav
-    @include respond-from($screenTablet) {
+    .container {
+      height: 60px;
+      position: relative;
+    }
+
+    ul.nav,
+    ul.brand {
+      position: absolute;
+
+      li.brand-name {
+        display: none;
+      }
+    }
+
+    ul.brand {
+      left: 0;
+      bottom: 0;
+      padding: 0 0 5px 15px;
+    }
+
+    ul.nav {
+      bottom: -2px;
+      left: 75px;
+      display: block;
+      line-height: $headerHeight;
+
+      li {
+        display: inline-block;
+        border: none;
+        float: left;
+        height: 40px;
+        line-height: 40px;
+
+        a {
+          height: 40px;
+          line-height: 27px;
+          text-decoration: none;
+          color: #666;
+          padding: 0 15px;
+          display: block;
+          @include transition(all 300ms ease);
+
+          &.active {
+            color: #000;
+            border-bottom: 3px solid $badass;
+          }
+
+          &:hover {
+            color: #000;
+            border-bottom: 3px solid darken($primary, 5%);
+          }
+
+          img {
+            display: inline-block;
+            height: 25px;
+            margin: 0 8px -6px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include respond-from($screenDesktop) {
+  header {
+    height: 100px;
+    .container {
+      height: 100px;
+
+      ul.brand {
+        padding: 0 0 10px;
+
+        li.brand-name {
+          position: relative;
+          bottom: -8px;
+        }
+      }
 
       ul.nav {
-        display: block;
-        line-height: $headerHeight;
+        left: 60px;
 
-        li {
-          line-height: $headerHeight;
-          height: $headerHeight;
-          display: inline-block;
-          border-right: 1px solid darken($bgNav, 5%);
-          float: left;
-
-          a {
-            line-height: $headerHeight;
-            text-decoration: none;
-            color: $colorNav;
-            padding: 0 15px;
-            display: block;
-            @include border-radius(3px);
-            @include transition(all 100ms ease);
-
-            &.active {
-              background: lighten($bgNav, 5%);
-              border-bottom: 3px solid $badass;
-            }
-
-            &:hover {
-              background: darken($bgNav, 2%);
-              border-bottom: 3px solid darken($primary, 5%);
-            }
-
-            img {
-              display: inline-block;
-              height: 25px;
-              margin: 0 8px -6px 0;
-            }
-          }
-          &:first-of-type {
-            margin-left: 30px;
-            border-left: 1px solid darken($bgNav, 5%);
-          }
+        li a {
+          padding: 0 25px;
         }
       }
     }

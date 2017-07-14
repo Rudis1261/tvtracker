@@ -10,7 +10,9 @@ declare var window: any;
                 <!-- BRAND -->
                 <ul class="brand clickable" [routerLink]="['/home']">
                   <li class="logo-container">
-                    <span class="logo"></span>
+                    <span class="logo">
+                      <img src="assets/img/logo_small.png" width="39" height="39" alt="logo" />
+                    </span>
                   </li>
                   <li class="brand-name">
                     Tracker<span class="dot">&nbsp;</span><div>.co.za</div>

@@ -9,8 +9,79 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+
+  <style type="text/css">
+    .page-loader {
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .page-loader .dot {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #000;
+      float: left;
+      margin: 0 4px;
+      border-radius: 50%;
+      -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+      transform: scale(0);
+      -webkit-animation: fx 1000ms ease infinite;
+      animation: fx 1000ms ease infinite;
+    }
+
+    .page-loader img {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 15px;
+      display: block;
+    }
+
+    .page-loader .dot:nth-of-type(2) {
+      -webkit-animation: fx 1000ms ease infinite 333ms;
+      animation: fx 1000ms ease infinite 333ms;
+    }
+
+    .page-loader .dot:nth-of-type(3) {
+      -webkit-animation: fx 1000ms ease infinite 666ms;
+      animation: fx 1000ms ease infinite 666ms;
+    }
+
+    @-webkit-keyframes fx {
+      50% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    @keyframes fx {
+      50% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <div class="page-loader">
+      <img src="assets/img/logo.png" alt="loading logo" />
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </app-root>
 </body>
 </html>
