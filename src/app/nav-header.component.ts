@@ -13,7 +13,7 @@ declare var window: any;
                     <span class="logo"></span>
                   </li>
                   <li class="brand-name">
-                    TVTracker<span class="dot">&nbsp;</span><div>.co.za</div>
+                    Tracker<span class="dot">&nbsp;</span><div>.co.za</div>
                    </li>
                 </ul>
 

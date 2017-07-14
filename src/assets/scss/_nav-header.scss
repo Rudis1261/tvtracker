@@ -84,7 +84,11 @@ header {
   }
 
   ul.brand {
-    padding: 15px 0 0 10px;
+    padding: 16px 0 0 21px;
+
+    @include respond-to($screenTablet) {
+      padding: 16px 0 0 10px;
+    }
 
     li {
       display: block;
@@ -105,10 +109,10 @@ header {
       position: relative;
       display: inline-block;
       width: 39px;
-      margin: -4px 10px 0 3px;
-      height: 49px;
-      //background: url("assets/img/logo_white.png") no-repeat center bottom;
-      background-size: 38.18px 43px;
+      margin: -5px 6px 0 3px;
+      height: 39px;
+      background: url("assets/img/logo.png") no-repeat center bottom;
+      background-size: 39px 39px;
       content: " ";
       z-index: 2;
     }
