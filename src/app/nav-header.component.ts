@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 declare var window: any;
 
@@ -37,10 +38,14 @@ declare var window: any;
                     </a>
                   </li>
                   <!-- Login / Logout -->
-                  <!--<li class="login">
-                    <i class="icon-login" (click)="showModal = !showModal"  title="Login Now"></i>
-                    <i class="icon-logout" (click)="logoff()" title="Logoff"></i>
-                  </li>-->
+                  <li class="login">
+                    <span *ngIf="!user" (click)="showModal = !showModal">
+                      <i class="icon-login" title="Login Now"></i> <span class="mobile-only">Login</span>
+                    </span>\
+                    <span (click)="logoff()" *ngIf="user">
+                      <i class="icon-logout" title="Logoff"></i> <span class="mobile-only">Logoff</span>
+                    </span>\
+                  </li>
                 </ul>
               </div>
             </header>
@@ -74,10 +79,11 @@ export class NavHeaderComponent {
   menuOpen = false;
   showModal = false;
   activeMenu = "";
+  user: any = false;
   modalTitle = "Login";
 
   // Watch for route changes and ensure that the menu is closed
-  constructor(router: Router) {
+  constructor(router: Router, private Auth: AuthService) {
     router.events.subscribe((event) => {
       if(event instanceof NavigationStart) {
         this.menuOpen = false;
@@ -86,6 +92,11 @@ export class NavHeaderComponent {
       if(event instanceof NavigationEnd) {
         this.activeMenu = event.url;
       }
+    });
+
+    this.Auth.userState.subscribe(value => {
+      //console.log(value);
+      this.user = value;
     });
   }
 
@@ -99,16 +110,10 @@ export class NavHeaderComponent {
   }
 
   logoff() {
-    // this.af.auth.logout();
-    // this.auth = false;
-    // window.location.reload();
+    this.Auth.logout().subscribe(auth => {
+      this.user = auth;
+    });
   }
 
-  ngOnInit() {
-    // this.af.auth.subscribe(auth => {
-    //   if(auth && auth.auth) {
-    //     this.auth = auth.auth;
-    //   }
-    // });
-  }
+  ngOnInit() {}
 }

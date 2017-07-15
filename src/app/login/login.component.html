@@ -1,9 +1,9 @@
 <div class="row message error" *ngIf="error && error.message">{{error.message}}</div>
 
 <form
-    novalidate
-    (ngSubmit)="onSubmit(loginDetailsForm)"
-    #loginDetailsForm="ngForm"
+  novalidate
+  (ngSubmit)="onSubmit(loginDetailsForm)"
+  #loginDetailsForm="ngForm"
 >
 	<div class="col-12">
 		<label for="email">
@@ -15,12 +15,12 @@
 				name="email"
 				required
 				[(ngModel)]="loginDetails.email"
-	            #errorLoginEmail="ngModel"
+        #errorLoginEmail="ngModel"
 			/>
 			<div
-	            [hidden]="(errorLoginEmail.valid || !errorLoginEmail.touched)"
-	            class="error"
-	        >Invalid</div>
+        [hidden]="(errorLoginEmail.valid || !errorLoginEmail.touched)"
+        class="error"
+      >Invalid</div>
 		</label>
 	</div>
 
@@ -34,19 +34,19 @@
 				name="password"
 				required
 				[(ngModel)]="loginDetails.password"
-	            #errorLoginPassword="ngModel"
+        #errorLoginPassword="ngModel"
 			/>
 			<div
-	            [hidden]="(errorLoginPassword.valid || !errorLoginPassword.touched)"
-	            class="error"
-	        >Invalid</div>
+        [hidden]="(errorLoginPassword.valid || !errorLoginPassword.touched)"
+        class="error"
+      >Invalid</div>
 		</label>
 	</div>
 
-	<button 
-		type="submit" 
-		[disabled]="loggingIn" 
-		(click)="onSubmit(loginDetailsForm)" 
+	<button
+		type="submit"
+		[disabled]="loggingIn"
+		(click)="onSubmit(loginDetailsForm)"
 		[disabled]="loginDetailsForm.invalid"
 	>{{action}}&nbsp;<i class='icon-spinner spin' *ngIf="loggingIn"></i></button>
 </form>

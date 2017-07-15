@@ -1,7 +1,7 @@
-import { 
-  Component, OnInit, Input, Output, 
-  OnChanges, EventEmitter, trigger, 
-  state, style, animate, transition 
+import {
+  Component, OnInit, Input, Output,
+  OnChanges, EventEmitter, trigger,
+  state, style, animate, transition
 } from '@angular/core';
 
 @Component({
@@ -9,22 +9,27 @@ import {
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
   animations: [
-    trigger('modal', [
-      transition('void => *', [
-        style({transform: 'translate(-50%, -200%)', opacity: 1 }),
-        animate(250)
+    trigger('modalBackground', [
+      state('*', style({opacity: 0.0, bottom: 'auto', right: 'auto', width: '0', height: '0'})),
+      state('0', style({opacity: 0.0, bottom: 'auto', right: 'auto', width: '0', height: '0'})),
+      state('1', style({opacity: 1.0, bottom: 0, right: 0, width: '100%', height: '100%'})),
+      transition('0 => 1', [
+        animate(0, style({opacity: 1.0, bottom: 0, right: 0, width: '100%', height: '100%' })),
+        animate(500, style({opacity: 1.0}))
       ]),
-      transition('* => void', [
-        animate(500, style({transform: 'translate(-50%, -200%)', opacity: 0}))
+      transition('1 => 0', [
+        animate(300, style({opacity: 0}))
       ])
     ]),
-    trigger('modalBackground', [
-      transition('void => *', [
-        style({background: 'black', opacity: 1}),
-        animate(100)
+    trigger('modal', [
+      state('void', style({transform: 'translateY(-300%) translateX(-50%)'})),
+      state('0', style({transform: 'translateY(-300%) translateX(-50%)'})),
+      state('1', style({transform: 'translateY(-90%) translateX(-50%)'})),
+      transition('0 => 1', [
+        animate(500, style({transform: 'translateY(-90%) translateX(-50%)'}))
       ]),
-      transition('* => void', [
-        animate(500, style({backround: 'transparent', opacity: 0}))
+      transition('1 => 0', [
+        animate(300, style({transform: 'translateY(-300%) translateX(-50%)'}))
       ])
     ])
   ]
@@ -48,7 +53,7 @@ export class ModalComponent implements OnInit {
     }
 
     let eventClass = event.target.attributes.class.value;
-  	if (eventClass.indexOf("modal-close") >= 0 || eventClass.indexOf("modal-background") >= 0) {
+    if (eventClass.indexOf("modal-close") >= 0 || eventClass.indexOf("modal-background") >= 0) {
 			this.visible = false;
 			this.modalContent = "";
       this.visibleChange.emit(this.visible);
@@ -60,6 +65,6 @@ export class ModalComponent implements OnInit {
   	this.modalContent = content;
     this.visibleChange.emit(this.visible);
   }
-  
+
   ngOnInit() {}
 }

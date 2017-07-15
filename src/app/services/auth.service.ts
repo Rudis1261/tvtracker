@@ -2,6 +2,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from "@angular/core";
 import { environment as ENV } from "../../environments/environment";
 import { Observable } from "rxjs/Rx";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -11,6 +12,7 @@ export class AuthService {
   private headers: Headers;
   private options: RequestOptions;
   public user: any;
+  public userState = new BehaviorSubject(null);
 
   constructor(private http: Http) {
     this.user = JSON.parse(localStorage.getItem('user')) || false;
@@ -20,7 +22,7 @@ export class AuthService {
       withCredentials: true
     });
 
-    console.log("USER", this.user);
+    this.userState.next(this.user);
   }
 
   login(username: String, password: String) {
@@ -40,29 +42,28 @@ export class AuthService {
       let data = res.json();
       this.user = data.user;
       localStorage.setItem('user', JSON.stringify(this.user));
+      this.userState.next(this.user);
       return data;
     })
     .catch((error:any) => Observable.throw(error || 'Server error'));
-  }
-
-  getAuth() {
-    return Observable.of(this.user);
   }
 
   logout() {
     this.user = false;
     localStorage.removeItem('user');
 
-    console.log(ENV.logoutEndPoint);
+    //console.log(ENV.logoutEndPoint);
     return this.http.get(
       ENV.logoutEndPoint,
       this.options
     )
     .map((res:Response) => {
-      console.log("LOGOUT RESPONSE", res);
+      //console.log("LOGOUT RESPONSE", res);
       let data = res.json()
       this.user = false;
       localStorage.removeItem('user');
+      this.userState.next(this.user);
+      return this.user;
     })
     .catch((error:any) => Observable.throw(error || 'Server error'));
   }

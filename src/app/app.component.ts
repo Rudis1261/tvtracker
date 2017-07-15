@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 declare var ga:any;
+declare var window:any;
 
 @Component({
   selector: 'app-root',
@@ -12,16 +13,20 @@ export class AppComponent {
 	private currentRoute:string;
 
 	constructor(public router: Router) {
-    // router.events.distinctUntilChanged((previous: any, current: any) => {
-    //   if(current instanceof NavigationEnd) {
-    //     return previous.url === current.url;
-    //   }
-    //   return true;
-    // }).subscribe((x: any) => {
-    // 	if (x.urlAfterRedirects) {
-    // 		ga('set', 'page', x.urlAfterRedirects);
-    // 	}
-    //   ga('send', 'pageview', x.url);
-    // });
+    router.events.distinctUntilChanged((previous: any, current: any) => {
+      if(current instanceof NavigationEnd) {
+        return previous.url === current.url;
+      }
+      return true;
+    }).subscribe((x: any) => {
+    	if (x.urlAfterRedirects) {
+        console.log('GA PAGE', x.urlAfterRedirects);
+    		//ga('set', 'page', x.urlAfterRedirects);
+    	}
+      console.log('GA SEND IT', x.urlAfterRedirects);
+      //ga('send', 'pageview', x.url);
+
+      window.scrollTo(0, 0);
+    });
   }
 }

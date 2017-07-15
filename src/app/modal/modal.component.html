@@ -1,10 +1,9 @@
-<div 
-	class="modal-background" 
-	*ngIf="visible" 
-	(click)="closeModal($event)" 
-	[@modalBackground]
+<div
+	class="modal-background"
+	(click)="closeModal($event)"
+	[@modalBackground]="visible"
 >
-	<div class="modal modal-container {{type}}" [@modal] [ngClass]="{'has-footer': footer && footer !== ''}">
+	<div class="modal modal-container {{type}}" [@modal]="visible" [ngClass]="{'has-footer': footer && footer !== ''}">
 		<div class="modal-close">&times;</div>
 		<div class="modal-header" *ngIf="title && title !== ''">{{title}}</div>
 		<div class="modal-content">

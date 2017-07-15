@@ -142,3 +142,15 @@ h1, h2, h3, h4, h5 {
     }
   }
 }
+
+.mobile-only {
+  @include respond-from($screenTablet) {
+    display: none;
+  }
+}
+
+.dektop-only {
+  @include respond-to($screenTablet) {
+    display: none;
+  }
+}

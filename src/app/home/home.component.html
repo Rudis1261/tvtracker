@@ -1,11 +1,3 @@
-<div class="container">
-  <br><br>
-  <form name="loginForm">
-    <button *ngIf="user" (click)="logout()">Logout</button>
-    <div *ngIf="!user">
-      <input type="text" name="username" placeholder="Username" [(ngModel)]="loginForm.username" />
-      <input type="password" name="password" placeholder="password" [(ngModel)]="loginForm.password" />
-      <button (click)="login(loginForm.username, loginForm.password)">Login</button>
-    </div>
-  </form>
+<div class="container page-heading">
+  <h1>Home Page</h1>
 </div>

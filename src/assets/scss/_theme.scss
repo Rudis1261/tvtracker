@@ -12,12 +12,10 @@ body {
 
   @include respond-from($screenTablet) {
     padding: 60px 0 0;
-    background-position: 60px center;
   }
 
   @include respond-from($screenDesktop) {
     padding: 100px 0 0;
-    background-position: 100px center;
   }
 }
 
