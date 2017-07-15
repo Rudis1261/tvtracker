@@ -1,9 +1,72 @@
 <div class="row message error" *ngIf="error && error.message">{{error.message}}</div>
 
+<div class="container text-center">
+  <span
+    class="btn"
+    *ngFor="let actionType of actions"
+    [ngClass]="{'active': actionType == action}"
+    (click)="toggleAction(actionType)"
+  >{{actionType}}</span>
+</div>
+
+<!-- Login FORM -->
 <form
+  [hidden]="action !== 'Login'"
   novalidate
-  (ngSubmit)="onSubmit(loginDetailsForm)"
+  (ngSubmit)="onSubmit(loginDetailsForm, 'login')"
   #loginDetailsForm="ngForm"
+>
+  <div class="col-12">
+    <label for="email">
+      Email
+      <input
+        id="email"
+        type="text"
+        placeholder="Email"
+        name="email"
+        required
+        [(ngModel)]="loginDetails.email"
+        #errorLoginEmail="ngModel"
+      />
+      <div
+        [hidden]="(errorLoginEmail.valid || !errorLoginEmail.touched)"
+        class="error"
+      >Invalid</div>
+    </label>
+  </div>
+
+  <div class="col-12">
+    <label for="password">
+      Password
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        name="password"
+        required
+        [(ngModel)]="loginDetails.password"
+        #errorLoginPassword="ngModel"
+      />
+      <div
+        [hidden]="(errorLoginPassword.valid || !errorLoginPassword.touched)"
+        class="error"
+      >Invalid</div>
+    </label>
+  </div>
+
+  <button
+    type="submit"
+    (click)="onSubmit(loginDetailsForm, 'login')"
+    [disabled]="loginDetailsForm.invalid || loggingIn"
+  >{{action}}&nbsp;<i class='icon-spinner spin' *ngIf="loggingIn"></i></button>
+</form>
+
+<!-- Register FORM -->
+<form
+  [hidden]="action !== 'Register'"
+  novalidate
+  (ngSubmit)="onSubmit(registerDetailForm, 'register')"
+  #registerDetailForm="ngForm"
 >
 	<div class="col-12">
 		<label for="email">
@@ -14,30 +77,49 @@
 				placeholder="Email"
 				name="email"
 				required
-				[(ngModel)]="loginDetails.email"
-        #errorLoginEmail="ngModel"
+				[(ngModel)]="registerDetails.email"
+        #errorRegisterEmail="ngModel"
 			/>
 			<div
-        [hidden]="(errorLoginEmail.valid || !errorLoginEmail.touched)"
+        [hidden]="(errorRegisterEmail.valid || !errorRegisterEmail.touched)"
         class="error"
       >Invalid</div>
 		</label>
 	</div>
 
 	<div class="col-12">
-		<label for="password">
-			Password
+    <label for="password">
+      Password
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        name="password"
+        required
+        [(ngModel)]="registerDetails.password"
+        #errorRegisterPassword="ngModel"
+      />
+      <div
+        [hidden]="(errorRegisterPassword.valid || !errorRegisterPassword.touched)"
+        class="error"
+      >Invalid</div>
+    </label>
+  </div>
+
+  <div class="col-12">
+		<label for="repeat">
+			Repeat Password
 			<input
-				id="password"
+				id="repeat"
 				type="password"
 				placeholder="Password"
-				name="password"
+				name="repeat"
 				required
-				[(ngModel)]="loginDetails.password"
-        #errorLoginPassword="ngModel"
+				[(ngModel)]="registerDetails.repeat"
+        #errorRegisterRepeat="ngModel"
 			/>
 			<div
-        [hidden]="(errorLoginPassword.valid || !errorLoginPassword.touched)"
+        [hidden]="(errorRegisterRepeat.valid || !errorRegisterRepeat.touched)"
         class="error"
       >Invalid</div>
 		</label>
@@ -45,8 +127,7 @@
 
 	<button
 		type="submit"
-		[disabled]="loggingIn"
-		(click)="onSubmit(loginDetailsForm)"
-		[disabled]="loginDetailsForm.invalid"
-	>{{action}}&nbsp;<i class='icon-spinner spin' *ngIf="loggingIn"></i></button>
+		[disabled]="registering || registerDetailForm.invalid"
+		(click)="onSubmit(registerDetailForm, 'register')"
+	>{{action}}&nbsp;<i class='icon-spinner spin' *ngIf="registering"></i></button>
 </form>

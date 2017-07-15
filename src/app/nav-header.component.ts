@@ -50,7 +50,7 @@ declare var window: any;
               </div>
             </header>
 
-            <app-modal [(visible)]="showModal" [(title)]="modalTitle">
+            <app-modal [(visible)]="showModal">
               <app-login (onCloseModal)="onCloseModal()"></app-login>
             </app-modal>`
 })
@@ -80,7 +80,6 @@ export class NavHeaderComponent {
   showModal = false;
   activeMenu = "";
   user: any = false;
-  modalTitle = "Login";
 
   // Watch for route changes and ensure that the menu is closed
   constructor(router: Router, private Auth: AuthService) {
@@ -95,7 +94,6 @@ export class NavHeaderComponent {
     });
 
     this.Auth.userState.subscribe(value => {
-      //console.log(value);
       this.user = value;
     });
   }
@@ -110,9 +108,7 @@ export class NavHeaderComponent {
   }
 
   logoff() {
-    this.Auth.logout().subscribe(auth => {
-      this.user = auth;
-    });
+    this.Auth.logout().subscribe();
   }
 
   ngOnInit() {}

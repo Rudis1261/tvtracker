@@ -39,13 +39,10 @@ $modalBoxShadow: 1px 1px 30px 5px rgba(0, 0, 0, 0.1);
 		z-index: ($modalZIndex + 1);
 		box-shadow: $modalBoxShadow;
 		@include transform-origin(center center);
-		@include transform(translate(-50%, -90%));
-
-		@include respond-from($screenTablet) {
-      @include transform(translate(-50%, -60%));
-    }
+		@include transform(translate(-50%, -60%));
 
     @include respond-to($screenTablet) {
+      top: 38%;
       min-width: ($modalSmWidth - 100);
 		}
 

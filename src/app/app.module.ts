@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { ModalComponent } from './modal/modal.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LazyComponent } from './lazy.component';
+import { SeriesComponent } from './series/series.component';
 
 // Pipes
 import { TitleCasePipe } from './pipes/title-case.pipe';
@@ -35,7 +36,7 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 // Services
 import { AuthService } from './services/auth.service';
 import { LoadscriptService } from './services/loadscript.service';
-import { SeriesComponent } from './series/series.component';
+import { DeviceService } from './services/device.service';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { SeriesComponent } from './series/series.component';
     AuthService,
     ModalComponent,
     LoadscriptService,
+    DeviceService
   ],
   bootstrap: [ AppComponent ]
 })

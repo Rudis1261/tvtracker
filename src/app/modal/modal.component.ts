@@ -24,9 +24,9 @@ import {
     trigger('modal', [
       state('void', style({transform: 'translateY(-300%) translateX(-50%)'})),
       state('0', style({transform: 'translateY(-300%) translateX(-50%)'})),
-      state('1', style({transform: 'translateY(-90%) translateX(-50%)'})),
+      state('1', style({transform: 'translateY(-50%) translateX(-50%)'})),
       transition('0 => 1', [
-        animate(500, style({transform: 'translateY(-90%) translateX(-50%)'}))
+        animate(500, style({transform: 'translateY(-50%) translateX(-50%)'}))
       ]),
       transition('1 => 0', [
         animate(300, style({transform: 'translateY(-300%) translateX(-50%)'}))
@@ -37,7 +37,7 @@ import {
 export class ModalComponent implements OnInit {
 
   @Input() closable = true;
-  @Input() visible: boolean;
+  @Input() visible: boolean = false;
   @Input() title = false;
   @Input() type = '';
   @Input() footer = false;

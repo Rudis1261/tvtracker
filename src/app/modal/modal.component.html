@@ -3,12 +3,12 @@
 	(click)="closeModal($event)"
 	[@modalBackground]="visible"
 >
-	<div class="modal modal-container {{type}}" [@modal]="visible" [ngClass]="{'has-footer': footer && footer !== ''}">
+	<div class="modal modal-container {{type}}" [@modal]="visible" [ngClass]="{'has-footer': footer}">
 		<div class="modal-close">&times;</div>
-		<div class="modal-header" *ngIf="title && title !== ''">{{title}}</div>
+		<div class="modal-header" *ngIf="title">{{title}}</div>
 		<div class="modal-content">
 			<ng-content></ng-content>
 		</div>
-		<div class="modal-footer" *ngIf="footer && footer !== ''">{{footer}}</div>
+		<div class="modal-footer" *ngIf="footer">{{footer}}</div>
 	</div>
 </div>

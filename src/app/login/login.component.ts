@@ -12,8 +12,12 @@ export class LoginComponent implements OnInit {
 	@Output() onCloseModal = new EventEmitter<boolean>();
 	error: any;
   loginDetails: any;
+  registerDetails: any;
   loggingIn: boolean = false;
-  action: string = "Login";
+  registering: boolean = false;
+  action: String = 'Login';
+  actions: Array<String> = ['Login', 'Register'];
+  modalTitle = "Login";
 
   constructor(private Auth: AuthService) {
   	this.error = false;
@@ -21,9 +25,25 @@ export class LoginComponent implements OnInit {
       'email': "",
       'password': ""
     };
+
+    this.registerDetails = {
+      'email': "",
+      'password': "",
+      'repeat': ""
+    };
   }
 
-  onSubmit(form) {
+  toggleAction(action) {
+    this.action = action;
+  }
+
+  onSubmit(form, type) {
+    console.log("SUBMIT", form, "LOGIN", this.loginDetails, "REGI", this.registerDetails);
+    if (type == 'register') {
+      console.log("REGISTER, ABORT");
+      return false;
+    }
+
    	this.error = false;
     if (this.loginDetails['email'] == "" || this.loginDetails['password'] == "") {
       return false;

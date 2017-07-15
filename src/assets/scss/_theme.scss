@@ -1,4 +1,4 @@
-//@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 html {
   background: #eee;
@@ -17,50 +17,6 @@ body {
   @include respond-from($screenDesktop) {
     padding: 100px 0 0;
   }
-}
-
-#main {
-    max-width: ($screenSlim - 40px);
-    background: #fff;
-    margin: 100px auto 0;
-    padding: 15px;
-    box-shadow: 1px 1px 8px rgba(0,0,0,0.5);
-
-    @include border-radius(6px);
-    @include respond-to($screenSlim) {
-        margin: 100px 20px 0;
-    }
-}
-
-#chat {
-    margin: 10px;
-    padding: 0;
-    background: #efefef;
-    border: 1px solid #ccc;
-    overflow: hidden;
-    overflow-y: auto;
-    max-height: 200px;
-    font-size: 14px;
-    @include border-radius(2px);
-
-    li {
-        list-style: none;
-        padding: 8px;
-        @include flex-display();
-        @include align-items(flex-start);
-
-        &:nth-of-type(odd) {
-            background: rgba(113, 113, 113, 0.04);
-        }
-
-        .name {
-            font-weight: bold;
-            font-style: italic;
-            &.active {
-                color: #63acff;
-            }
-        }
-    }
 }
 
 .row.loading-heading {
@@ -98,7 +54,7 @@ a.small {
     & > h2,
     & > h3 {
         line-height: 38px;
-        border-bottom: 1px solid #c3c3c3;
+        border-bottom: 1px solid #fff;
         box-shadow: 0 5px 14px -9px rgba(136, 136, 136, 0.7);
         & + h2,
         & + h3,
