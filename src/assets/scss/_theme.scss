@@ -39,6 +39,14 @@ a.small {
     border: 1px solid #ccc;
     font-size: 15px;
 
+    &.success {
+      background: $badass;
+      color: #fff;
+      font-size: 16px;
+      line-height: 18px;
+      border: none;
+    }
+
     &.error {
         background: rgba(#ea0000, 0.02);
         padding: 10px;

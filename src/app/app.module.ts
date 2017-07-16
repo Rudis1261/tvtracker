@@ -38,6 +38,9 @@ import { AuthService } from './services/auth.service';
 import { LoadscriptService } from './services/loadscript.service';
 import { DeviceService } from './services/device.service';
 
+// Directives
+import { EqualValidator } from './equal-validator.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +60,8 @@ import { DeviceService } from './services/device.service';
     SearchPipe,
     SlugifyPipe,
     OrderByPipe,
-    SeriesComponent
+    SeriesComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,

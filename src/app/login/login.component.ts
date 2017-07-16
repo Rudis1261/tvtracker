@@ -14,6 +14,7 @@ declare var window: any;
 export class LoginComponent implements OnInit {
 	@Output() onCloseModal = new EventEmitter<boolean>();
 	error: any;
+  success: any = false;
   loginDetails: any;
   registerDetails: any;
   loggingIn: boolean = false;
@@ -29,12 +30,15 @@ export class LoginComponent implements OnInit {
 
   constructor(private Auth: AuthService, private LS: LoadscriptService) {
   	this.error = false;
+    this.success = false;
+
   	this.loginDetails = {
       'email': "",
       'password': ""
     };
 
     this.registerDetails = {
+      'username': "",
       'email': "",
       'password': "",
       'confirm': ""
@@ -44,6 +48,13 @@ export class LoginComponent implements OnInit {
       this.recaptcha = true;
       setTimeout(() => {
         grecaptcha.render('login-captcha', {
+          'sitekey' : this.recapchaKey,
+          'callback' : (data) => {
+            this.error = false;
+          }
+        });
+
+        grecaptcha.render('register-captcha', {
           'sitekey' : this.recapchaKey,
           'callback' : (data) => {
             this.error = false;
@@ -70,7 +81,15 @@ export class LoginComponent implements OnInit {
         }
 
         if (resp.state == 'success') {
-          this.onCloseModal.emit(true);
+          this.success = "Successfully logged in, welcome back " + resp.user.username;
+          setTimeout(() => {
+            this.onCloseModal.emit(true);
+            setTimeout(() => {
+              this.success = false;
+              this.error = false;
+              grecaptcha.reset();
+            }, 500);
+          }, 3000);
         }
 
         this.loginActionLabel = labelBefore;
@@ -94,6 +113,11 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  register(form) {
+    console.log("Register", form, this.registerDetails);
+    this.registering = true;
+  }
+
   onSubmit(form, type) {
     this.error = false;
 
@@ -107,6 +131,11 @@ export class LoginComponent implements OnInit {
       console.log("REGISTER Disabled");
       return false;
     }
+
+    // if (type == 'register') {
+    //   if (this.registering) return false;
+    //   return this.register(form);
+    // }
 
     if (type == 'login') {
       if (this.loggingIn) return false;

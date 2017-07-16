@@ -3,8 +3,13 @@
     margin: 0 auto 20px;
     text-align:center;
 
-    #login-captcha {
+    #login-captcha,
+    #register-captcha {
       display: inline-block;
     }
+  }
+
+  .message.success {
+    margin: 65px auto 0;
   }
 }
