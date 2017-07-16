@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { environment as ENV } from "../../environments/environment";
+import { LoadscriptService } from '../services/loadscript.service';
 
+declare var grecaptcha: any;
 declare var window: any;
 
 @Component({
@@ -21,7 +24,10 @@ export class LoginComponent implements OnInit {
   loginActionLabel: String = 'Login';
   modalTitle = "Login";
 
-  constructor(private Auth: AuthService) {
+  recaptcha: any = false;
+  recapchaKey: String = ENV.recapchaKey;
+
+  constructor(private Auth: AuthService, private LS: LoadscriptService) {
   	this.error = false;
   	this.loginDetails = {
       'email': "",
@@ -33,6 +39,19 @@ export class LoginComponent implements OnInit {
       'password': "",
       'confirm': ""
     };
+
+    this.LS.loadScript(ENV.recaptchaScript, 'js', () => {
+      this.recaptcha = true;
+
+      setTimeout(() => {
+        grecaptcha.render('login-captcha', {
+          'sitekey' : this.recapchaKey,
+          'callback' : (data) => {
+            this.error = false;
+          }
+        });
+      }, 500);
+    });
   }
 
   toggleAction(action) {
@@ -42,10 +61,12 @@ export class LoginComponent implements OnInit {
   login(form) {
     this.loggingIn = true;
     let labelBefore = this.loginActionLabel;
+    let captcha = grecaptcha.getResponse();
     this.loginActionLabel = "Logging in";
-    this.Auth.login(this.loginDetails['email'], this.loginDetails['password']).subscribe(
+    this.Auth.login(this.loginDetails['email'], this.loginDetails['password'], captcha).subscribe(
       resp => {
         if (resp.state == 'failure') {
+          grecaptcha.reset();
           this.error = resp;
         }
 
@@ -55,9 +76,13 @@ export class LoginComponent implements OnInit {
 
         this.loginActionLabel = labelBefore;
         this.loggingIn = false;
-      }, 
-      err => { 
+      },
+      err => {
+
+        console.log("LOGING FAILED", err);
+
         // Catch them API Errors
+        grecaptcha.reset();
         this.loggingIn = false;
         this.loginActionLabel = labelBefore;
         this.error = {

@@ -8,6 +8,8 @@ export const environment = {
   apiEndPoint: "http://dev.tvt2.co.za",
   authEndPoint: "http://dev.tvt2.co.za/auth/login",
   logoutEndPoint: "http://dev.tvt2.co.za/auth/logout",
+  recaptchaScript: "https://www.google.com/recaptcha/api.js",
+  recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",
   firebase: {
     apiKey: "AIzaSyDtO3Dk6M67rcnUiWn5MmCtWrMk_ZHrpI8",
     authDomain: "tvtrackerv2.firebaseapp.com",

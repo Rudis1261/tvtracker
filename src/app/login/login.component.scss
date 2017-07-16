@@ -1,0 +1,10 @@
+:host {
+  .captcha {
+    margin: 0 auto 20px;
+    text-align:center;
+
+    #login-captcha {
+      display: inline-block;
+    }
+  }
+}

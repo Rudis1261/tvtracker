@@ -25,7 +25,7 @@ export class AuthService {
     this.userState.next(this.user);
   }
 
-  login(username: String, password: String) {
+  login(username: String, password: String, captcha: String) {
     if (this.user) {
       Observable.of(this.user);
       return Observable.of(this.user);
@@ -34,7 +34,8 @@ export class AuthService {
     return this.http.post(
       ENV.authEndPoint, {
         'username': username,
-        'password': password
+        'password': password,
+        'captcha': captcha
       },
       this.options
     )
@@ -50,7 +51,7 @@ export class AuthService {
 
   errorHandler(res) {
     console.log("API CATCH ERROR");
-    return Observable.throw(res.json() || 'Server error');
+    return Observable.throw(res || 'Server error');
   }
 
   logout() {
@@ -58,7 +59,7 @@ export class AuthService {
     localStorage.removeItem('user');
 
     //console.log(ENV.logoutEndPoint);
-    return this.http.get(
+    return this.http.delete(
       ENV.logoutEndPoint,
       this.options
     )
