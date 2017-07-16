@@ -12,17 +12,33 @@ export class AuthService {
   private headers: Headers;
   private options: RequestOptions;
   public user: any;
+  public token: any;
   public userState = new BehaviorSubject(null);
 
   constructor(private http: Http) {
     this.user = JSON.parse(localStorage.getItem('user')) || false;
-    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    this.token = localStorage.getItem('token') || false;
+    this.getHeaders();
+    this.userState.next(this.user);
+  }
+
+  getHeaders() {
+    console.log(this);
+    if (this.token && this.token !== false) {
+      this.headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': this.token
+      });
+    } else {
+      this.headers = new Headers({
+        'Content-Type': 'application/json'
+      });
+    }
+
     this.options = new RequestOptions({
       headers: this.headers,
       withCredentials: true
     });
-
-    this.userState.next(this.user);
   }
 
   login(username: String, password: String, captcha: String) {
@@ -30,6 +46,8 @@ export class AuthService {
       Observable.of(this.user);
       return Observable.of(this.user);
     }
+
+    this.getHeaders();
 
     return this.http.post(
       ENV.authEndPoint, {
@@ -43,6 +61,7 @@ export class AuthService {
       let data = res.json();
       this.user = data.user;
       localStorage.setItem('user', JSON.stringify(this.user));
+      localStorage.setItem('token', data.data.token || false);
       this.userState.next(this.user);
       return data;
     })
@@ -55,19 +74,19 @@ export class AuthService {
   }
 
   logout() {
+    this.getHeaders();
     this.user = false;
+    this.token = false;
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
 
-    //console.log(ENV.logoutEndPoint);
-    return this.http.delete(
+    return this.http.get(
       ENV.logoutEndPoint,
       this.options
     )
     .map((res:Response) => {
-      //console.log("LOGOUT RESPONSE", res);
       let data = res.json()
       this.user = false;
-      localStorage.removeItem('user');
       this.userState.next(this.user);
       return this.user;
     })
@@ -75,6 +94,7 @@ export class AuthService {
   }
 
   testApi() {
+    this.getHeaders();
     return this.http.get(
       ENV.apiEndPoint,
       this.options

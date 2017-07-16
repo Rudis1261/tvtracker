@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
 
     this.LS.loadScript(ENV.recaptchaScript, 'js', () => {
       this.recaptcha = true;
-
       setTimeout(() => {
         grecaptcha.render('login-captcha', {
           'sitekey' : this.recapchaKey,
@@ -61,7 +60,7 @@ export class LoginComponent implements OnInit {
   login(form) {
     this.loggingIn = true;
     let labelBefore = this.loginActionLabel;
-    let captcha = grecaptcha.getResponse();
+    let captcha = grecaptcha.getResponse() || false;
     this.loginActionLabel = "Logging in";
     this.Auth.login(this.loginDetails['email'], this.loginDetails['password'], captcha).subscribe(
       resp => {
