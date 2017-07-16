@@ -21,7 +21,7 @@ $fh-input-bg-color: #fff !default;
 $fh-focus-bg-color: darken(#fff, 5%) !default;
 $fh-focus-border-color: $fh-border-color !default;
 $fh-focus-font-color: $fh-font-color !default;
-$fh-color-invalid: #a94442;
+$fh-color-invalid: #ea0000;
 
 // Select Vendor Styling
 $fh-allow-select-vendor-styling: true !default;
@@ -33,10 +33,10 @@ $fh-fieldset-bare: false !default;
 $fh-button-height: 40px !default;
 $fh-button-width: 100% !default;
 $fh-button-max-width: 200px !default;
-$fh-button-font-color: $fh-font-color !default;
-$fh-button-bg-color: $fh-focus-bg-color !default;
-$fh-button-hover-bg-color: $fh-border-color !default;
-$fh-button-hover-font-color: $fh-font-color !default;
+$fh-button-font-color: #fff !default;
+$fh-button-bg-color: $badass !default;
+$fh-button-hover-bg-color: darken($badass, 5%) !default;
+$fh-button-hover-font-color: #fff !default;
 
 // Layout
 $fh-centered: false !default;
@@ -72,7 +72,7 @@ fieldset {
 	color: $fh-font-color;
 	vertical-align: top;
 	display: $fh-display;
-	margin: 0 auto 15px;
+	margin: 0 auto 25px;
 }
 
 datalist {
@@ -114,24 +114,28 @@ textarea {
 
 	border-radius: $fh-border-radius;
 	border: $fh-border-width $fh-border-style $fh-border-color;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
 	
 	@include transition(200ms all);
 	
 	&.ng-touched.ng-invalid {
 		border-bottom: 2px solid $fh-color-invalid;
+
 		+ div.error {
 			background: $fh-color-invalid;
 			color: #fff;    
-			float: left;
-			font-size: 10px;
-			height: 13px;
+			float: right;
+			font-size: 11px;
+			height: 15px;
 			position: relative;
 			padding: 0 5px;
 			line-height: 12px;
-			top: 0;
-			left: 50%;
-			border-radius: 0 0 2px 2px;
-			margin: -15px 0 -20px -30px;
+			top: -25px;
+			right: 4px;
+			margin: 0 auto -25px;
 		}
 	}
 	
@@ -271,8 +275,10 @@ input[type="image"] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 
-	border-radius: $fh-border-radius;
-	border: $fh-border-width $fh-border-style $fh-border-color;
+	//border-radius: $fh-border-radius;
+	//border: $fh-border-width $fh-border-style $fh-border-color;
+	border-radius: 0;
+	border: none;
 }
 
 input[type="image"] {

@@ -3,6 +3,9 @@ $btnBorderColor: #ccc;
 $btnBackground: #fff;
 $btnPadding: 8px 12px;
 $btnFontSize: 14px;
+$btnBorderRadius: 0;
+$btnHoverShadow: 1px 1px 12px rgba($btnBorderColor, 0.8);
+$btnTransition: 500ms all;
 
 $btnXxsFontSize: 9px;
 $btnXxsPadding: 2px 4px;
@@ -40,19 +43,24 @@ $btnDisabledBorderColor: rgba($btnDisabledBackground,0.2);
 	font-size: $btnFontSize;
   padding: $btnPadding;
   margin: 0 2px;
-  @include border-radius(4px);
+  @include border-radius($btnBorderRadius);
   @include user-select(none);
+  @include transition($btnTransition);
 
-  &:hover {
-  	border-color: darken($btnBorderColor, 5%);
-  	background: darken($btnBackground, 2%);
-  	color: darken($btnColor, 2%);
-  	box-shadow: 1px 1px 5px $btnBorderColor;
-  	cursor: pointer;
+  &:active,
+  &.active {
+    background: darken($btnBackground, 1%);
+  	border-color: $badass;
   }
 
-  &:active {
-  	background: darken($btnBackground, 10%);
+  &:hover {
+    border-color: darken($primary, 5%);
+    background: darken($btnBackground, 2%);
+    color: darken($btnColor, 2%);
+    box-shadow: $btnHoverShadow;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
   }
 
   &-rounded {

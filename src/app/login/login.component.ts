@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   registering: boolean = false;
   action: String = 'Login';
   actions: Array<String> = ['Login', 'Register'];
+  registerActionLabel: String = 'Register';
+  loginActionLabel: String = 'Login';
   modalTitle = "Login";
 
   constructor(private Auth: AuthService) {
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.registerDetails = {
       'email': "",
       'password': "",
-      'repeat': ""
+      'confirm': ""
     };
   }
 
@@ -37,35 +39,55 @@ export class LoginComponent implements OnInit {
     this.action = action;
   }
 
-  onSubmit(form, type) {
-    console.log("SUBMIT", form, "LOGIN", this.loginDetails, "REGI", this.registerDetails);
-    if (type == 'register') {
-      console.log("REGISTER, ABORT");
-      return false;
-    }
-
-   	this.error = false;
-    if (this.loginDetails['email'] == "" || this.loginDetails['password'] == "") {
-      return false;
-    }
-
+  login(form) {
     this.loggingIn = true;
-    this.action = "Logging in";
+    let labelBefore = this.loginActionLabel;
+    this.loginActionLabel = "Logging in";
+    this.Auth.login(this.loginDetails['email'], this.loginDetails['password']).subscribe(
+      resp => {
+        if (resp.state == 'failure') {
+          this.error = resp;
+        }
 
-    this.Auth.login(this.loginDetails['email'], this.loginDetails['password']).subscribe(resp => {
+        if (resp.state == 'success') {
+          this.onCloseModal.emit(true);
+        }
 
-      if (resp.state == 'failure') {
-        this.error = resp;
-        console.error(resp);
+        this.loginActionLabel = labelBefore;
+        this.loggingIn = false;
+      }, 
+      err => { 
+        // Catch them API Errors
+        this.loggingIn = false;
+        this.loginActionLabel = labelBefore;
+        this.error = {
+          'message': 'Oops something went wrong, please try again later'
+        };
+        setTimeout(() => {
+          this.error = false;
+        }, 5000);
       }
+    );
+  }
 
-      if (resp.state == 'success') {
-        this.onCloseModal.emit(true);
-      }
+  onSubmit(form, type) {
+    this.error = false;
 
-      this.action = "Login";
-      this.loggingIn = false;
-    });
+    if (type == 'register') {
+      this.error = {
+        'message': 'Registration currently disabled'
+      };
+      setTimeout(() => {
+        this.error = false;
+      }, 5000);
+      console.log("REGISTER Disabled");
+      return false;
+    }
+
+    if (type == 'login') {
+      if (this.loggingIn) return false;
+      return this.login(form);
+    }
   }
 
   ngOnInit() {}

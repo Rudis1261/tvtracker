@@ -45,7 +45,12 @@ export class AuthService {
       this.userState.next(this.user);
       return data;
     })
-    .catch((error:any) => Observable.throw(error || 'Server error'));
+    .catch((error:any) => this.errorHandler(error));
+  }
+
+  errorHandler(res) {
+    console.log("API CATCH ERROR");
+    return Observable.throw(res.json() || 'Server error');
   }
 
   logout() {
@@ -65,7 +70,7 @@ export class AuthService {
       this.userState.next(this.user);
       return this.user;
     })
-    .catch((error:any) => Observable.throw(error || 'Server error'));
+    .catch((error:any) => this.errorHandler(error));
   }
 
   testApi() {
@@ -74,6 +79,6 @@ export class AuthService {
       this.options
     )
     .map((res:Response) => res.json())
-    .catch((error:any) => Observable.throw(error || 'Server error'));
+    .catch((error:any) => this.errorHandler(error));
   }
 }

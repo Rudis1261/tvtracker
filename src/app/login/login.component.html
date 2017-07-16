@@ -1,5 +1,3 @@
-<div class="row message error" *ngIf="error && error.message">{{error.message}}</div>
-
 <div class="container text-center">
   <span
     class="btn"
@@ -8,6 +6,8 @@
     (click)="toggleAction(actionType)"
   >{{actionType}}</span>
 </div>
+
+<div class="row message error" *ngIf="error && error.message">{{error.message}}</div>
 
 <!-- Login FORM -->
 <form
@@ -22,7 +22,7 @@
       <input
         id="email"
         type="text"
-        placeholder="Email"
+        placeholder="john.doe@example.com"
         name="email"
         required
         [(ngModel)]="loginDetails.email"
@@ -41,7 +41,7 @@
       <input
         id="password"
         type="password"
-        placeholder="Password"
+        placeholder="SuperAw3s0m3Password"
         name="password"
         required
         [(ngModel)]="loginDetails.password"
@@ -58,7 +58,7 @@
     type="submit"
     (click)="onSubmit(loginDetailsForm, 'login')"
     [disabled]="loginDetailsForm.invalid || loggingIn"
-  >{{action}}&nbsp;<i class='icon-spinner spin' *ngIf="loggingIn"></i></button>
+  >{{loginActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="loggingIn"></i></button>
 </form>
 
 <!-- Register FORM -->
@@ -74,7 +74,7 @@
 			<input
 				id="email"
 				type="text"
-				placeholder="Email"
+				placeholder="john.doe@example.com"
 				name="email"
 				required
 				[(ngModel)]="registerDetails.email"
@@ -93,7 +93,7 @@
       <input
         id="password"
         type="password"
-        placeholder="Password"
+        placeholder="SuperAw3s0m3Password"
         name="password"
         required
         [(ngModel)]="registerDetails.password"
@@ -107,19 +107,19 @@
   </div>
 
   <div class="col-12">
-		<label for="repeat">
-			Repeat Password
+		<label for="confirm">
+			Confirm Password
 			<input
-				id="repeat"
+				id="confirm"
 				type="password"
-				placeholder="Password"
-				name="repeat"
+				placeholder="SuperAw3s0m3Password"
+				name="confirm"
 				required
-				[(ngModel)]="registerDetails.repeat"
-        #errorRegisterRepeat="ngModel"
+				[(ngModel)]="registerDetails.confirm"
+        #errorRegisterConfirm="ngModel"
 			/>
 			<div
-        [hidden]="(errorRegisterRepeat.valid || !errorRegisterRepeat.touched)"
+        [hidden]="(errorRegisterConfirm.valid || !errorRegisterConfirm.touched)"
         class="error"
       >Invalid</div>
 		</label>
@@ -129,5 +129,5 @@
 		type="submit"
 		[disabled]="registering || registerDetailForm.invalid"
 		(click)="onSubmit(registerDetailForm, 'register')"
-	>{{action}}&nbsp;<i class='icon-spinner spin' *ngIf="registering"></i></button>
+	>{{registerActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="registering"></i></button>
 </form>

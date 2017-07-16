@@ -36,15 +36,15 @@ a.small {
 
 .message {
     padding: 10px;
-    border-radius: 4px;
     border: 1px solid #ccc;
     font-size: 15px;
 
     &.error {
-        background: #ffe6e3;
+        background: rgba(#ea0000, 0.02);
         padding: 10px;
-        border-radius: 4px;
-        border-color: #ca3523;
+        border-radius: 0;
+        border-color: #ea0000;
+        color: darken(#ea0000, 2%);
     }
 }
 

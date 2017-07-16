@@ -10,6 +10,10 @@
 	@include animation(spinner 1s linear infinite);
 }
 
+button .spin {
+  color: #fff;
+}
+
 .btn-primary .spin {
 	color: #fff;
 }
