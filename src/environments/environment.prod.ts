@@ -2,6 +2,7 @@ export const environment = {
   production: true,
   apiEndPoint: "https://api.tvtracker.co.za",
   authEndPoint: "https://api.tvtracker.co.za/auth/login",
+  registerEndPoint: "https://api.tvtracker.co.za/auth/register",
   logoutEndPoint: "https://api.tvtracker.co.za/auth/logout",
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

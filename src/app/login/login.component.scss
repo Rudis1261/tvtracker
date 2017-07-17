@@ -12,6 +12,17 @@
     }
   }
 
+  .suggestion,
+  .forgot {
+    cursor: pointer;
+    color: $colorPrimary;
+    font-style: italic;
+    &:hover {
+      text-decoration: underline;
+      color: darken($colorPrimary, 5%);
+    }
+  }
+
   .success {
     margin: 45px auto 0;
     text-align: center;

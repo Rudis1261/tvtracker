@@ -24,7 +24,7 @@
         Email
         <input
           id="email"
-          type="text"
+          type="email"
           placeholder="john.doe@example.com"
           name="email"
           required
@@ -41,6 +41,7 @@
     <div class="col-12">
       <label for="password">
         Password
+        <span class="pull-right forgot" (click)="forgotPassword(loginDetails.email)">Forgot Password</span>
         <input
           id="password"
           type="password"
@@ -64,7 +65,7 @@
     <button
       type="submit"
       (click)="onSubmit(loginDetailsForm, 'login')"
-      [disabled]="loginDetailsForm.invalid || loggingIn"
+      [disabled]="loginDetailsForm.invalid || loggingIn || !loginCaptcha"
     >{{loginActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="loggingIn"></i></button>
   </form>
 
@@ -78,6 +79,7 @@
     <div class="col-12">
       <label for="registration_username">
         User name
+        <span class="suggestion pull-right" (click)="randomName()">Suggest one</span>
         <input
           id="registration_username"
           type="text"
@@ -99,7 +101,7 @@
   			Email
   			<input
   				id="registration_email"
-  				type="text"
+  				type="email"
   				placeholder="john.doe@example.com"
   				name="email"
   				required
@@ -160,7 +162,7 @@
 
   	<button
   		type="submit"
-  		[disabled]="registering || registerDetailForm.invalid"
+  		[disabled]="registering || registerDetailForm.invalid || !registerCaptcha"
   		(click)="onSubmit(registerDetailForm, 'register')"
   	>{{registerActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="registering"></i></button>
   </form>

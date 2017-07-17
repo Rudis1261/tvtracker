@@ -68,6 +68,26 @@ export class AuthService {
     .catch((error:any) => this.errorHandler(error));
   }
 
+  register(username: String, password: String, email: String, confirm: String, captcha: String) {
+    this.getHeaders();
+
+    return this.http.post(
+      ENV.registerEndPoint, {
+        'username': username,
+        'password': password,
+        'email': email,
+        'confirm': confirm,
+        'captcha': captcha
+      },
+      this.options
+    )
+    .map((res:Response) => {
+      let data = res.json();
+      return data;
+    })
+    .catch((error:any) => this.errorHandler(error));
+  }
+
   errorHandler(res) {
     console.log("API CATCH ERROR");
     return Observable.throw(res || 'Server error');

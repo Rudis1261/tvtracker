@@ -28,6 +28,10 @@ export class LoginComponent implements OnInit {
 
   recaptcha: any = false;
   recapchaKey: String = ENV.recapchaKey;
+  loginCaptcha: any;
+  registerCaptcha: any;
+  loginCaptchaId: any;
+  registerCaptchaId: any;
 
   constructor(private Auth: AuthService, private LS: LoadscriptService) {
   	this.error = false;
@@ -48,17 +52,27 @@ export class LoginComponent implements OnInit {
     this.LS.loadScript(ENV.recaptchaScript, 'js', () => {
       this.recaptcha = true;
       setTimeout(() => {
-        grecaptcha.render('login-captcha', {
-          'sitekey' : this.recapchaKey,
-          'callback' : (data) => {
+        this.loginCaptchaId = grecaptcha.render('login-captcha', {
+          'sitekey': this.recapchaKey,
+          'callback': (data) => {
+            console.log("LOGIN CAPTCHA", data);
+            this.loginCaptcha = data;
             this.error = false;
+          },
+          'expired-callback': () => {
+            this.loginCaptcha = false;
           }
         });
 
-        grecaptcha.render('register-captcha', {
-          'sitekey' : this.recapchaKey,
-          'callback' : (data) => {
+        this.registerCaptchaId = grecaptcha.render('register-captcha', {
+          'sitekey': this.recapchaKey,
+          'callback': (data) => {
+            console.log("REGISTER CAPTCHA", data);
+            this.registerCaptcha = data;
             this.error = false;
+          },
+          'expired-callback': () => {
+            this.registerCaptcha = false;
           }
         });
       }, 500);
@@ -66,8 +80,29 @@ export class LoginComponent implements OnInit {
   }
 
   toggleAction(action) {
+    grecaptcha.reset(this.loginCaptchaId);
+    grecaptcha.reset(this.registerCaptchaId);
     this.error = false;
     this.action = action;
+  }
+
+  forgotPassword(email) {
+    alert('Forgot Password: ' + email);
+  }
+
+  randomName() {
+    let names = [
+      'Bouncy', 'Quick', 'Foxy', 'Legend', 'Captain', 'Private',
+      'Jumping', 'Unicorn', 'Juniper', 'Balista', 'SuperNova',
+      'Kitty', 'Doggy', 'Fray', 'Freak', 'Sergeant', 'Candy',
+      'Proxima', 'Super', 'Doctor', 'TheMagicSeaLion', 'Blinky',
+      'LizzardWizzard', 'PeterPan', 'SellyMeNelly', 'Unique',
+      'SuperLimaBean', 'CptAmerica', 'BouncingBetty', 'SkaterBoy',
+      'Gamer', 'DuctTape', 'L33t', 'Hacker'
+    ];
+    let name = names[Math.floor(Math.random() * names.length)];
+    let number = Math.floor(Math.random() * 9000) + 1000;
+    this.registerDetails['username'] = name + '#' + number;
   }
 
   setError(msg) {
@@ -85,12 +120,11 @@ export class LoginComponent implements OnInit {
   login(form) {
     this.loggingIn = true;
     let labelBefore = this.loginActionLabel;
-    let captcha = grecaptcha.getResponse() || false;
     this.loginActionLabel = "Logging in";
-    this.Auth.login(this.loginDetails['email'], this.loginDetails['password'], captcha).subscribe(
+    this.Auth.login(this.loginDetails['email'], this.loginDetails['password'], this.loginCaptcha).subscribe(
       resp => {
         if (resp.state == 'failure') {
-          grecaptcha.reset();
+          grecaptcha.reset(this.loginCaptchaId);
           this.setError(resp);
         }
 
@@ -101,7 +135,7 @@ export class LoginComponent implements OnInit {
             setTimeout(() => {
               this.success = false;
               this.error = false;
-              grecaptcha.reset();
+              grecaptcha.reset(this.loginCaptchaId);
             }, 500);
           }, 4000);
         }
@@ -114,7 +148,7 @@ export class LoginComponent implements OnInit {
         console.log("LOGING FAILED", err);
 
         // Catch them API Errors
-        grecaptcha.reset();
+        grecaptcha.reset(this.loginCaptchaId);
         this.loggingIn = false;
         this.loginActionLabel = labelBefore;
         this.setError({
@@ -126,24 +160,59 @@ export class LoginComponent implements OnInit {
 
   register(form) {
     console.log("Register", form, this.registerDetails);
+    let labelBefore = this.registerActionLabel;
+    let username = this.registerDetails['username'] || false;
+    let password = this.registerDetails['password'] || false;
+    let email = this.registerDetails['email'] || false;
+    let confirm = this.registerDetails['confirm'] || false;
+
     this.registering = true;
+    this.registerActionLabel = "Registering";
+
+    this.Auth.register(username, password, email, confirm, this.registerCaptcha).subscribe(
+      resp => {
+        if (resp.state == 'failure') {
+          grecaptcha.reset(this.registerCaptchaId);
+          this.setError(resp);
+        }
+
+        if (resp.state == 'success') {
+          this.success = resp.message;
+          setTimeout(() => {
+            this.onCloseModal.emit(true);
+            setTimeout(() => {
+              this.success = false;
+              this.error = false;
+              grecaptcha.reset(this.registerCaptchaId);
+            }, 500);
+          }, 10000);
+        }
+
+        this.registerActionLabel = labelBefore;
+        this.registering = false;
+      },
+      err => {
+
+        console.log("REGISTRATION FAILED", err);
+
+        // Catch them API Errors
+        grecaptcha.reset(this.registerCaptchaId);
+        this.registering = false;
+        this.registerActionLabel = labelBefore;
+        this.setError({
+          'message': 'Oops something went wrong, please try again later'
+        });
+      }
+    );
   }
 
   onSubmit(form, type) {
     this.error = false;
 
     if (type == 'register') {
-      this.setError({
-        'message': 'Registration currently disabled'
-      });
-      console.log("REGISTER Disabled");
-      return false;
+      if (this.registering) return false;
+      return this.register(form);
     }
-
-    // if (type == 'register') {
-    //   if (this.registering) return false;
-    //   return this.register(form);
-    // }
 
     if (type == 'login') {
       if (this.loggingIn) return false;

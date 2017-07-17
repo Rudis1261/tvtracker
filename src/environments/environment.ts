@@ -7,6 +7,7 @@ export const environment = {
   production: false,
   apiEndPoint: "http://dev.tvt2.co.za",
   authEndPoint: "http://dev.tvt2.co.za/auth/login",
+  registerEndPoint: "http://dev.tvt2.co.za/auth/register",
   logoutEndPoint: "http://dev.tvt2.co.za/auth/logout",
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",
