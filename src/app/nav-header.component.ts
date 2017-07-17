@@ -40,10 +40,10 @@ declare var window: any;
                   <!-- Login / Logout -->
                   <li class="login">
                     <span *ngIf="!user" (click)="showModal = !showModal">
-                      <i class="icon-login" title="Login Now"></i> <span class="mobile-only">Login</span>
+                      <i class="icon-login" title="Login Now"></i><span>Login</span>
                     </span>\
                     <span (click)="logoff()" *ngIf="user">
-                      <i class="icon-logout" title="Logoff"></i> <span class="mobile-only">Logoff</span>
+                      <i class="icon-logout" title="Logoff"></i><span>Logoff</span>
                     </span>\
                   </li>
                 </ul>

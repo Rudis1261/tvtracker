@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   registerActionLabel: String = 'Register';
   loginActionLabel: String = 'Login';
   modalTitle = "Login";
+  errorTimeout: any;
 
   recaptcha: any = false;
   recapchaKey: String = ENV.recapchaKey;
@@ -65,7 +66,20 @@ export class LoginComponent implements OnInit {
   }
 
   toggleAction(action) {
+    this.error = false;
     this.action = action;
+  }
+
+  setError(msg) {
+    if (!msg) {
+      return false;
+    }
+
+    clearTimeout(this.errorTimeout);
+    this.error = msg;
+    this.errorTimeout = setTimeout(() => {
+      this.error = false;
+    }, 4000);
   }
 
   login(form) {
@@ -77,7 +91,7 @@ export class LoginComponent implements OnInit {
       resp => {
         if (resp.state == 'failure') {
           grecaptcha.reset();
-          this.error = resp;
+          this.setError(resp);
         }
 
         if (resp.state == 'success') {
@@ -89,7 +103,7 @@ export class LoginComponent implements OnInit {
               this.error = false;
               grecaptcha.reset();
             }, 500);
-          }, 3000);
+          }, 4000);
         }
 
         this.loginActionLabel = labelBefore;
@@ -103,12 +117,9 @@ export class LoginComponent implements OnInit {
         grecaptcha.reset();
         this.loggingIn = false;
         this.loginActionLabel = labelBefore;
-        this.error = {
+        this.setError({
           'message': 'Oops something went wrong, please try again later'
-        };
-        setTimeout(() => {
-          this.error = false;
-        }, 5000);
+        });
       }
     );
   }
@@ -122,12 +133,9 @@ export class LoginComponent implements OnInit {
     this.error = false;
 
     if (type == 'register') {
-      this.error = {
+      this.setError({
         'message': 'Registration currently disabled'
-      };
-      setTimeout(() => {
-        this.error = false;
-      }, 5000);
+      });
       console.log("REGISTER Disabled");
       return false;
     }

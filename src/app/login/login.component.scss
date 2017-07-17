@@ -1,3 +1,6 @@
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/settings";
+
 :host {
   .captcha {
     margin: 0 auto 20px;
@@ -9,12 +12,31 @@
     }
   }
 
-  .message.success {
-    margin: 65px auto 0;
+  .success {
+    margin: 45px auto 0;
+    text-align: center;
   }
 
   .modal-inner {
     overflow-x: hidden;
     overflow-y: scroll;
+  }
+
+  @include mobile {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    .modal-inner {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 70px;
+
+      &.has-error {
+        padding-top: 80px;
+      }
+    }
   }
 }

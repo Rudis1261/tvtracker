@@ -1,4 +1,4 @@
-<div class="row message success" *ngIf="success">{{success}}</div>
+<div class="row" *ngIf="success"><h2 class="success">{{success}}</h2></div>
 
 <div class="container text-center" [hidden]="success">
   <span
@@ -11,7 +11,7 @@
 
 <div class="row message error" *ngIf="error && error.message && !success">{{error.message}}</div>
 
-<div class="modal-inner">
+<div class="modal-inner" [ngClass]="{'has-error': error && error.message && !success}">
   <!-- Login FORM -->
   <form
     [hidden]="action !== 'Login' || success"
