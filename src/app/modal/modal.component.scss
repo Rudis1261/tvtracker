@@ -41,11 +41,6 @@ $modalBoxShadow: 1px 1px 30px 5px rgba(0, 0, 0, 0.1);
 		@include transform-origin(center center);
 		@include transform(translate(-50%, -60%));
 
-    @include respond-to($screenTablet) {
-      top: 38%;
-      min-width: ($modalSmWidth - 100);
-		}
-
 		&.has-footer {
 			padding-bottom: 40px;
 		}
@@ -109,4 +104,13 @@ $modalBoxShadow: 1px 1px 30px 5px rgba(0, 0, 0, 0.1);
 		min-height: 40px;
 		padding: 12px 15px 0 15px;
 	}
+}
+
+@include mobile {
+  .modal {
+    &-container {
+      max-width: auto;
+      min-width: auto;
+    }
+  }
 }

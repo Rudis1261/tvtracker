@@ -4,6 +4,8 @@ import {
   state, style, animate, transition
 } from '@angular/core';
 
+import { DeviceService } from "../services/device.service";
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -24,12 +26,23 @@ import {
     trigger('modal', [
       state('void', style({transform: 'translateY(-300%) translateX(-50%)'})),
       state('0', style({transform: 'translateY(-300%) translateX(-50%)'})),
-      state('1', style({transform: 'translateY(-50%) translateX(-50%)'})),
+      state('1', style({transform: 'none', top: '10px', right: '10px', bottom: '10px', left: '10px'})),
       transition('0 => 1', [
         animate(500, style({transform: 'translateY(-50%) translateX(-50%)'}))
       ]),
       transition('1 => 0', [
         animate(300, style({transform: 'translateY(-300%) translateX(-50%)'}))
+      ])
+    ]),
+    trigger('modalMobile', [
+      state('void', style({transform: 'translateY(-300%) translateX(-50%)', top: '50%', left: '50%', right: 'auto', bottom: 'auto'})),
+      state('0', style({transform: 'translateY(-300%) translateX(-50%)', top: '50%', left: '50%', right: 'auto', bottom: 'auto'})),
+      state('1', style({transform: 'none', top: '10px', right: '10px', bottom: '10px', left: '10px'})),
+      transition('0 => 1', [
+        animate(500, style({transform: 'none', top: '10px', right: '10px', bottom: '10px', left: '10px'}))
+      ]),
+      transition('1 => 0', [
+        animate(300, style({transform: 'translateY(-300%) translateX(-50%)', top: '50%', left: '50%', right: 'auto', bottom: 'auto'}))
       ])
     ])
   ]
@@ -44,8 +57,13 @@ export class ModalComponent implements OnInit {
   @Input() close: boolean;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   public modalContent = "";
+  public isMobile:boolean = false;
 
-  constructor() { }
+  constructor(private DS: DeviceService) {
+    this.DS.isMobile.subscribe((data) => {
+      this.isMobile = data;
+    });
+  }
 
   closeModal(event) {
     if (!event || !event.target || !event.target.attributes || !event.target.attributes.class) {

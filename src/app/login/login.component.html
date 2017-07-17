@@ -11,155 +11,157 @@
 
 <div class="row message error" *ngIf="error && error.message && !success">{{error.message}}</div>
 
-<!-- Login FORM -->
-<form
-  [hidden]="action !== 'Login' || success"
-  novalidate
-  (ngSubmit)="onSubmit(loginDetailsForm, 'login')"
-  #loginDetailsForm="ngForm"
->
-  <div class="col-12">
-    <label for="email">
-      Email
-      <input
-        id="email"
-        type="text"
-        placeholder="john.doe@example.com"
-        name="email"
-        required
-        [(ngModel)]="loginDetails.email"
-        #errorLoginEmail="ngModel"
-      />
-      <div
-        [hidden]="(errorLoginEmail.valid || !errorLoginEmail.dirty || !errorLoginEmail.touched)"
-        class="error"
-      >Invalid</div>
-    </label>
-  </div>
+<div class="modal-inner">
+  <!-- Login FORM -->
+  <form
+    [hidden]="action !== 'Login' || success"
+    novalidate
+    (ngSubmit)="onSubmit(loginDetailsForm, 'login')"
+    #loginDetailsForm="ngForm"
+  >
+    <div class="col-12">
+      <label for="email">
+        Email
+        <input
+          id="email"
+          type="text"
+          placeholder="john.doe@example.com"
+          name="email"
+          required
+          [(ngModel)]="loginDetails.email"
+          #errorLoginEmail="ngModel"
+        />
+        <div
+          [hidden]="(errorLoginEmail.valid || !errorLoginEmail.dirty || !errorLoginEmail.touched)"
+          class="error"
+        >Invalid</div>
+      </label>
+    </div>
 
-  <div class="col-12">
-    <label for="password">
-      Password
-      <input
-        id="password"
-        type="password"
-        placeholder="SuperAw3s0m3Password"
-        name="password"
-        required
-        [(ngModel)]="loginDetails.password"
-        #errorLoginPassword="ngModel"
-      />
-      <div
-        [hidden]="(errorLoginPassword.valid || !errorLoginPassword.dirty || !errorLoginPassword.touched)"
-        class="error"
-      >Invalid</div>
-    </label>
-  </div>
+    <div class="col-12">
+      <label for="password">
+        Password
+        <input
+          id="password"
+          type="password"
+          placeholder="SuperAw3s0m3Password"
+          name="password"
+          required
+          [(ngModel)]="loginDetails.password"
+          #errorLoginPassword="ngModel"
+        />
+        <div
+          [hidden]="(errorLoginPassword.valid || !errorLoginPassword.dirty || !errorLoginPassword.touched)"
+          class="error"
+        >Invalid</div>
+      </label>
+    </div>
 
-  <div class="captcha">
-    <div id="login-captcha"></div>
-  </div>
+    <div class="captcha">
+      <div id="login-captcha"></div>
+    </div>
 
-  <button
-    type="submit"
-    (click)="onSubmit(loginDetailsForm, 'login')"
-    [disabled]="loginDetailsForm.invalid || loggingIn"
-  >{{loginActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="loggingIn"></i></button>
-</form>
+    <button
+      type="submit"
+      (click)="onSubmit(loginDetailsForm, 'login')"
+      [disabled]="loginDetailsForm.invalid || loggingIn"
+    >{{loginActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="loggingIn"></i></button>
+  </form>
 
-<!-- Register FORM -->
-<form
-  [hidden]="action !== 'Register' || success"
-  novalidate
-  (ngSubmit)="onSubmit(registerDetailForm, 'register')"
-  #registerDetailForm="ngForm"
->
-  <div class="col-12">
-    <label for="registration_username">
-      User name
-      <input
-        id="registration_username"
-        type="text"
-        placeholder="Timmy1202"
-        name="username"
-        required
-        [(ngModel)]="registerDetails.username"
-        #errorRegisterUsername="ngModel"
-      />
-      <div
-        [hidden]="(errorRegisterUsername.valid || !errorRegisterUsername.dirty || !errorRegisterUsername.touched)"
-        class="error"
-      >Invalid</div>
-    </label>
-  </div>
+  <!-- Register FORM -->
+  <form
+    [hidden]="action !== 'Register' || success"
+    novalidate
+    (ngSubmit)="onSubmit(registerDetailForm, 'register')"
+    #registerDetailForm="ngForm"
+  >
+    <div class="col-12">
+      <label for="registration_username">
+        User name
+        <input
+          id="registration_username"
+          type="text"
+          placeholder="Timmy1202"
+          name="username"
+          required
+          [(ngModel)]="registerDetails.username"
+          #errorRegisterUsername="ngModel"
+        />
+        <div
+          [hidden]="(errorRegisterUsername.valid || !errorRegisterUsername.dirty || !errorRegisterUsername.touched)"
+          class="error"
+        >Invalid</div>
+      </label>
+    </div>
 
-  <div class="col-12">
-		<label for="registration_email">
-			Email
-			<input
-				id="registration_email"
-				type="text"
-				placeholder="john.doe@example.com"
-				name="email"
-				required
-				[(ngModel)]="registerDetails.email"
-        #errorRegisterEmail="ngModel"
-			/>
-			<div
-        [hidden]="(errorRegisterEmail.valid || !errorRegisterEmail.dirty || !errorRegisterEmail.touched)"
-        class="error"
-      >Invalid</div>
-		</label>
-	</div>
+    <div class="col-12">
+  		<label for="registration_email">
+  			Email
+  			<input
+  				id="registration_email"
+  				type="text"
+  				placeholder="john.doe@example.com"
+  				name="email"
+  				required
+  				[(ngModel)]="registerDetails.email"
+          #errorRegisterEmail="ngModel"
+  			/>
+  			<div
+          [hidden]="(errorRegisterEmail.valid || !errorRegisterEmail.dirty || !errorRegisterEmail.touched)"
+          class="error"
+        >Invalid</div>
+  		</label>
+  	</div>
 
-	<div class="col-12">
-    <label for="registration_password">
-      Password
-      <input
-        id="registration_password"
-        type="password"
-        placeholder="SuperAw3s0m3Password"
-        name="password"
-        required
-        validateEqual="confirm"
-        reverse="true"
-        [(ngModel)]="registerDetails.password"
-        #errorRegisterPassword="ngModel"
-      />
-      <div
-        [hidden]="(errorRegisterPassword.valid || !errorRegisterPassword.dirty || !errorRegisterPassword.touched)"
-        class="error"
-      >Invalid</div>
-    </label>
-  </div>
+  	<div class="col-12">
+      <label for="registration_password">
+        Password
+        <input
+          id="registration_password"
+          type="password"
+          placeholder="SuperAw3s0m3Password"
+          name="password"
+          required
+          validateEqual="confirm"
+          reverse="true"
+          [(ngModel)]="registerDetails.password"
+          #errorRegisterPassword="ngModel"
+        />
+        <div
+          [hidden]="(errorRegisterPassword.valid || !errorRegisterPassword.dirty || !errorRegisterPassword.touched)"
+          class="error"
+        >Invalid</div>
+      </label>
+    </div>
 
-  <div class="col-12">
-		<label for="registration_confirm">
-			Confirm Password
-			<input
-				id="registration_confirm"
-				type="password"
-				placeholder="SuperAw3s0m3Password"
-				name="confirm"
-				required
-        validateEqual="password"
-				[(ngModel)]="registerDetails.confirm"
-        #errorRegisterConfirm="ngModel"
-			/>
-      <div
-        [hidden]="(errorRegisterConfirm.valid || !errorRegisterConfirm.dirty || !errorRegisterConfirm.touched)"
-        class="error"
-      >Invalid</div>
-		</label>
-	</div>
+    <div class="col-12">
+  		<label for="registration_confirm">
+  			Confirm Password
+  			<input
+  				id="registration_confirm"
+  				type="password"
+  				placeholder="SuperAw3s0m3Password"
+  				name="confirm"
+  				required
+          validateEqual="password"
+  				[(ngModel)]="registerDetails.confirm"
+          #errorRegisterConfirm="ngModel"
+  			/>
+        <div
+          [hidden]="(errorRegisterConfirm.valid || !errorRegisterConfirm.dirty || !errorRegisterConfirm.touched)"
+          class="error"
+        >Invalid</div>
+  		</label>
+  	</div>
 
-  <div class="captcha">
-    <div id="register-captcha"></div>
-  </div>
+    <div class="captcha">
+      <div id="register-captcha"></div>
+    </div>
 
-	<button
-		type="submit"
-		[disabled]="registering || registerDetailForm.invalid"
-		(click)="onSubmit(registerDetailForm, 'register')"
-	>{{registerActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="registering"></i></button>
-</form>
+  	<button
+  		type="submit"
+  		[disabled]="registering || registerDetailForm.invalid"
+  		(click)="onSubmit(registerDetailForm, 'register')"
+  	>{{registerActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="registering"></i></button>
+  </form>
+</div>

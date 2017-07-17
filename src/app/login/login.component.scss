@@ -12,4 +12,9 @@
   .message.success {
     margin: 65px auto 0;
   }
+
+  .modal-inner {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 }

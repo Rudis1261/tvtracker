@@ -40,9 +40,9 @@
 }
 
 @mixin user-select($select) {
-  -webkit-user-select: $select;  
-  -moz-user-select: $select;    
-  -ms-user-select: $select;      
+  -webkit-user-select: $select;
+  -moz-user-select: $select;
+  -ms-user-select: $select;
   user-select: $select;
 }
 
@@ -53,10 +53,10 @@
 }
 
 @mixin prefix($property, $value) {
-    -webkit-#{$property}: $value;  
-       -moz-#{$property}: $value;    
-        -ms-#{$property}: $value;      
-         -o-#{$property}: $value;      
+    -webkit-#{$property}: $value;
+       -moz-#{$property}: $value;
+        -ms-#{$property}: $value;
+         -o-#{$property}: $value;
             #{$property}: $value;
 }
 
@@ -124,21 +124,21 @@
 }
 
 @mixin animation-play-state($parameters) {
-  -webkit-animation-play-state : $parameters; 
+  -webkit-animation-play-state : $parameters;
   -moz-animation-play-state    : $parameters;
   -ms-animation-play-state     : $parameters;
   animation-play-state         : $parameters;
 }
 
 @mixin animation-duration($parameters) {
-  -webkit-animation-duration : $parameters; 
+  -webkit-animation-duration : $parameters;
   -moz-animation-duration    : $parameters;
   -ms-animation-duration     : $parameters;
   animation-duration         : $parameters;
 }
 
 @mixin animation-iterations($parameters) {
-  -webkit-animation-iteration-count : $parameters; 
+  -webkit-animation-iteration-count : $parameters;
   -moz-animation-iteration-count    : $parameters;
   -ms-animation-iteration-count     : $parameters;
   animation-iteration-count         : $parameters;
@@ -320,5 +320,17 @@
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+  }
+}
+
+@mixin mobile {
+  @include respond-to($screenTablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @include respond-from($screenTablet) {
+    @content;
   }
 }
