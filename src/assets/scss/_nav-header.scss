@@ -112,7 +112,7 @@ header {
   }
 }
 
-@include respond-to($screenTablet) {
+@include mobile {
   header {
     height: 54px;
     box-shadow: 0 1px 8px 1px rgba(#000,.1);
@@ -191,6 +191,9 @@ header {
 
         &.login {
           min-height: 40px;
+          & > span {
+            display: inline-block;
+          }
           span {
             line-height: 41px;
             width: 100%;
@@ -213,7 +216,7 @@ header {
   }
 }
 
-@include respond-from($screenTablet) {
+@include desktop {
   header {
     background: rgba(255, 255, 255, 0.55);
     height: 60px;

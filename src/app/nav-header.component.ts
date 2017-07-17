@@ -95,6 +95,7 @@ export class NavHeaderComponent {
 
     this.Auth.userState.subscribe(value => {
       this.user = value;
+      this.menuOpen = false;
     });
   }
 
