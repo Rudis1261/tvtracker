@@ -1,0 +1,121 @@
+$icomoon-font-path: "assets/scss/fonts" !default;
+$icomoon-font-hash: 'xr1l4j';
+
+$icon-arrow-up: "\e906";
+$icon-arrow-right: "\e907";
+$icon-arrow-left: "\e908";
+$icon-arrow-down: "\e909";
+$icon-send: "\e90a";
+$icon-mail: "\e90b";
+$icon-check-outline: "\e90c";
+$icon-check-circle: "\e90d";
+$icon-check: "\e90e";
+$icon-remove: "\e905";
+$icon-remove-circle: "\e903";
+$icon-trash: "\e904";
+$icon-spinner: "\e902";
+$icon-logout: "\e901";
+$icon-login: "\e900";
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('#{$icomoon-font-path}/icomoon.eot?#{$icomoon-font-hash}');
+  src:  url('#{$icomoon-font-path}/icomoon.eot?#{$icomoon-font-hash}#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/icomoon.ttf?#{$icomoon-font-hash}') format('truetype'),
+    url('#{$icomoon-font-path}/icomoon.woff?#{$icomoon-font-hash}') format('woff'),
+    url('#{$icomoon-font-path}/icomoon.svg?#{$icomoon-font-hash}#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-arrow-up {
+  &:before {
+    content: $icon-arrow-up;
+  }
+}
+.icon-arrow-right {
+  &:before {
+    content: $icon-arrow-right;
+  }
+}
+.icon-arrow-left {
+  &:before {
+    content: $icon-arrow-left;
+  }
+}
+.icon-arrow-down {
+  &:before {
+    content: $icon-arrow-down;
+  }
+}
+.icon-send {
+  &:before {
+    content: $icon-send;
+  }
+}
+.icon-mail {
+  &:before {
+    content: $icon-mail;
+  }
+}
+.icon-check-outline {
+  &:before {
+    content: $icon-check-outline;
+  }
+}
+.icon-check-circle {
+  &:before {
+    content: $icon-check-circle;
+  }
+}
+.icon-check {
+  &:before {
+    content: $icon-check;
+  }
+}
+.icon-remove {
+  &:before {
+    content: $icon-remove;
+  }
+}
+.icon-remove-circle {
+  &:before {
+    content: $icon-remove-circle;
+  }
+}
+.icon-trash {
+  &:before {
+    content: $icon-trash;
+  }
+}
+.icon-spinner {
+  &:before {
+    content: $icon-spinner;
+  }
+}
+.icon-logout {
+  &:before {
+    content: $icon-logout;
+  }
+}
+.icon-login {
+  &:before {
+    content: $icon-login;
+  }
+}

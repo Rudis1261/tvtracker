@@ -117,11 +117,6 @@ label > textarea {
   max-width: none;
 }
 
-.icon-header-2:before {
-    font-size: 0.8em;
-    @extend .icon-header:before;
-}
-
 .clear,
 .clearfix {
     @include clearfix();

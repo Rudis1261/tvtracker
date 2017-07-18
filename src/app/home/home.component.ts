@@ -8,9 +8,9 @@ import { AuthService } from '../services/auth.service';
 })
 export class HomeComponent implements OnInit {
   constructor(private Auth: AuthService) {
-    this.Auth.testApi().subscribe((data) => {
-      console.log('TEST API CALL', data);
-    })
+    //this.Auth.testApi().subscribe((data) => {
+      //console.log('TEST API CALL', data);
+    //})
   }
   ngOnInit() {}
 }

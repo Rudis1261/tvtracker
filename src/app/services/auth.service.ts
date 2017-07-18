@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   getHeaders() {
-    console.log(this);
+    //console.log(this);
     if (this.token && this.token !== false) {
       this.headers = new Headers({
         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export class AuthService {
   }
 
   errorHandler(res) {
-    console.log("API CATCH ERROR");
+    //console.log("API CATCH ERROR");
     return Observable.throw(res || 'Server error');
   }
 
@@ -109,6 +109,27 @@ export class AuthService {
       this.user = false;
       this.userState.next(this.user);
       return this.user;
+    })
+    .catch((error:any) => this.errorHandler(error));
+  }
+
+  activate(email: String, code: String) {
+    this.getHeaders();
+
+    return this.http.post(
+      ENV.activateEndPoint, {
+        'email': email,
+        'code': code
+      },
+      this.options
+    )
+    .map((res:Response) => {
+      let data = res.json();
+      this.user = data.user;
+      localStorage.setItem('user', JSON.stringify(this.user));
+      localStorage.setItem('token', data.data.token || false);
+      this.userState.next(this.user);
+      return data;
     })
     .catch((error:any) => this.errorHandler(error));
   }

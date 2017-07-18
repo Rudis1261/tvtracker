@@ -1,0 +1,51 @@
+@import "../../../assets/scss/mixins";
+@import "../../../assets/scss/settings";
+
+:host {
+  .small {
+    font-size: 12px;
+    text-align: center;
+    margin: 15px 0 0;
+    color: #333;
+  }
+
+  .response {
+    padding: 25px 30px;
+    font-size: 18px;
+    margin: 60px auto 0;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 1px 5px 50px -16px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    border-radius: 2px;
+
+    &.success {
+      background: #bada55;
+    }
+
+    &.failure {
+      background: #d82424;
+    }
+
+    & > div {
+      @include flex-display();
+      @include align-items(center);
+      @include justify-content(center);
+      @include flex-wrap(wrap);
+
+      i {
+        margin: 0 0 10px;
+        font-size: 40px;
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  @include mobile {
+    .response {
+      margin: 40px 10px 0;
+      padding: 20px 25px;
+    }
+  }
+}

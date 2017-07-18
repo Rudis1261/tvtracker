@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 // Layout Components
 import { NavHeaderComponent } from './nav-header.component';
 import { NavFooterComponent } from './nav-footer.component';
-import { LoadingBar } from './loading.component';
+import { Loading } from './loading.component';
 
 // Components
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import { ModalComponent } from './modal/modal.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LazyComponent } from './lazy.component';
 import { SeriesComponent } from './series/series.component';
+import { ActivationComponent } from './shared/activation/activation.component';
 
 // Pipes
 import { TitleCasePipe } from './pipes/title-case.pipe';
@@ -47,7 +48,7 @@ import { EqualValidator } from './equal-validator.directive';
     HomeComponent,
     NavHeaderComponent,
     NavFooterComponent,
-    LoadingBar,
+    Loading,
     LoginComponent,
     TitleCasePipe,
     ModalComponent,
@@ -61,7 +62,8 @@ import { EqualValidator } from './equal-validator.directive';
     SlugifyPipe,
     OrderByPipe,
     SeriesComponent,
-    EqualValidator
+    EqualValidator,
+    ActivationComponent
   ],
   imports: [
     BrowserModule,

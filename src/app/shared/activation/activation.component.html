@@ -1,0 +1,25 @@
+<div class="container page-heading">
+  <h1>Activating your account</h1>
+</div>
+
+<loading [(show)]="loading"></loading>
+
+<div class="response failure" *ngIf="!params || !params.email || !params.code">
+  <div>
+    <i class="icon-remove-circle"></i>
+    Sorry we couldn't activate your account, the URL appears to be broken. Please try and click on the url in your email once again.
+  </div>
+</div>
+
+<div class="response" *ngIf="success || error" [ngClass]="{'success': success, 'failure': error}">
+  <div *ngIf="success">
+    <i class="icon-check-outline"></i>
+    {{success.message}}
+  </div>
+  <div *ngIf="error">
+    <i class="icon-remove"></i>
+    {{error.message}}
+  </div>
+</div>
+
+<div class="small" *ngIf="success">Logging you in automatically in ({{redirectingIn}}) seconds</div>

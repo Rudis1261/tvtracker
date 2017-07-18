@@ -51,31 +51,43 @@ export class LoginComponent implements OnInit {
 
     this.LS.loadScript(ENV.recaptchaScript, 'js', () => {
       this.recaptcha = true;
-      setTimeout(() => {
-        this.loginCaptchaId = grecaptcha.render('login-captcha', {
-          'sitekey': this.recapchaKey,
-          'callback': (data) => {
-            console.log("LOGIN CAPTCHA", data);
-            this.loginCaptcha = data;
-            this.error = false;
-          },
-          'expired-callback': () => {
-            this.loginCaptcha = false;
-          }
-        });
+      this.pollCaptchaReady();
+    });
+  }
 
-        this.registerCaptchaId = grecaptcha.render('register-captcha', {
-          'sitekey': this.recapchaKey,
-          'callback': (data) => {
-            console.log("REGISTER CAPTCHA", data);
-            this.registerCaptcha = data;
-            this.error = false;
-          },
-          'expired-callback': () => {
-            this.registerCaptcha = false;
-          }
-        });
-      }, 500);
+  pollCaptchaReady() {
+    if (window.hasOwnProperty('grecaptcha') && window.grecaptcha.hasOwnProperty('render')) {
+      return this.initCaptchas();
+    }
+
+    setTimeout(() => {
+      this.pollCaptchaReady();
+    }, 30);
+  }
+
+  initCaptchas() {
+    this.loginCaptchaId = grecaptcha.render('login-captcha', {
+      'sitekey': this.recapchaKey,
+      'callback': (data) => {
+        //console.log("LOGIN CAPTCHA", data);
+        this.loginCaptcha = data;
+        this.error = false;
+      },
+      'expired-callback': () => {
+        this.loginCaptcha = false;
+      }
+    });
+
+    this.registerCaptchaId = grecaptcha.render('register-captcha', {
+      'sitekey': this.recapchaKey,
+      'callback': (data) => {
+        //console.log("REGISTER CAPTCHA", data);
+        this.registerCaptcha = data;
+        this.error = false;
+      },
+      'expired-callback': () => {
+        this.registerCaptcha = false;
+      }
     });
   }
 
@@ -145,7 +157,7 @@ export class LoginComponent implements OnInit {
       },
       err => {
 
-        console.log("LOGING FAILED", err);
+        //console.log("LOGING FAILED", err);
 
         // Catch them API Errors
         grecaptcha.reset(this.loginCaptchaId);
@@ -159,7 +171,7 @@ export class LoginComponent implements OnInit {
   }
 
   register(form) {
-    console.log("Register", form, this.registerDetails);
+    //console.log("Register", form, this.registerDetails);
     let labelBefore = this.registerActionLabel;
     let username = this.registerDetails['username'] || false;
     let password = this.registerDetails['password'] || false;
@@ -193,7 +205,7 @@ export class LoginComponent implements OnInit {
       },
       err => {
 
-        console.log("REGISTRATION FAILED", err);
+        //console.log("REGISTRATION FAILED", err);
 
         // Catch them API Errors
         grecaptcha.reset(this.registerCaptchaId);
