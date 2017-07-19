@@ -15,23 +15,29 @@ export class LoginComponent implements OnInit {
 	@Output() onCloseModal = new EventEmitter<boolean>();
 	error: any;
   success: any = false;
+  errorTimeout: any;
   loginDetails: any;
   registerDetails: any;
+  forgotDetails: any;
   loggingIn: boolean = false;
   registering: boolean = false;
+  submitting: boolean = false;
   action: String = 'Login';
   actions: Array<String> = ['Login', 'Register'];
+
   registerActionLabel: String = 'Register';
   loginActionLabel: String = 'Login';
-  modalTitle = "Login";
-  errorTimeout: any;
+  forgotActionLabel: String = 'Reset Password';
 
+  //modalTitle = "Login";
   recaptcha: any = false;
   recapchaKey: String = ENV.recapchaKey;
   loginCaptcha: any;
   registerCaptcha: any;
   loginCaptchaId: any;
   registerCaptchaId: any;
+  forgotCaptcha: any;
+  forgotCaptchaId: any;
 
   constructor(private Auth: AuthService, private LS: LoadscriptService) {
   	this.error = false;
@@ -47,6 +53,10 @@ export class LoginComponent implements OnInit {
       'email': "",
       'password': "",
       'confirm': ""
+    };
+
+    this.forgotDetails = {
+      'email': ""
     };
 
     this.LS.loadScript(ENV.recaptchaScript, 'js', () => {
@@ -89,6 +99,18 @@ export class LoginComponent implements OnInit {
         this.registerCaptcha = false;
       }
     });
+
+    this.forgotCaptchaId = grecaptcha.render('forgot-captcha', {
+      'sitekey': this.recapchaKey,
+      'callback': (data) => {
+        //console.log("REGISTER CAPTCHA", data);
+        this.forgotCaptcha = data;
+        this.error = false;
+      },
+      'expired-callback': () => {
+        this.forgotCaptcha = false;
+      }
+    });
   }
 
   toggleAction(action) {
@@ -99,7 +121,10 @@ export class LoginComponent implements OnInit {
   }
 
   forgotPassword(email) {
-    alert('Forgot Password: ' + email);
+    this.action = 'Forgot';
+    this.forgotDetails = {
+      'email': email || ''
+    }
   }
 
   randomName() {
@@ -196,6 +221,7 @@ export class LoginComponent implements OnInit {
               this.success = false;
               this.error = false;
               grecaptcha.reset(this.registerCaptchaId);
+              this.action = 'Login';
             }, 500);
           }, 10000);
         }
@@ -218,8 +244,55 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  forgot(form) {
+    console.log("Forgot", form, this.forgotDetails);
+    let labelBefore = this.forgotActionLabel;
+    let email = this.forgotDetails['email'] || false;
+
+    this.submitting = true;
+    this.forgotActionLabel = "Requesting";
+
+    this.Auth.resetPassword(email, this.forgotCaptcha).subscribe(
+      resp => {
+        if (resp.state == 'failure') {
+          grecaptcha.reset(this.forgotCaptchaId);
+          this.setError(resp);
+        }
+
+        if (resp.state == 'success') {
+          this.success = resp.message;
+          setTimeout(() => {
+            this.onCloseModal.emit(true);
+            setTimeout(() => {
+              this.success = false;
+              this.error = false;
+              grecaptcha.reset(this.forgotCaptchaId);
+              this.action = 'Login';
+            }, 500);
+          }, 10000);
+        }
+
+        this.forgotActionLabel = labelBefore;
+        this.submitting = false;
+      },
+      err => {
+        grecaptcha.reset(this.forgotCaptchaId);
+        this.submitting = false;
+        this.forgotActionLabel = labelBefore;
+        this.setError({
+          'message': 'Oops something went wrong, please try again later'
+        });
+      }
+    );
+  }
+
   onSubmit(form, type) {
     this.error = false;
+
+    if (type == 'forgot') {
+      if (this.submitting) return false;
+      return this.forgot(form);
+    }
 
     if (type == 'register') {
       if (this.registering) return false;

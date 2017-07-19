@@ -4,13 +4,6 @@
 
 <loading [(show)]="loading"></loading>
 
-<div class="response failure" *ngIf="!params || !params.email || !params.code">
-  <div>
-    <i class="icon-remove-circle"></i>
-    Sorry we couldn't activate your account, the URL appears to be broken. Please try and click on the url in your email once again.
-  </div>
-</div>
-
 <div class="response" *ngIf="success || error" [ngClass]="{'success': success, 'failure': error}">
   <div *ngIf="success">
     <i class="icon-check-outline"></i>

@@ -1,6 +1,6 @@
 <div class="row" *ngIf="success"><h2 class="success">{{success}}</h2></div>
 
-<div class="container text-center" [hidden]="success">
+<div class="container text-center" [hidden]="success || (action !== 'Login' && action !== 'Register')">
   <span
     class="btn"
     *ngFor="let actionType of actions"
@@ -9,12 +9,16 @@
   >{{actionType}}</span>
 </div>
 
+<div class="container text-center" [hidden]="success || action !== 'Forgot'">
+  <span class="btn" (click)="toggleAction('Login')">Back to login</span>
+</div>
+
 <div class="row message error" *ngIf="error && error.message && !success">{{error.message}}</div>
 
-<div class="modal-inner" [ngClass]="{'has-error': error && error.message && !success}">
-  <!-- Login FORM -->
+<!-- Login FORM -->
+<div class="modal-inner" [ngClass]="{'has-error': error && error.message && !success}" [hidden]="action !== 'Login'">
   <form
-    [hidden]="action !== 'Login' || success"
+    [hidden]="success"
     novalidate
     (ngSubmit)="onSubmit(loginDetailsForm, 'login')"
     #loginDetailsForm="ngForm"
@@ -68,10 +72,12 @@
       [disabled]="loginDetailsForm.invalid || loggingIn || !loginCaptcha"
     >{{loginActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="loggingIn"></i></button>
   </form>
+</div>
 
-  <!-- Register FORM -->
+<!-- Register FORM -->
+<div class="modal-inner" [ngClass]="{'has-error': error && error.message && !success}" [hidden]="action !== 'Register'">
   <form
-    [hidden]="action !== 'Register' || success"
+    [hidden]="success"
     novalidate
     (ngSubmit)="onSubmit(registerDetailForm, 'register')"
     #registerDetailForm="ngForm"
@@ -97,25 +103,25 @@
     </div>
 
     <div class="col-12">
-  		<label for="registration_email">
-  			Email
-  			<input
-  				id="registration_email"
-  				type="email"
-  				placeholder="john.doe@example.com"
-  				name="email"
-  				required
-  				[(ngModel)]="registerDetails.email"
+      <label for="registration_email">
+        Email
+        <input
+          id="registration_email"
+          type="email"
+          placeholder="john.doe@example.com"
+          name="email"
+          required
+          [(ngModel)]="registerDetails.email"
           #errorRegisterEmail="ngModel"
-  			/>
-  			<div
+        />
+        <div
           [hidden]="(errorRegisterEmail.valid || !errorRegisterEmail.dirty || !errorRegisterEmail.touched)"
           class="error"
         >Invalid</div>
-  		</label>
-  	</div>
+      </label>
+    </div>
 
-  	<div class="col-12">
+    <div class="col-12">
       <label for="registration_password">
         Password
         <input
@@ -137,33 +143,72 @@
     </div>
 
     <div class="col-12">
-  		<label for="registration_confirm">
-  			Confirm Password
-  			<input
-  				id="registration_confirm"
-  				type="password"
-  				placeholder="SuperAw3s0m3Password"
-  				name="confirm"
-  				required
+      <label for="registration_confirm">
+        Confirm Password
+        <input
+          id="registration_confirm"
+          type="password"
+          placeholder="SuperAw3s0m3Password"
+          name="confirm"
+          required
           validateEqual="password"
-  				[(ngModel)]="registerDetails.confirm"
+          [(ngModel)]="registerDetails.confirm"
           #errorRegisterConfirm="ngModel"
-  			/>
+        />
         <div
           [hidden]="(errorRegisterConfirm.valid || !errorRegisterConfirm.dirty || !errorRegisterConfirm.touched)"
+          class="error"
+        >Invalid</div>
+      </label>
+    </div>
+
+    <div class="captcha">
+      <div id="register-captcha"></div>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="registering || registerDetailForm.invalid || !registerCaptcha"
+      (click)="onSubmit(registerDetailForm, 'register')"
+    >{{registerActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="registering"></i></button>
+  </form>
+</div>
+
+<!-- Forgot Password FORM -->
+<div class="modal-inner" [ngClass]="{'has-error': error && error.message && !success}" [hidden]="action !== 'Forgot'">
+  <form
+    [hidden]="success"
+    novalidate
+    (ngSubmit)="onSubmit(forgotForm, 'forgot')"
+    #forgotForm="ngForm"
+  >
+    <div class="col-12">
+  		<label for="forgot_email">
+  			Email
+  			<input
+  				id="forgot_email"
+  				type="email"
+  				placeholder="john.doe@example.com"
+  				name="email"
+  				required
+  				[(ngModel)]="forgotDetails.email"
+          #forgotFormEmail="ngModel"
+  			/>
+  			<div
+          [hidden]="(forgotFormEmail.valid || !forgotFormEmail.dirty || !forgotFormEmail.touched)"
           class="error"
         >Invalid</div>
   		</label>
   	</div>
 
     <div class="captcha">
-      <div id="register-captcha"></div>
+      <div id="forgot-captcha"></div>
     </div>
 
   	<button
   		type="submit"
-  		[disabled]="registering || registerDetailForm.invalid || !registerCaptcha"
-  		(click)="onSubmit(registerDetailForm, 'register')"
-  	>{{registerActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="registering"></i></button>
+  		[disabled]="submitting || forgotForm.invalid || !forgotCaptcha"
+  		(click)="onSubmit(forgotForm, 'forgot')"
+  	>{{forgotActionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="submitting"></i></button>
   </form>
 </div>

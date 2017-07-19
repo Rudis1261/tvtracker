@@ -23,7 +23,6 @@ export class AuthService {
   }
 
   getHeaders() {
-    //console.log(this);
     if (this.token && this.token !== false) {
       this.headers = new Headers({
         'Content-Type': 'application/json',
@@ -68,6 +67,28 @@ export class AuthService {
     .catch((error:any) => this.errorHandler(error));
   }
 
+  newPassword(password: String, confirm: String, code: String) {
+    this.getHeaders();
+
+    return this.http.post(
+      ENV.newPasswordEndPoint, {
+        'password': password,
+        'confirm': confirm,
+        'code': code
+      },
+      this.options
+    )
+    .map((res:Response) => {
+      let data = res.json();
+      this.user = data.user;
+      localStorage.setItem('user', JSON.stringify(this.user));
+      localStorage.setItem('token', data.data.token || false);
+      this.userState.next(this.user);
+      return data;
+    })
+    .catch((error:any) => this.errorHandler(error));
+  }
+
   register(username: String, password: String, email: String, confirm: String, captcha: String) {
     this.getHeaders();
 
@@ -89,7 +110,6 @@ export class AuthService {
   }
 
   errorHandler(res) {
-    //console.log("API CATCH ERROR");
     return Observable.throw(res || 'Server error');
   }
 
@@ -129,6 +149,23 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify(this.user));
       localStorage.setItem('token', data.data.token || false);
       this.userState.next(this.user);
+      return data;
+    })
+    .catch((error:any) => this.errorHandler(error));
+  }
+
+  resetPassword(email: String, captcha: String) {
+    this.getHeaders();
+
+    return this.http.post(
+      ENV.resetPasswordEndPoint, {
+        'email': email,
+        'captcha': captcha
+      },
+      this.options
+    )
+    .map((res:Response) => {
+      let data = res.json();
       return data;
     })
     .catch((error:any) => this.errorHandler(error));

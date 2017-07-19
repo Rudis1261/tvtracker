@@ -21,9 +21,11 @@ export class ActivationComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private Auth: AuthService) {
     this.routingSub = this.route.params.subscribe(params => {
       this.params = params;
+      if (!params || !params.email || !params.code) {
+        this.router.navigate([ '/404' ]);
+      }
 
-      if (params && params.email && params.code) {
-        this.Auth.activate(this.params.email, this.params.code).subscribe(
+      this.Auth.activate(this.params.email, this.params.code).subscribe(
         resp => {
           this.loading = false;
           if (resp.state == 'failure') {
@@ -32,7 +34,7 @@ export class ActivationComponent implements OnInit {
 
           if (resp.state == 'success') {
             this.success = resp;
-            this.redirectToHome(3);
+            this.redirectToHome(10);
           }
         },
         err => {
@@ -41,9 +43,6 @@ export class ActivationComponent implements OnInit {
             'message': 'Oops something went wrong, please try again later'
           };
         });
-      } else {
-        this.loading = false;
-      }
     });
   }
 

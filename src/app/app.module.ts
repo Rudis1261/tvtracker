@@ -23,6 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LazyComponent } from './lazy.component';
 import { SeriesComponent } from './series/series.component';
 import { ActivationComponent } from './shared/activation/activation.component';
+import { ResetPasswordComponent } from './shared/reset-password/reset-password.component';
 
 // Pipes
 import { TitleCasePipe } from './pipes/title-case.pipe';
@@ -63,7 +64,8 @@ import { EqualValidator } from './equal-validator.directive';
     OrderByPipe,
     SeriesComponent,
     EqualValidator,
-    ActivationComponent
+    ActivationComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

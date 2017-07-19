@@ -10,6 +10,8 @@ export const environment = {
   registerEndPoint: "http://dev.tvt2.co.za/auth/register",
   logoutEndPoint: "http://dev.tvt2.co.za/auth/logout",
   activateEndPoint: "http://dev.tvt2.co.za/auth/activate",
+  resetPasswordEndPoint: "http://dev.tvt2.co.za/auth/resetpassword",
+  newPasswordEndPoint: "http://dev.tvt2.co.za/auth/newpassword",
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",
   firebase: {
