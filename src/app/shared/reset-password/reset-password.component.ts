@@ -16,6 +16,7 @@ export class ResetPasswordComponent implements OnInit {
   passwordDetails: any;
   newPasswordLabel: String = 'Update Password';
   submitting: any = false;
+  style: String = 'form';
 
   private newPasswordSub: any;
   private routingSub: any;

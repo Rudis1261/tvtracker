@@ -4,15 +4,8 @@
 
 <loading [(show)]="loading"></loading>
 
-<div class="response" *ngIf="success || error" [ngClass]="{'success': success, 'failure': error}">
-  <div *ngIf="success">
-    <i class="icon-check-outline"></i>
-    {{success.message}}
-  </div>
-  <div *ngIf="error">
-    <i class="icon-remove"></i>
-    {{error.message}}
-  </div>
-</div>
+<app-msg-box [(success)]="success" [(error)]="error">
+  {{success.message}}{{error.message}}
+</app-msg-box>
 
 <div class="small" *ngIf="success">Logging you in automatically in ({{redirectingIn}}) seconds</div>

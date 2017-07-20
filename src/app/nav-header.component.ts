@@ -68,12 +68,6 @@ export class NavHeaderComponent {
     "external": false,
     "logo": false,
     "admin": false
-  }, {
-    "label": "404",
-    "slug": "/404",
-    "external": false,
-    "logo": false,
-    "admin": false
   }];
 
   menuOpen = false;

@@ -1,0 +1,29 @@
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/settings";
+
+:host {
+
+  > .container {
+    margin: 30px auto 0;
+    small {
+      font-size: 40%;
+      color: #555;
+    }
+  }
+
+  .droids img {
+    margin: 40px auto 0;
+    max-width: 615px;
+    width: 98%;
+  }
+
+  @include mobile {
+    > .container {
+      margin: 20px auto 0;
+    }
+
+    .droids img {
+      margin: 25px auto 0;
+    }
+  }
+}

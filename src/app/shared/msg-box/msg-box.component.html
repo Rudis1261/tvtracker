@@ -1,0 +1,7 @@
+<div class="response {{style}}" [ngClass]="{'success': success, 'failure': error}" *ngIf="error || success">
+  <div>
+    <i class="icon-check-outline" *ngIf="success"></i>
+    <i class="icon-remove" *ngIf="error"></i>
+    <ng-content></ng-content>
+  </div>
+</div>

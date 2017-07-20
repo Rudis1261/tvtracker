@@ -79,7 +79,6 @@ export class LoginComponent implements OnInit {
     this.loginCaptchaId = grecaptcha.render('login-captcha', {
       'sitekey': this.recapchaKey,
       'callback': (data) => {
-        //console.log("LOGIN CAPTCHA", data);
         this.loginCaptcha = data;
         this.error = false;
       },
@@ -91,7 +90,6 @@ export class LoginComponent implements OnInit {
     this.registerCaptchaId = grecaptcha.render('register-captcha', {
       'sitekey': this.recapchaKey,
       'callback': (data) => {
-        //console.log("REGISTER CAPTCHA", data);
         this.registerCaptcha = data;
         this.error = false;
       },
@@ -103,7 +101,6 @@ export class LoginComponent implements OnInit {
     this.forgotCaptchaId = grecaptcha.render('forgot-captcha', {
       'sitekey': this.recapchaKey,
       'callback': (data) => {
-        //console.log("REGISTER CAPTCHA", data);
         this.forgotCaptcha = data;
         this.error = false;
       },
@@ -166,7 +163,7 @@ export class LoginComponent implements OnInit {
         }
 
         if (resp.state == 'success') {
-          this.success = "Successfully logged in, welcome back " + resp.user.username;
+          this.success = resp;
           setTimeout(() => {
             this.onCloseModal.emit(true);
             setTimeout(() => {
@@ -181,9 +178,6 @@ export class LoginComponent implements OnInit {
         this.loggingIn = false;
       },
       err => {
-
-        //console.log("LOGING FAILED", err);
-
         // Catch them API Errors
         grecaptcha.reset(this.loginCaptchaId);
         this.loggingIn = false;
@@ -196,7 +190,6 @@ export class LoginComponent implements OnInit {
   }
 
   register(form) {
-    //console.log("Register", form, this.registerDetails);
     let labelBefore = this.registerActionLabel;
     let username = this.registerDetails['username'] || false;
     let password = this.registerDetails['password'] || false;
@@ -214,7 +207,7 @@ export class LoginComponent implements OnInit {
         }
 
         if (resp.state == 'success') {
-          this.success = resp.message;
+          this.success = resp;
           setTimeout(() => {
             this.onCloseModal.emit(true);
             setTimeout(() => {
@@ -231,8 +224,6 @@ export class LoginComponent implements OnInit {
       },
       err => {
 
-        //console.log("REGISTRATION FAILED", err);
-
         // Catch them API Errors
         grecaptcha.reset(this.registerCaptchaId);
         this.registering = false;
@@ -245,7 +236,6 @@ export class LoginComponent implements OnInit {
   }
 
   forgot(form) {
-    console.log("Forgot", form, this.forgotDetails);
     let labelBefore = this.forgotActionLabel;
     let email = this.forgotDetails['email'] || false;
 
@@ -260,7 +250,7 @@ export class LoginComponent implements OnInit {
         }
 
         if (resp.state == 'success') {
-          this.success = resp.message;
+          this.success = resp;
           setTimeout(() => {
             this.onCloseModal.emit(true);
             setTimeout(() => {
