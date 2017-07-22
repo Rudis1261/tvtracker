@@ -24,6 +24,9 @@ import { LazyComponent } from './lazy.component';
 import { SeriesComponent } from './series/series.component';
 import { ActivationComponent } from './shared/activation/activation.component';
 import { ResetPasswordComponent } from './shared/reset-password/reset-password.component';
+import { MsgBoxComponent } from './shared/msg-box/msg-box.component';
+import { DesktopComponent } from './shared/desktop/desktop.component';
+import { MobileComponent } from './shared/mobile/mobile.component';
 
 // Pipes
 import { TitleCasePipe } from './pipes/title-case.pipe';
@@ -42,7 +45,6 @@ import { DeviceService } from './services/device.service';
 
 // Directives
 import { EqualValidator } from './equal-validator.directive';
-import { MsgBoxComponent } from './shared/msg-box/msg-box.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { MsgBoxComponent } from './shared/msg-box/msg-box.component';
     EqualValidator,
     ActivationComponent,
     ResetPasswordComponent,
-    MsgBoxComponent
+    MsgBoxComponent,
+    DesktopComponent,
+    MobileComponent
   ],
   imports: [
     BrowserModule,

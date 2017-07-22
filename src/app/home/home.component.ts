@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +6,25 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private Auth: AuthService) {
-    //this.Auth.testApi().subscribe((data) => {
-      //console.log('TEST API CALL', data);
-    //})
+  poster: String = "assets/img/posters_all_mobile.png";
+  posters: Array<String> = [
+    "assets/img/posters_all_mobile.png",
+    "assets/img/posters_all_mobile_2.png",
+  ];
+  activePoster: any = 0;
+
+  constructor() {
+    this.poster = this.posters[this.activePoster];
+    this.rotate();
   }
+
   ngOnInit() {}
+
+  rotate() {
+    setTimeout(() => {
+      this.activePoster = (this.activePoster == 0) ? 1 : 0;
+      this.poster = this.posters[this.activePoster];
+      this.rotate();
+    }, 10000);
+  }
 }
