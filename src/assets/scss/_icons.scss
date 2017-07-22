@@ -1,14 +1,17 @@
 $icomoon-font-path: "assets/scss/fonts" !default;
-$icomoon-font-hash: 'xr1l4j';
+$icomoon-font-hash: 'y431ak';
 
-$icon-arrow-up: "\e906";
-$icon-arrow-right: "\e907";
-$icon-arrow-left: "\e908";
-$icon-arrow-down: "\e909";
+$icon-heart-empty: "\e915";
+$icon-heart-full: "\e916";
 $icon-send: "\e90a";
 $icon-mail: "\e90b";
 $icon-check-outline: "\e90c";
 $icon-check-circle: "\e90d";
+$icon-arrow-up: "\e906";
+$icon-arrow-right: "\e907";
+$icon-arrow-left: "\e908";
+$icon-arrow-down: "\e909";
+$icon-close: "\e914";
 $icon-check: "\e90e";
 $icon-remove: "\e905";
 $icon-remove-circle: "\e903";
@@ -16,6 +19,11 @@ $icon-trash: "\e904";
 $icon-spinner: "\e902";
 $icon-logout: "\e901";
 $icon-login: "\e900";
+$icon-triangle-up: "\e90f";
+$icon-triangle-right: "\e910";
+$icon-triangle-left: "\e911";
+$icon-triangle-down: "\e912";
+$icon-loading: "\e913";
 
 @font-face {
   font-family: 'icomoon';
@@ -44,24 +52,14 @@ $icon-login: "\e900";
 }
 
 
-.icon-arrow-up {
+.icon-heart-empty {
   &:before {
-    content: $icon-arrow-up;
+    content: $icon-heart-empty;
   }
 }
-.icon-arrow-right {
+.icon-heart-full {
   &:before {
-    content: $icon-arrow-right;
-  }
-}
-.icon-arrow-left {
-  &:before {
-    content: $icon-arrow-left;
-  }
-}
-.icon-arrow-down {
-  &:before {
-    content: $icon-arrow-down;
+    content: $icon-heart-full;
   }
 }
 .icon-send {
@@ -82,6 +80,31 @@ $icon-login: "\e900";
 .icon-check-circle {
   &:before {
     content: $icon-check-circle;
+  }
+}
+.icon-arrow-up {
+  &:before {
+    content: $icon-arrow-up;
+  }
+}
+.icon-arrow-right {
+  &:before {
+    content: $icon-arrow-right;
+  }
+}
+.icon-arrow-left {
+  &:before {
+    content: $icon-arrow-left;
+  }
+}
+.icon-arrow-down {
+  &:before {
+    content: $icon-arrow-down;
+  }
+}
+.icon-close {
+  &:before {
+    content: $icon-close;
   }
 }
 .icon-check {
@@ -117,5 +140,30 @@ $icon-login: "\e900";
 .icon-login {
   &:before {
     content: $icon-login;
+  }
+}
+.icon-triangle-up {
+  &:before {
+    content: $icon-triangle-up;
+  }
+}
+.icon-triangle-right {
+  &:before {
+    content: $icon-triangle-right;
+  }
+}
+.icon-triangle-left {
+  &:before {
+    content: $icon-triangle-left;
+  }
+}
+.icon-triangle-down {
+  &:before {
+    content: $icon-triangle-down;
+  }
+}
+.icon-loading {
+  &:before {
+    content: $icon-loading;
   }
 }
