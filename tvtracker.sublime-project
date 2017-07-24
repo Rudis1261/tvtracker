@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "/home/rudis1261/DockIt"
 		}
 	]
 }

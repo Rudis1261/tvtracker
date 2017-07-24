@@ -1,21 +1,12 @@
-<div class="feature-container">
-  <div class="feature feature-sm feature-primary">
-    <div class="inner flex-center">
-        <i class="icon-heart-empty"></i>
-        Track your favourite shows
-    </div>
-  </div>
+<box type="container">
+  <box type="xl error" icon="warning" flex="true" url="https://tvtracker.co.za">
+    This is currently the new Beta version of TV Tracker. To go to https://tvtracker.co.za click here
+  </box>
+</box>
 
-  <div class="feature feature-sm">
-    <div class="inner flex-center">
-        <i class="icon-send"></i>
-        Get notifications of when your show airs
-    </div>
-  </div>
 
-  <div class="feature feature-md">
-    <div class="inner image">
-      <img [src]="poster" />
-    </div>
-  </div>
-</div>
+<box type="container">
+  <box type="sm primary" icon="heart-empty" flex="true">Track your favourite shows</box>
+  <box type="sm" icon="send" flex="true">Get notifications of when your show airs</box>
+  <box type="md poster"><img [src]="poster" /></box>
+</box>

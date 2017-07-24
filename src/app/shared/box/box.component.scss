@@ -1,0 +1,126 @@
+@import "../../../assets/scss/mixins";
+@import "../../../assets/scss/settings";
+
+:host {
+  &.container {
+    margin: 0 auto 20px;
+    @include flex-display();
+  }
+
+  &.center {
+    @include align-items(center);
+  }
+
+  &.sm {
+    @include flex(0 0 24.9%);
+  }
+
+  &.md {
+    @include flex(0 0 49.9%);
+  }
+
+  &.lg {
+    @include flex(0 0 74.9%);
+  }
+
+  &.xl {
+    @include flex(0 0 100%);
+  }
+
+  /deep/ {
+    &.sm {
+      img {
+        width: 100%;
+      }
+    }
+
+    &.md {
+      img {
+        width: 100%;
+        float: left;
+      }
+    }
+
+    &.sm,
+    &.md,
+    &.lg,
+    &.xl {
+      &.poster .inner {
+        img {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &.sm,
+  &.md,
+  &.lg,
+  &.xl {
+
+    &.poster .inner {
+      position: relative;
+      padding-top: 37%;
+    }
+
+    &.primary .inner {
+      color: #fff;
+      background: $badass;
+    }
+
+    &.error .inner {
+      color: #fff;
+      background: rgba(45, 9, 42, 0.72);
+      border-bottom: 10px solid rgba(249, 0, 136, 0.6);
+    }
+
+    .link:hover {
+      cursor: pointer;
+    }
+
+    .inner {
+      padding: 8px;
+      margin: 10px;
+      height: 100%;
+      background: #fff;
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.18), 1px 1px 50px rgba(0, 0, 0, 0.1);
+
+      &.flex-center {
+        text-align: center;
+        @include flex-display();
+        @include flex-wrap(wrap);
+        @include align-content(center);
+        @include justify-content(center);
+      }
+
+      > i {
+        display: inline-block;
+        width: 100%;
+        line-height: 60px;
+        font-size: 40px;
+        text-align: center;
+        margin: 0 0 20px;
+      }
+    }
+  }
+
+  @include mobile {
+    &.container {
+      margin: 0 auto;
+      @include flex-wrap(wrap);
+    }
+
+    &.sm,
+    &.md,
+    &.lg,
+    &.xl {
+      margin: 0 auto 15px;
+      @include flex(0 0 100%);
+    }
+  }
+}
