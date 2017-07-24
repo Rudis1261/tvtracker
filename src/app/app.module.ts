@@ -27,6 +27,7 @@ import { ResetPasswordComponent } from './shared/reset-password/reset-password.c
 import { MsgBoxComponent } from './shared/msg-box/msg-box.component';
 import { DesktopComponent } from './shared/desktop/desktop.component';
 import { MobileComponent } from './shared/mobile/mobile.component';
+import { BoxComponent } from './shared/box/box.component';
 
 // Pipes
 import { TitleCasePipe } from './pipes/title-case.pipe';
@@ -45,7 +46,6 @@ import { DeviceService } from './services/device.service';
 
 // Directives
 import { EqualValidator } from './equal-validator.directive';
-import { BoxComponent } from './shared/box/box.component';
 
 @NgModule({
   declarations: [

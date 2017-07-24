@@ -10,8 +10,6 @@ declare var window:any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	private currentRoute:string;
-
 	constructor(public router: Router) {
     router.events.distinctUntilChanged((previous: any, current: any) => {
       if(current instanceof NavigationEnd) {
@@ -19,12 +17,11 @@ export class AppComponent {
       }
       return true;
     }).subscribe((x: any) => {
+
     	if (x.urlAfterRedirects) {
-        console.log('GA PAGE', x.urlAfterRedirects);
-    		//ga('set', 'page', x.urlAfterRedirects);
+    		ga('set', 'page', x.urlAfterRedirects);
     	}
-      console.log('GA SEND IT', x.urlAfterRedirects);
-      //ga('send', 'pageview', x.url);
+      ga('send', 'pageview', x.url);
 
       window.scrollTo(0, 0);
     });
