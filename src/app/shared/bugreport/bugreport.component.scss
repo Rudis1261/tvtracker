@@ -1,0 +1,23 @@
+@import "../../../assets/scss/mixins";
+@import "../../../assets/scss/settings";
+
+:host {
+  .small {
+    font-size: 12px;
+    text-align: center;
+    margin: 15px 0 0;
+    color: #333;
+  }
+
+  .form-container {
+    margin: 40px auto 0;
+  }
+
+  form {
+    max-width: 440px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px 20px 1px;
+    box-shadow: 1px 1px 40px rgba(0,0,0,0.1);
+  }
+}

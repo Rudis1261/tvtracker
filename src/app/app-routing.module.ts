@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SeriesComponent } from './series/series.component';
+import { BugreportComponent } from './shared/bugreport/bugreport.component';
+import { ContactComponent } from './shared/contact/contact.component';
 import { NotFoundComponent} from './not-found/not-found.component';
 
 import { ActivationComponent } from './shared/activation/activation.component';
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'activate/:email/:code',  component: ActivationComponent },
   { path: 'reset-password/:code',  component: ResetPasswordComponent },
   { path: 'series',  component: SeriesComponent },
+  { path: 'report-bug',  component: BugreportComponent },
+  { path: 'contact',  component: ContactComponent },
   //{ path: 'style',  component: StyleguideComponent, canActivate: [AuthGuard] },
   { path: '404',  component: NotFoundComponent },
   { path: '**', redirectTo: '/404' }

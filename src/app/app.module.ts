@@ -46,6 +46,8 @@ import { DeviceService } from './services/device.service';
 
 // Directives
 import { EqualValidator } from './equal-validator.directive';
+import { ContactComponent } from './shared/contact/contact.component';
+import { BugreportComponent } from './shared/bugreport/bugreport.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { EqualValidator } from './equal-validator.directive';
     MsgBoxComponent,
     DesktopComponent,
     MobileComponent,
-    BoxComponent
+    BoxComponent,
+    ContactComponent,
+    BugreportComponent
   ],
   imports: [
     BrowserModule,

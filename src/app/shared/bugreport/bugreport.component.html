@@ -1,0 +1,41 @@
+<app-msg-box [(success)]="success" [(error)]="error" [(style)]="style">
+  {{success.message}}{{error.message}}
+</app-msg-box>
+
+<div class="small" *ngIf="success">Bug report sent</div>
+
+<div class="container form-container" [ngClass]="{'has-error': error && error.message && !success}">
+  <form
+    [hidden]="success"
+    novalidate
+    (ngSubmit)="onSubmit(bugReportForm)"
+    #bugReportForm="ngForm"
+  >
+      <div class="col-12">
+      <h3 class="text-center">Report a bug</h3>
+      <label for="description">
+        Description
+        <textarea
+          rows="10"
+          cols="40"
+          id="description"
+          type="text"
+          placeholder="Soooo..... This thing is broken"
+          name="description"
+          required
+          [(ngModel)]="formData.description"
+          #errorDescription="ngModel"
+        ></textarea>
+        <div
+          [hidden]="(errorDescription.valid || !errorDescription.dirty || !errorDescription.touched)"
+          class="error"
+        >Invalid</div>
+      </label>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="bugReportForm.invalid || submitting"
+    >{{actionLabel}}&nbsp;<i class='icon-spinner spin' *ngIf="submitting"></i></button>
+  </form>
+</div>

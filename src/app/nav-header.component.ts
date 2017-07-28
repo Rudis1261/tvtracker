@@ -68,7 +68,21 @@ export class NavHeaderComponent {
     "external": false,
     "logo": false,
     "admin": false
-  }];
+  }
+  // , {
+  //   "label": "Report Bug",
+  //   "slug": "/report-bug",
+  //   "external": false,
+  //   "logo": false,
+  //   "admin": false
+  // }, {
+  //   "label": "Contact",
+  //   "slug": "/contact",
+  //   "external": false,
+  //   "logo": false,
+  //   "admin": false
+  // }
+  ];
 
   menuOpen = false;
   showModal = false;
