@@ -20,7 +20,6 @@ export class ResetPasswordComponent implements OnInit {
   private newPasswordSub: any;
   private routingSub: any;
 
-  //newPassword(password: String, confirm: String, code: String)
   constructor(private route: ActivatedRoute, private router: Router, private Auth: AuthService) {
 
     this.passwordDetails = {
@@ -48,7 +47,6 @@ export class ResetPasswordComponent implements OnInit {
     }
 
     this.submitting = true;
-    //console.log(this.passwordDetails);
     let password = this.passwordDetails.password;
     let confirm = this.passwordDetails.confirm;
     let code = this.passwordDetails.code;

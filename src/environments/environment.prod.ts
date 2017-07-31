@@ -7,6 +7,10 @@ export const environment = {
   activateEndPoint: "https://api.tvtracker.co.za/auth/activate",
   resetPasswordEndPoint: "https://api.tvtracker.co.za/auth/resetpassword",
   newPasswordEndPoint: "https://api.tvtracker.co.za/auth/newpassword",
+  endpoint: {
+    "contact": "https://api.tvtracker.co.za/contact",
+    "bug-report": "https://api.tvtracker.co.za/contact/bugreport"
+  },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",
   firebase: {

@@ -43,6 +43,8 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 import { AuthService } from './services/auth.service';
 import { LoadscriptService } from './services/loadscript.service';
 import { DeviceService } from './services/device.service';
+import { TokenRingService } from './services/token-ring.service';
+import { ContactService } from './services/contact.service';
 
 // Directives
 import { EqualValidator } from './equal-validator.directive';
@@ -93,7 +95,9 @@ import { BugreportComponent } from './shared/bugreport/bugreport.component';
     AuthService,
     ModalComponent,
     LoadscriptService,
-    DeviceService
+    DeviceService,
+    TokenRingService,
+    ContactService
   ],
   bootstrap: [ AppComponent ]
 })

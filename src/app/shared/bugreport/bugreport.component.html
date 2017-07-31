@@ -2,8 +2,6 @@
   {{success.message}}{{error.message}}
 </app-msg-box>
 
-<div class="small" *ngIf="success">Bug report sent</div>
-
 <div class="container form-container" [ngClass]="{'has-error': error && error.message && !success}">
   <form
     [hidden]="success"

@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   loginActionLabel: String = 'Login';
   forgotActionLabel: String = 'Reset Password';
 
-  //modalTitle = "Login";
   recaptcha: any = false;
   recapchaKey: String = ENV.recapchaKey;
   loginCaptcha: any;

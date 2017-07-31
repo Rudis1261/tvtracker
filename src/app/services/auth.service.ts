@@ -1,43 +1,32 @@
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, RequestOptions } from '@angular/http';
 import { Injectable } from "@angular/core";
 import { environment as ENV } from "../../environments/environment";
 import { Observable } from "rxjs/Rx";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+import { TokenRingService } from "./token-ring.service"
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthService {
 
-  private headers: Headers;
   private options: RequestOptions;
-  public user: any;
   public token: any;
+  public tokenSub: any;
+  public user: any;
   public userState = new BehaviorSubject(null);
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private trs: TokenRingService) {
     this.user = JSON.parse(localStorage.getItem('user')) || false;
-    this.token = localStorage.getItem('token') || false;
-    this.getHeaders();
+    this.options = this.trs.getHeaders();
     this.userState.next(this.user);
+    this.tokenSub = this.trs.apiToken.subscribe((data) => {
+      this.token = data;
+    });
   }
 
-  getHeaders() {
-    if (this.token && this.token !== false) {
-      this.headers = new Headers({
-        'Content-Type': 'application/json',
-        'Authorization': this.token
-      });
-    } else {
-      this.headers = new Headers({
-        'Content-Type': 'application/json'
-      });
-    }
-
-    this.options = new RequestOptions({
-      headers: this.headers,
-      withCredentials: true
-    });
+  ngOnDestroy() {
+    if (this.tokenSub) this.tokenSub.unsubscribe();
   }
 
   login(username: String, password: String, captcha: String) {
@@ -46,7 +35,7 @@ export class AuthService {
       return Observable.of(this.user);
     }
 
-    this.getHeaders();
+    this.trs.getHeaders();
 
     return this.http.post(
       ENV.authEndPoint, {
@@ -60,15 +49,15 @@ export class AuthService {
       let data = res.json();
       this.user = data.user;
       localStorage.setItem('user', JSON.stringify(this.user));
-      localStorage.setItem('token', data.data.token || false);
+      this.trs.setToken(data.data.token);
       this.userState.next(this.user);
       return data;
     })
-    .catch((error:any) => this.errorHandler(error));
+    .catch((error:any) => this.trs.errorHandler(error));
   }
 
   newPassword(password: String, confirm: String, code: String) {
-    this.getHeaders();
+    this.trs.getHeaders()
 
     return this.http.post(
       ENV.newPasswordEndPoint, {
@@ -82,15 +71,15 @@ export class AuthService {
       let data = res.json();
       this.user = data.user;
       localStorage.setItem('user', JSON.stringify(this.user));
-      localStorage.setItem('token', data.data.token || false);
+      this.trs.setToken(data.data.token);
       this.userState.next(this.user);
       return data;
     })
-    .catch((error:any) => this.errorHandler(error));
+    .catch((error:any) => this.trs.errorHandler(error));
   }
 
   register(username: String, password: String, email: String, confirm: String, captcha: String) {
-    this.getHeaders();
+    this.trs.getHeaders();
 
     return this.http.post(
       ENV.registerEndPoint, {
@@ -106,19 +95,14 @@ export class AuthService {
       let data = res.json();
       return data;
     })
-    .catch((error:any) => this.errorHandler(error));
-  }
-
-  errorHandler(res) {
-    return Observable.throw(res || 'Server error');
+    .catch((error:any) => this.trs.errorHandler(error));
   }
 
   logout() {
-    this.getHeaders();
+    this.trs.getHeaders()
+    this.trs.setToken(false);
     this.user = false;
-    this.token = false;
     localStorage.removeItem('user');
-    localStorage.removeItem('token');
 
     return this.http.get(
       ENV.logoutEndPoint,
@@ -130,11 +114,11 @@ export class AuthService {
       this.userState.next(this.user);
       return this.user;
     })
-    .catch((error:any) => this.errorHandler(error));
+    .catch((error:any) => this.trs.errorHandler(error));
   }
 
   activate(email: String, code: String) {
-    this.getHeaders();
+    this.trs.getHeaders();
 
     return this.http.post(
       ENV.activateEndPoint, {
@@ -147,15 +131,15 @@ export class AuthService {
       let data = res.json();
       this.user = data.user;
       localStorage.setItem('user', JSON.stringify(this.user));
-      localStorage.setItem('token', data.data.token || false);
+      this.trs.setToken(data.data.token);
       this.userState.next(this.user);
       return data;
     })
-    .catch((error:any) => this.errorHandler(error));
+    .catch((error:any) => this.trs.errorHandler(error));
   }
 
   resetPassword(email: String, captcha: String) {
-    this.getHeaders();
+    this.trs.getHeaders();
 
     return this.http.post(
       ENV.resetPasswordEndPoint, {
@@ -168,16 +152,16 @@ export class AuthService {
       let data = res.json();
       return data;
     })
-    .catch((error:any) => this.errorHandler(error));
+    .catch((error:any) => this.trs.errorHandler(error));
   }
 
   testApi() {
-    this.getHeaders();
+    this.trs.getHeaders();
     return this.http.get(
       ENV.apiEndPoint,
       this.options
     )
     .map((res:Response) => res.json())
-    .catch((error:any) => this.errorHandler(error));
+    .catch((error:any) => this.trs.errorHandler(error));
   }
 }
