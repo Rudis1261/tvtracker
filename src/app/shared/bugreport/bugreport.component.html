@@ -9,7 +9,7 @@
     (ngSubmit)="onSubmit(bugReportForm)"
     #bugReportForm="ngForm"
   >
-      <div class="col-12">
+    <div class="col-12">
       <h3 class="text-center">Report a bug</h3>
       <label for="description">
         Description
@@ -29,6 +29,10 @@
           class="error"
         >Invalid</div>
       </label>
+    </div>
+
+    <div class="captcha" *ngIf="!user">
+      <div id="bug-report-captcha"></div>
     </div>
 
     <button

@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
   recaptcha: any = false;
   recapchaKey: String = ENV.recapchaKey;
   loginCaptcha: any;
-  registerCaptcha: any;
   loginCaptchaId: any;
+  registerCaptcha: any;
   registerCaptchaId: any;
   forgotCaptcha: any;
   forgotCaptchaId: any;
