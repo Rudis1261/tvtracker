@@ -63,6 +63,9 @@ export class TokenRingService {
   }
 
   errorHandler(res) {
-    return Observable.throw(res || 'Server error');
+    console.error(res);
+    return Observable.throw({
+      'message': 'Server error, try again later'
+    });
   }
 }

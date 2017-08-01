@@ -74,6 +74,10 @@ export class BugreportComponent {
   }
 
   onSubmit(form) {
+
+    if (this.submitting) return false;
+    this.submitting = true;
+
     this.error = false;
     this.success = false;
 
@@ -83,6 +87,10 @@ export class BugreportComponent {
       } else {
         this.success = data;
       }
+      this.submitting = false;
+    }, err => {
+      this.error = err;
+      this.submitting = false;
     });
   }
 }
