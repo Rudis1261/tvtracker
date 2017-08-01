@@ -11,7 +11,12 @@
         "assets",
         "favicon-32x32.png",
         "favicon-16x16.png",
-        "favicon.ico"
+        "favicon.ico",
+        "launcher-icon-1x.png",
+        "launcher-icon-2x.png",
+        "launcher-icon-4x.png",
+        "manifest.json",
+        "firebase-messaging-sw.js"
       ],
       "index": "index.html",
       "main": "main.ts",

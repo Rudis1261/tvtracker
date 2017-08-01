@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { FcmService } from './services/fcm.service';
 
 declare var ga:any;
 declare var window:any;
@@ -10,7 +11,7 @@ declare var window:any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	constructor(public router: Router) {
+	constructor(public router: Router, public FCM: FcmService) {
     router.events.distinctUntilChanged((previous: any, current: any) => {
       if(current instanceof NavigationEnd) {
         return previous.url === current.url;
