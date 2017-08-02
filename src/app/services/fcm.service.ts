@@ -1,5 +1,6 @@
 import { Inject, Injectable } from "@angular/core";
 import { FirebaseApp } from "angularfire2";
+import { TokenRingService } from "./token-ring.service";
 import * as firebase from 'firebase';
 
 declare var window: any;
@@ -8,7 +9,7 @@ declare var window: any;
 export class FcmService {
   private _messaging: firebase.messaging.Messaging;
 
-  constructor(@Inject(FirebaseApp) private _firebaseApp: firebase.app.App) {
+  constructor(@Inject(FirebaseApp) private _firebaseApp: firebase.app.App, private TRS: TokenRingService) {
 
     // It's only available for Devices with Notifications API
     if (window.hasOwnProperty('Notification')) {
@@ -20,7 +21,7 @@ export class FcmService {
         })
         .catch(error => {
           console.error("Notifications disabled", error);
-          this.clear();
+          this.clearToken();
         });
 
       this._messaging.onTokenRefresh(() => {
@@ -34,11 +35,11 @@ export class FcmService {
   }
 
   setToken(token) {
-    localStorage.setItem('fcm_token', token);
+    this.TRS.setFCMToken(token);
   }
 
-  clear() {
-    localStorage.removeItem('fcm_token');
+  clearToken() {
+    this.TRS.removeFCMToken();
   }
 
   getToken(type) {
@@ -49,12 +50,12 @@ export class FcmService {
           this.setToken(token);
         } else {
           console.log('FCM', 'No Instance ID token available. Request permission to generate one.');
-          this.clear();
+          this.clearToken();
         }
       })
       .catch((err) => {
         console.log('FCM', 'An error occurred while retrieving token. ', err);
-        this.clear();
+        this.clearToken();
       });
   }
 }

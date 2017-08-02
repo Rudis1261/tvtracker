@@ -16,21 +16,21 @@ export class ContactService {
   }
 
   bugReport(description, captcha=false) {
-    let params = { 
-      'description': description 
+    let params = {
+      'description': description
     };
 
     if (captcha !== false) {
       params['captcha'] = captcha;
     }
-    
+
     return this.trs.apiCall(ENV.endpoint['bug-report'], params);
   }
 
   contact(email, description, captcha=false) {
-    let params = { 
+    let params = {
       'email': email,
-      'description': description 
+      'description': description
     };
 
     if (captcha !== false) {

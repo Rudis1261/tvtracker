@@ -11,6 +11,7 @@ export class TokenRingService {
   private options: RequestOptions;
   public token: any = localStorage.getItem('token') || false;
   public apiToken = new BehaviorSubject(null);
+  public fcmToken: any = localStorage.getItem('fcm_token') || false;
 
   constructor(private http: Http) {
     this.token = localStorage.getItem('token') || false;
@@ -33,15 +34,32 @@ export class TokenRingService {
     }
   }
 
+  setFCMToken(token) {
+    localStorage.setItem('fcm_token', token);
+    this.fcmToken = token;
+  }
+
+  removeFCMToken() {
+    localStorage.removeItem('fcm_token');
+    this.fcmToken = false;
+  }
+
+  addFCMToken(params) {
+    if (this.fcmToken) {
+      params['fcm_token'] = this.fcmToken;
+    }
+    return params;
+  }
+
   getHeaders() {
+    this.headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
     if (this.token && this.token !== false) {
       this.headers = new Headers({
         'Content-Type': 'application/json',
         'Authorization': this.token
-      });
-    } else {
-      this.headers = new Headers({
-        'Content-Type': 'application/json'
       });
     }
 
@@ -55,11 +73,26 @@ export class TokenRingService {
 
   apiCall(url, params) {
     this.options = this.getHeaders();
-    return this.http.post(url, params,this.options)
+    params = this.addFCMToken(params);
+    return this.http.post(url, params, this.options)
                     .map((res:Response) => {
                       return res.json();
                     })
                     .catch((error:any) => this.errorHandler(error));
+  }
+
+  apiGetCall(url, params) {
+    this.options = this.getHeaders();
+    params = this.addFCMToken(params);
+    return this.http.get(url, this.options)
+                    .map((res:Response) => {
+                      return res.json();
+                    })
+                    .catch((error:any) => this.errorHandler(error));
+  }
+
+  apiPostCall(url, params) {
+    return this.apiCall(url, params);
   }
 
   errorHandler(res) {
