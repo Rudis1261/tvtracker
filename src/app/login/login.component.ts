@@ -181,9 +181,7 @@ export class LoginComponent implements OnInit {
         grecaptcha.reset(this.loginCaptchaId);
         this.loggingIn = false;
         this.loginActionLabel = labelBefore;
-        this.setError({
-          'message': 'Oops something went wrong, please try again later'
-        });
+        this.setError(err || { message: "Something went wrong" });
       }
     );
   }
@@ -227,9 +225,7 @@ export class LoginComponent implements OnInit {
         grecaptcha.reset(this.registerCaptchaId);
         this.registering = false;
         this.registerActionLabel = labelBefore;
-        this.setError({
-          'message': 'Oops something went wrong, please try again later'
-        });
+        this.setError(err || { message: "Something went wrong" });
       }
     );
   }
@@ -268,9 +264,7 @@ export class LoginComponent implements OnInit {
         grecaptcha.reset(this.forgotCaptchaId);
         this.submitting = false;
         this.forgotActionLabel = labelBefore;
-        this.setError({
-          'message': 'Oops something went wrong, please try again later'
-        });
+        this.setError(err || { message: "Something went wrong" });
       }
     );
   }

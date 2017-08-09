@@ -28,7 +28,10 @@ export class TokenRingService {
     if (token == false) {
       localStorage.removeItem('token');
       this.apiToken.next(false);
-    } else {
+      return true;
+    }
+
+    if (token) {
       localStorage.setItem('token', token || false);
       this.apiToken.next([...token]);
     }
@@ -67,7 +70,7 @@ export class TokenRingService {
       headers: this.headers,
       withCredentials: true
     });
-
+    
     return this.options;
   }
 

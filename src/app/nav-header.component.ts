@@ -76,13 +76,13 @@ export class NavHeaderComponent {
     "logo": false,
     "admin": false
   }
-  //, {
-  //   "label": "Contact",
-  //   "slug": "/contact",
-  //   "external": false,
-  //   "logo": false,
-  //   "admin": false
-  // }
+  , {
+    "label": "Contact",
+    "slug": "/contact",
+    "external": false,
+    "logo": false,
+    "admin": false
+  }
   ];
 
   menuOpen = false;
