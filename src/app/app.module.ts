@@ -51,6 +51,7 @@ import { FcmService } from './services/fcm.service';
 import { EqualValidator } from './equal-validator.directive';
 import { ContactComponent } from './shared/contact/contact.component';
 import { BugreportComponent } from './shared/bugreport/bugreport.component';
+import { TestComponent } from './shared/test/test.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { BugreportComponent } from './shared/bugreport/bugreport.component';
     MobileComponent,
     BoxComponent,
     ContactComponent,
-    BugreportComponent
+    BugreportComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

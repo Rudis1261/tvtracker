@@ -8,6 +8,7 @@ import { NotFoundComponent} from './not-found/not-found.component';
 
 import { ActivationComponent } from './shared/activation/activation.component';
 import { ResetPasswordComponent } from './shared/reset-password/reset-password.component';
+import { TestComponent } from './shared/test/test.component';
 //import { AuthGuard } from './services/auth.service';
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'series',  component: SeriesComponent },
   { path: 'report-bug',  component: BugreportComponent },
   { path: 'contact',  component: ContactComponent },
+  { path: 'test',  component: TestComponent },
   //{ path: 'style',  component: StyleguideComponent, canActivate: [AuthGuard] },
   { path: '404',  component: NotFoundComponent },
   { path: '**', redirectTo: '/404' }
