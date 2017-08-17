@@ -116,7 +116,7 @@ header {
   header {
     height: 54px;
     box-shadow: 0 1px 8px 1px rgba(#000,.1);
-    background: rgba(255, 255, 255, 0.85);
+    background: #fff;
 
     .container {
       height: 54px;
@@ -218,7 +218,7 @@ header {
 
 @include desktop {
   header {
-    background: rgba(255, 255, 255, 0.55);
+    background: #fff;
     height: 60px;
     border-bottom: 1px solid #fff;
 
