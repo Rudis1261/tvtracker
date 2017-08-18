@@ -46,6 +46,7 @@ import { DeviceService } from './services/device.service';
 import { TokenRingService } from './services/token-ring.service';
 import { ContactService } from './services/contact.service';
 import { FcmService } from './services/fcm.service';
+import { LoadedService } from './services/loaded.service';
 
 // Directives
 import { EqualValidator } from './equal-validator.directive';
@@ -101,7 +102,8 @@ import { TestComponent } from './shared/test/test.component';
     DeviceService,
     TokenRingService,
     ContactService,
-    FcmService
+    FcmService,
+    LoadedService
   ],
   bootstrap: [ AppComponent ]
 })
