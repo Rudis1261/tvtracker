@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenRingService } from '../services/token-ring.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-series',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeriesComponent implements OnInit {
 
-  constructor() { }
+  private seriesSub: any;
+  private series: any;
 
-  ngOnInit() {
+  constructor(private TRS: TokenRingService) {
+    this.seriesSub = this.TRS.apiGetCall(environment.endpoint['series-all']).subscribe((data) => {
+      this.series = data.data.items;
+    });
   }
 
+  ngOnInit() { }
+
+  ngOnDestroy() {
+    if (this.seriesSub) this.seriesSub.unsubscribe();
+  }
 }

@@ -9,7 +9,8 @@ export const environment = {
   newPasswordEndPoint: "https://api.tvtracker.co.za/auth/newpassword",
   endpoint: {
     "contact": "https://api.tvtracker.co.za/contact",
-    "bug-report": "https://api.tvtracker.co.za/contact/bugreport"
+    "bug-report": "https://api.tvtracker.co.za/contact/bugreport",
+    "series-all": "https://api.tvtracker.co.za/series/all"
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

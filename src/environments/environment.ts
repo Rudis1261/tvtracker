@@ -14,7 +14,8 @@ export const environment = {
   newPasswordEndPoint: "http://dev.tvt2.co.za/auth/newpassword",
   endpoint: {
     "contact": "http://dev.tvt2.co.za/contact",
-    "bug-report": "http://dev.tvt2.co.za/contact/bugreport"
+    "bug-report": "http://dev.tvt2.co.za/contact/bugreport",
+    "series-all": "http://dev.tvt2.co.za/series/all"
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

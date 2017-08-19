@@ -70,11 +70,11 @@ export class TokenRingService {
       headers: this.headers,
       withCredentials: true
     });
-    
+
     return this.options;
   }
 
-  apiCall(url, params) {
+  apiCall(url, params={}) {
     this.options = this.getHeaders();
     params = this.addFCMToken(params);
     return this.http.post(url, params, this.options)
@@ -84,7 +84,7 @@ export class TokenRingService {
                     .catch((error:any) => this.errorHandler(error));
   }
 
-  apiGetCall(url, params) {
+  apiGetCall(url, params={}) {
     this.options = this.getHeaders();
     params = this.addFCMToken(params);
     return this.http.get(url, this.options)
@@ -94,7 +94,7 @@ export class TokenRingService {
                     .catch((error:any) => this.errorHandler(error));
   }
 
-  apiPostCall(url, params) {
+  apiPostCall(url, params={}) {
     return this.apiCall(url, params);
   }
 

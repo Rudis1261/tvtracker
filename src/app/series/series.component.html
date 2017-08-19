@@ -11,3 +11,15 @@
     Soon enough you will be able to keep track of your favourite shows, and know exactly when that next episode will be coming out.
   </box>
 </box>
+
+<div class="container row">
+  <div *ngFor="let show of series" class="col-3" [attr.data]="show | json">
+    <h3>{{show.seriesname}}</h3>
+    <div>Rated: {{show.rating}}</div>
+    <div>Status: {{show.status}}</div>
+    <div>Network: {{show.network}}</div>
+    <div>Slug: {{show.slug}}</div>
+    <div>Popularity: {{show.popularity}}</div>
+    <br><br>
+  </div>
+</div>
