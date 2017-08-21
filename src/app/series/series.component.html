@@ -12,8 +12,8 @@
   </box>
 </box>
 
-<div class="container row">
-  <div *ngFor="let show of series" class="col-3" [attr.data]="show | json">
+<div class="container row col">
+  <!--<div *ngFor="let show of series | filter:show.slug:'game-of-thrones'" class="col col-3 col-md-4 col-sm-6 col-lg-3" [attr.data]="show | json">
     <h3>{{show.seriesname}}</h3>
     <div>Rated: {{show.rating}}</div>
     <div>Status: {{show.status}}</div>
@@ -21,5 +21,39 @@
     <div>Slug: {{show.slug}}</div>
     <div>Popularity: {{show.popularity}}</div>
     <br><br>
+  </div>-->
+</div>
+
+<div class="container row col swiper-container-outer">
+  <h3>Recent Episodes</h3>
+  <div id="recent-pagination" class="swiper-pagination"></div>
+  <div id="recent-prev" class="swiper-button-prev"></div>
+  <div id="recent-next" class="swiper-button-next"></div>
+
+  <div class="swiper-container swiper-container-recent">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let episode of recentEpisodes" [attr.data]="episode | json">
+        <h4 class="heading">{{episode.seriesname}} <div class="season">{{episode.key}}</div></h4>
+        <div class="airtime">{{episode.human_time}}</div>
+      </div>
+    </div>
+    <div class="swiper-scrollbar"></div>
+  </div>
+</div>
+
+<div class="container row col swiper-container-outer">
+  <h3>Episodes Coming Soon</h3>
+  <div id="future-pagination" class="swiper-pagination"></div>
+  <div id="future-prev" class="swiper-button-prev"></div>
+  <div id="future-next" class="swiper-button-next"></div>
+
+  <div class="swiper-container swiper-container-future">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let episode of recentEpisodes" [attr.data]="episode | json">
+        <h4 class="heading">{{episode.seriesname}} <div class="season">{{episode.key}}</div></h4>
+        <div class="airtime">{{episode.human_time}}</div>
+      </div>
+    </div>
+    <div class="swiper-scrollbar"></div>
   </div>
 </div>

@@ -1,0 +1,74 @@
+@import "../../assets/scss/settings.scss";
+@import "../../assets/scss/mixins.scss";
+
+:host {
+
+  .swiper-container {
+    width: 100%;
+    margin: 0 auto 40px;
+    height: 200px;
+
+    &-outer {
+      h3 {
+        font-weight: normal;
+      }
+      padding: 0 10px;
+    }
+  }
+
+  .swiper-slide {
+    text-align: center;
+    position: relative;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 0 20px;
+
+    .heading,
+    .airtime,
+    .season {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    .heading {
+      line-height: 18px;
+      font-size: 16px;
+    }
+
+    .airtime {
+      top: auto;
+      font-size: 12px;
+      bottom: 10px;
+
+      &:after {
+        position: absolute;
+        display: block;
+        content: "";
+        top: auto;
+        padding-top: 30px;
+        height: 20px;
+        right: 0;
+        bottom: -10px;
+        left: 0;
+
+        @include vertical-gradient(rgba(232, 232, 232, 0.45), transparent);
+      }
+    }
+
+    .season {
+      position: relative;
+      font-size: 14px;
+      line-height: 16px;
+      font-weight: normal;
+    }
+  }
+
+  .row {
+    position: relative;
+  }
+}

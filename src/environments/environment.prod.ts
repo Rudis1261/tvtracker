@@ -10,7 +10,9 @@ export const environment = {
   endpoint: {
     "contact": "https://api.tvtracker.co.za/contact",
     "bug-report": "https://api.tvtracker.co.za/contact/bugreport",
-    "series-all": "https://api.tvtracker.co.za/series/all"
+    "series-all": "https://api.tvtracker.co.za/series/all",
+    "episodes-future": "https://api.tvtracker.co.za/episodes/future",
+    "episodes-recent": "https://api.tvtracker.co.za/episodes/recent",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

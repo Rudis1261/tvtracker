@@ -132,8 +132,33 @@ h1, h2, h3, h4, h5 {
 
 @each $col in 1,2,3,4,5,6,7,8,9,10,11,12 {
   .col-#{$col} {
+    background: orange;
     max-width: (99.9% * ($col / 12));
     @include flex(0 0 (99.9% * ($col / 12)));
+  }
+
+  @include mobile {
+    &.col-sm-#{$col} {
+      background: #bada55;
+      max-width: (99.9% * ($col / 12));
+      @include flex(0 0 (99.9% * ($col / 12)));
+    }
+  }
+
+  @include respond-between($screenTablet, $screenDesktop) {
+    &.col-md-#{$col} {
+      background: green;
+      max-width: (99.9% * ($col / 12));
+      @include flex(0 0 (99.9% * ($col / 12)));
+    }
+  }
+
+  @include respond-from($screenDesktop) {
+    &.col-lg-#{$col} {
+      background: blue;
+      max-width: (99.9% * ($col / 12));
+      @include flex(0 0 (99.9% * ($col / 12)));
+    }
   }
 }
 
@@ -170,4 +195,60 @@ h1, h2, h3, h4, h5 {
   @include respond-to($screenTablet) {
     display: none;
   }
+}
+
+.swiper-pagination {
+  position: absolute;
+  top: 0;
+  right: 75px;
+  line-height: 17px;
+  height: 24px;
+  @include opacity(1);
+
+  &-bullet {
+    width: 4px;
+    height: 4px;
+    margin: 0 0 0 4px;
+    background: #000;
+    @include opacity(0.2);
+
+    &-active {
+      width: 6px;
+      height: 6px;
+      margin: 0 0 -1px 4px;
+      background: rgba(249, 0, 136, 0.6);
+      border: 1px solid rgba(45, 9, 42, 0.2);
+      @include opacity(1);
+    }
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  left: auto;
+  margin: 0;
+  font-size: 18px;
+  height: 20px;
+  background-size: contain;
+}
+
+.swiper-button-prev {
+  right: 40px;
+}
+
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23333'%2F%3E%3C%2Fsvg%3E");
+}
+
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23333'%2F%3E%3C%2Fsvg%3E");
 }

@@ -15,7 +15,9 @@ export const environment = {
   endpoint: {
     "contact": "http://dev.tvt2.co.za/contact",
     "bug-report": "http://dev.tvt2.co.za/contact/bugreport",
-    "series-all": "http://dev.tvt2.co.za/series/all"
+    "series-all": "http://dev.tvt2.co.za/series/all",
+    "episodes-future": "http://dev.tvt2.co.za/episodes/future",
+    "episodes-recent": "http://dev.tvt2.co.za/episodes/recent",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",
