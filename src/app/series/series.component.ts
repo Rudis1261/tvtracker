@@ -51,16 +51,23 @@ export class SeriesComponent implements OnInit {
         scrollbar: '.swiper-scrollbar',
         slidesPerColumn: 4,
         slidesPerView: 4,
+        slidesPerGroup: 4,
         spaceBetween: 20,
         breakpoints: {
           320: {
-            slidesPerView: 1
+            slidesPerColumn: 1,
+            slidesPerView: 1,
+            slidesPerGroup: 1
           },
           480: {
-            slidesPerView: 2
+            slidesPerColumn: 2,
+            slidesPerView: 2,
+            slidesPerGroup: 2
           },
           768: {
-            slidesPerView: 3
+            slidesPerColumn: 3,
+            slidesPerView: 3,
+            slidesPerGroup: 3
           }
         }
       };
