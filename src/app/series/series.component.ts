@@ -49,26 +49,23 @@ export class SeriesComponent implements OnInit {
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
         scrollbar: '.swiper-scrollbar',
-        slidesPerColumn: 1,
         height: 'auto',
+        slidesPerColumn: 1,
         slidesPerView: 4,
         slidesPerGroup: 4,
         spaceBetween: 20,
         breakpoints: {
           320: {
-            slidesPerColumn: 1,
-            slidesPerView: 1,
-            slidesPerGroup: 1,
-            spaceBetween: 0
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+            spaceBetween: 10
           },
           480: {
-            slidesPerColumn: 1,
             slidesPerView: 2,
             slidesPerGroup: 2,
             spaceBetween: 10
           },
           768: {
-            slidesPerColumn: 1,
             slidesPerView: 3,
             slidesPerGroup: 3
           }

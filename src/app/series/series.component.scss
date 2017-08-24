@@ -3,17 +3,6 @@
 
 :host {
 
-  .testy {
-    background: lime;
-    width: 25%;
-    text-align: center;
-    @include aspect-ratio(300, 441, '.inner-testy');
-  }
-
-  .inner-testy {
-    background: orange;
-  }
-
   .swiper-container {
     width: 100%;
     margin: 0 auto 40px;
@@ -39,7 +28,7 @@
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
     margin: 0 0 20px;
     height: auto;
-    @include flex-display();
+    @include aspect-ratio(300, 441, '.inner');
 
     .heading,
     .airtime,
@@ -57,13 +46,6 @@
       &:after {
         z-index: -1;
       }
-    }
-
-    .inner {
-      padding-top: 147%;
-      position: relative;
-      display: block;
-      width: 100%;
     }
 
     .poster {
@@ -131,5 +113,13 @@
 
   .row {
     position: relative;
+  }
+
+  @include respond-to($screenMobile) {
+    .swiper-container {
+      &-outer {
+        padding: 0;
+      }
+    }
   }
 }

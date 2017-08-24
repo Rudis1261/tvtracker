@@ -112,15 +112,38 @@
   @include mobile {
     &.container {
       margin: 0 auto;
+      padding: 0;
       @include flex-wrap(wrap);
+
+      .inner,
+      .inner.flex-center {
+        margin: 0;
+      }
     }
 
     &.sm,
     &.md,
     &.lg,
     &.xl {
-      margin: 0 auto 15px;
+      margin: 0 auto 10px;
+    }
+
+    &.md,
+    &.lg,
+    &.xl {
       @include flex(0 0 100%);
+    }
+
+    &.sm {
+      @include flex(0 0 50%);
+
+      &:nth-of-type(odd) {
+        padding-right: 5px;
+      }
+
+      &:nth-of-type(even) {
+        padding-left: 5px;
+      }
     }
   }
 }
