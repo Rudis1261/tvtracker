@@ -80,7 +80,7 @@ export class SeriesComponent implements OnInit {
         new Swiper('.swiper-container-recent', recentParams);
       }
 
-      if (type == 'recent') {
+      if (type == 'future') {
         let futureParams = Object.assign({}, swiperParams);
         futureParams.pagination = "#future-pagination";
         futureParams.prevButton = "#future-prev";
