@@ -3,6 +3,7 @@
 
 :host {
   &.container {
+    padding: 0;
     margin: 0 auto 20px;
     @include flex-display();
   }
@@ -28,6 +29,19 @@
   }
 
   /deep/ {
+
+    .block:first-of-type {
+      .inner {
+        margin-left: 0!important;
+      }
+    }
+
+    .block:last-of-type {
+      .inner {
+        margin-right: 0!important;
+      }
+    }
+
     &.sm {
       img {
         width: 100%;
@@ -70,6 +84,7 @@
 
     &.primary .inner {
       color: #fff;
+      border: 1px solid darken($badass, 13%);
       background: $badass;
     }
 

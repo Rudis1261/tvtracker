@@ -11,7 +11,7 @@ declare var window: any;
   templateUrl: './box.component.html',
   styleUrls: ['./box.component.scss'],
   host: {
-    '[class]' : 'type',
+    '[class]' : '(type == \'container\' ? type : type + \' block\')'
   }
 })
 export class BoxComponent implements OnInit {
