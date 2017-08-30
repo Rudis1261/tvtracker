@@ -16,9 +16,29 @@ export class SeriesComponent implements OnInit {
   private recentSub: any;
   private futureSub: any;
 
+  private recentSwiper: any;
+  private futureSwiper: any;
+
   public series: any = [];
-  public recentEpisodes: any = [];
-  public futureEpisodes: any = [];
+  public recentEpisodes: any = [{
+    'test': 1
+  }, {
+    'test': 2
+  }, {
+    'test': 3
+  }, {
+    'test': 4
+  }];
+
+  public futureEpisodes: any = [{
+    'test': 1
+  }, {
+    'test': 2
+  }, {
+    'test': 3
+  }, {
+    'test': 4
+  }];
 
   constructor(private TRS: TokenRingService, private LS: LoadedService) {
     this.seriesSub = this.TRS.apiGetCall(environment.endpoint['series-all']).subscribe((data) => {
@@ -29,15 +49,28 @@ export class SeriesComponent implements OnInit {
       //this.series = data.data.items;
       //console.log("RECENT", data);
       this.recentEpisodes = data.data.items;
-      this.buildSwiper('recent');
+      //this.buildSwiper('recent');
+
+      this.recentSwiper.slideTo(0);
+      setTimeout(() => {
+        this.recentSwiper.slideTo(0);
+      }, 300);
     });
 
     this.futureSub = this.TRS.apiGetCall(environment.endpoint['episodes-future']).subscribe((data) => {
       //this.series = data.data.items;
       //console.log("FUTURE", data);
       this.futureEpisodes = data.data.items;
-      this.buildSwiper('future');
+      //this.buildSwiper('future');
+
+      this.futureSwiper.slideTo(0);
+      setTimeout(() => {
+        this.futureSwiper.slideTo(0);
+      }, 300);
     });
+
+    this.buildSwiper('recent');
+    this.buildSwiper('future');
   }
 
   buildSwiper(type) {
@@ -52,6 +85,10 @@ export class SeriesComponent implements OnInit {
         height: 'auto',
         slidesPerColumn: 1,
         slidesPerView: 4,
+        observer: true,
+        initialSlide: 0,
+        preloadImages: false,
+        lazyLoading: true,
         slidesPerGroup: 4,
         spaceBetween: 20,
         breakpoints: {
@@ -77,7 +114,7 @@ export class SeriesComponent implements OnInit {
         recentParams.pagination = "#recent-pagination";
         recentParams.prevButton = "#recent-prev";
         recentParams.nextButton = "#recent-next";
-        new Swiper('.swiper-container-recent', recentParams);
+        this.recentSwiper = new Swiper('.swiper-container-recent', recentParams);
       }
 
       if (type == 'future') {
@@ -85,7 +122,7 @@ export class SeriesComponent implements OnInit {
         futureParams.pagination = "#future-pagination";
         futureParams.prevButton = "#future-prev";
         futureParams.nextButton = "#future-next";
-        new Swiper('.swiper-container-future', futureParams);
+        this.futureSwiper = new Swiper('.swiper-container-future', futureParams);
       }
     });
   }

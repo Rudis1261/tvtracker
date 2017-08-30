@@ -33,11 +33,12 @@
   <div class="swiper-container swiper-container-recent">
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let episode of recentEpisodes">
-        <a href="#" class="inner">
-          <h4 class="heading">{{episode.seriesname}} <div class="season">{{episode.key}}</div></h4>
-          <div class="airtime">{{episode.human_time}}</div>
-          <div class="poster">
-            <img width="100" height="auto" [src]="episode.image_url" class="poster-img" />
+        <div class="swiper-lazy-preloader"></div>
+        <a href="#" class="inner" *ngIf="!episode.test">
+          <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} <div class="season">{{episode.key}}</div></h4>
+          <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
+          <div class="poster" *ngIf="episode.image_url">
+            <img width="100" height="auto" [attr.data-src]="episode.image_url" class="poster-img swiper-lazy" />
           </div>
         </a>
       </div>
@@ -55,11 +56,12 @@
   <div class="swiper-container swiper-container-future">
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let episode of futureEpisodes">
+        <div class="swiper-lazy-preloader"></div>
         <a href="#" class="inner">
-          <h4 class="heading">{{episode.seriesname}} <div class="season">{{episode.key}}</div></h4>
-          <div class="airtime">{{episode.human_time}}</div>
-          <div class="poster">
-            <img width="100" height="auto" [src]="episode.image_url" class="poster-img" />
+          <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} <div class="season">{{episode.key}}</div></h4>
+          <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
+          <div class="poster" *ngIf="episode.image_url">
+            <img width="100" height="auto" [attr.data-src]="episode.image_url" class="poster-img swiper-lazy" />
           </div>
         </a>
       </div>

@@ -5,7 +5,7 @@
 
   .swiper-container {
     width: 100%;
-    margin: 0 auto 40px;
+    margin: 0 auto;
     height: auto;
 
     &-outer {
@@ -13,6 +13,18 @@
         font-weight: normal;
       }
       padding: 0;
+    }
+
+    @include respond-from(480px) {
+      min-height: 220px;
+    }
+
+    @include desktop {
+      min-height: 272px;
+    }
+
+    @include respond-from($screenJumbo) {
+      margin: 0 auto 20px;
     }
   }
 
