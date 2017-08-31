@@ -18,6 +18,8 @@ export const environment = {
     "series-all": "http://dev.tvt2.co.za/series/all",
     "episodes-future": "http://dev.tvt2.co.za/episodes/future",
     "episodes-recent": "http://dev.tvt2.co.za/episodes/recent",
+    "episodes-user-future": "http://dev.tvt2.co.za/episodes/user/future",
+    "episodes-user-recent": "http://dev.tvt2.co.za/episodes/user/recent",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

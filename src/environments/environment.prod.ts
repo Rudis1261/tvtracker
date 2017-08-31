@@ -13,6 +13,8 @@ export const environment = {
     "series-all": "https://api.tvtracker.co.za/series/all",
     "episodes-future": "https://api.tvtracker.co.za/episodes/future",
     "episodes-recent": "https://api.tvtracker.co.za/episodes/recent",
+    "episodes-user-future": "https://api.tvtracker.co.za/episodes/user/future",
+    "episodes-user-recent": "https://api.tvtracker.co.za/episodes/user/recent",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 import { TokenRingService } from '../services/token-ring.service';
 import { environment } from '../../environments/environment';
 import { LoadedService } from '../services/loaded.service';
@@ -15,11 +16,12 @@ export class SeriesComponent implements OnInit {
   private seriesSub: any;
   private recentSub: any;
   private futureSub: any;
+  private authSub: any;
+  private user: any;
 
   private recentSwiper: any;
   private futureSwiper: any;
 
-  public series: any = [];
   public recentEpisodes: any = [{
     'test': 1
   }, {
@@ -40,37 +42,42 @@ export class SeriesComponent implements OnInit {
     'test': 4
   }];
 
-  constructor(private TRS: TokenRingService, private LS: LoadedService) {
-    this.seriesSub = this.TRS.apiGetCall(environment.endpoint['series-all']).subscribe((data) => {
-      //this.series = data.data.items;
+  constructor(private Auth: AuthService, private TRS: TokenRingService, private LS: LoadedService) {
+
+    this.authSub = this.Auth.userState.subscribe(value => {
+      this.user = value;
+      this.createRecentSub();
+      this.createFutureSub();
     });
 
-    this.recentSub = this.TRS.apiGetCall(environment.endpoint['episodes-recent']).subscribe((data) => {
-      //this.series = data.data.items;
-      //console.log("RECENT", data);
+    this.buildSwiper('recent');
+    this.buildSwiper('future');
+  }
+
+  createRecentSub() {
+    let endpoint = (this.user ? 'episodes-user-recent' : 'episodes-recent');
+    this.recentSub = this.TRS.apiGetCall(environment.endpoint[endpoint]).subscribe((data) => {
+
       this.recentEpisodes = data.data.items;
-      //this.buildSwiper('recent');
 
       this.recentSwiper.slideTo(0);
       setTimeout(() => {
         this.recentSwiper.slideTo(0);
       }, 300);
     });
+  }
 
-    this.futureSub = this.TRS.apiGetCall(environment.endpoint['episodes-future']).subscribe((data) => {
-      //this.series = data.data.items;
-      //console.log("FUTURE", data);
+  createFutureSub() {
+    let endpoint = (this.user ? 'episodes-user-future' : 'episodes-future');
+    this.futureSub = this.TRS.apiGetCall(environment.endpoint[endpoint]).subscribe((data) => {
+
       this.futureEpisodes = data.data.items;
-      //this.buildSwiper('future');
 
       this.futureSwiper.slideTo(0);
       setTimeout(() => {
         this.futureSwiper.slideTo(0);
       }, 300);
     });
-
-    this.buildSwiper('recent');
-    this.buildSwiper('future');
   }
 
   buildSwiper(type) {
@@ -133,5 +140,6 @@ export class SeriesComponent implements OnInit {
     if (this.seriesSub) this.seriesSub.unsubscribe();
     if (this.recentSub) this.recentSub.unsubscribe();
     if (this.futureSub) this.futureSub.unsubscribe();
+    if (this.authSub) this.authSub.unsubscribe();
   }
 }
