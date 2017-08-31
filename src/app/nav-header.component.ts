@@ -30,7 +30,7 @@ declare var window: any;
                 <!-- THE MENU THAT POPS OPEN -->
                 <ul class="nav" [class.open]="menuOpen">
                   <li *ngFor="let menuItem of menuItems">
-                    <a *ngIf="!menuItem.external" [routerLink]="[menuItem.slug]" [class.active]="menuItem.slug == activeMenu">
+                    <a *ngIf="!menuItem.externals && canShowMenuItem(menuItem)" [routerLink]="[menuItem.slug]" [class.active]="menuItem.slug == activeMenu">
                       {{menuItem.label}}
                     </a>
                     <a *ngIf="menuItem.external" target="_blank" href="{{menuItem.slug}}" [class.active]="menuItem.slug == activeMenu">
@@ -61,29 +61,30 @@ export class NavHeaderComponent {
     "slug": "/home",
     "external": false,
     "logo": false,
-    "admin": false
+    "admin": false,
+    "loggedIn": false
   }, {
-    "label": "Series",
+    "label": "My Series",
     "slug": "/series",
     "external": false,
     "logo": false,
-    "admin": false
-  }
-  , {
+    "admin": false,
+    "loggedIn": true
+  }, {
     "label": "Report Bug",
     "slug": "/report-bug",
     "external": false,
     "logo": false,
-    "admin": false
-  }
-  , {
+    "admin": false,
+    "loggedIn": false
+  }, {
     "label": "Contact",
     "slug": "/contact",
     "external": false,
     "logo": false,
-    "admin": false
-  }
-  ];
+    "admin": false,
+    "loggedIn": false
+  }];
 
   menuOpen = false;
   showModal = false;
@@ -119,6 +120,12 @@ export class NavHeaderComponent {
 
   logoff() {
     this.Auth.logout().subscribe();
+  }
+
+  canShowMenuItem(item) {
+    if (!this.user && item.loggedIn) return false;
+
+    return true;
   }
 
   ngOnInit() {}

@@ -11,3 +11,49 @@
   <box type="sm" icon="send" flex="true">Get notifications of when your show airs</box>
   <box type="md poster"><img [src]="poster" /></box>
 </box>
+
+<div class="container row col swiper-container-outer">
+  <h3>Coming Soon</h3>
+  <div id="future-pagination" class="swiper-pagination"></div>
+  <div id="future-prev" class="swiper-button-prev"></div>
+  <div id="future-next" class="swiper-button-next"></div>
+
+  <div class="swiper-container swiper-container-future">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let episode of futureEpisodes">
+        <div class="swiper-lazy-preloader"></div>
+        <a href="#" class="inner">
+          <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} <div class="season">{{episode.key}}</div></h4>
+          <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
+          <div class="poster" *ngIf="episode.image_url">
+            <img width="100" height="auto" [attr.data-src]="episode.image_url" class="poster-img swiper-lazy" />
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="swiper-scrollbar"></div>
+  </div>
+</div>
+
+<div class="container row col swiper-container-outer">
+  <h3>Recent Episodes</h3>
+  <div id="recent-pagination" class="swiper-pagination"></div>
+  <div id="recent-prev" class="swiper-button-prev"></div>
+  <div id="recent-next" class="swiper-button-next"></div>
+
+  <div class="swiper-container swiper-container-recent">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let episode of recentEpisodes">
+        <div class="swiper-lazy-preloader"></div>
+        <a href="#" class="inner" *ngIf="!episode.test">
+          <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} <div class="season">{{episode.key}}</div></h4>
+          <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
+          <div class="poster" *ngIf="episode.image_url">
+            <img width="100" height="auto" [attr.data-src]="episode.image_url" class="poster-img swiper-lazy" />
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="swiper-scrollbar"></div>
+  </div>
+</div>

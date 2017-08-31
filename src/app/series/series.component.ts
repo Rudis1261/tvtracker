@@ -44,14 +44,14 @@ export class SeriesComponent implements OnInit {
 
   constructor(private Auth: AuthService, private TRS: TokenRingService, private LS: LoadedService) {
 
+    this.buildSwiper('recent');
+    this.buildSwiper('future');
+
     this.authSub = this.Auth.userState.subscribe(value => {
       this.user = value;
       this.createRecentSub();
       this.createFutureSub();
     });
-
-    this.buildSwiper('recent');
-    this.buildSwiper('future');
   }
 
   createRecentSub() {
@@ -60,9 +60,9 @@ export class SeriesComponent implements OnInit {
 
       this.recentEpisodes = data.data.items;
 
-      this.recentSwiper.slideTo(0);
+      if (this.recentSwiper) this.recentSwiper.slideTo(0);
       setTimeout(() => {
-        this.recentSwiper.slideTo(0);
+        if (this.recentSwiper) this.recentSwiper.slideTo(0);
       }, 300);
     });
   }
@@ -73,9 +73,9 @@ export class SeriesComponent implements OnInit {
 
       this.futureEpisodes = data.data.items;
 
-      this.futureSwiper.slideTo(0);
+      if (this.futureSwiper) this.futureSwiper.slideTo(0);
       setTimeout(() => {
-        this.futureSwiper.slideTo(0);
+        if (this.futureSwiper) this.futureSwiper.slideTo(0);
       }, 300);
     });
   }

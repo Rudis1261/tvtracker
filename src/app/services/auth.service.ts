@@ -25,6 +25,18 @@ export class AuthService {
     });
   }
 
+  loggedIn() {
+    return this.user !== false;
+  }
+
+  isAdmin() {
+    return (this.user && this.user.admin) || false;
+  }
+
+  getUser() {
+    return this.user || false;
+  }
+
   ngOnDestroy() {
     if (this.tokenSub) this.tokenSub.unsubscribe();
   }

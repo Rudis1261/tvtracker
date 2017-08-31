@@ -9,18 +9,17 @@ import { NotFoundComponent} from './not-found/not-found.component';
 import { ActivationComponent } from './shared/activation/activation.component';
 import { ResetPasswordComponent } from './shared/reset-password/reset-password.component';
 import { TestComponent } from './shared/test/test.component';
-//import { AuthGuard } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
   { path: 'activate/:email/:code',  component: ActivationComponent },
   { path: 'reset-password/:code',  component: ResetPasswordComponent },
-  { path: 'series',  component: SeriesComponent },
+  { path: 'series',  component: SeriesComponent, canActivate: [ AuthGuardService ] },
   { path: 'report-bug',  component: BugreportComponent },
   { path: 'contact',  component: ContactComponent },
-  { path: 'test',  component: TestComponent },
-  //{ path: 'style',  component: StyleguideComponent, canActivate: [AuthGuard] },
+  { path: 'test',  component: TestComponent, canActivate: [ AuthGuardService ], data: { roles: 'admin' } },
   { path: '404',  component: NotFoundComponent },
   { path: '**', redirectTo: '/404' }
 ];
@@ -28,6 +27,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [ ]
 })
 export class AppRoutingModule { }

@@ -41,6 +41,7 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 
 // Services
 import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 import { LoadscriptService } from './services/loadscript.service';
 import { DeviceService } from './services/device.service';
 import { TokenRingService } from './services/token-ring.service';
@@ -97,6 +98,7 @@ import { TestComponent } from './shared/test/test.component';
   providers: [
     AngularFireDatabase,
     AuthService,
+    AuthGuardService,
     ModalComponent,
     LoadscriptService,
     DeviceService,
