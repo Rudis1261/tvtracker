@@ -121,3 +121,88 @@ label > textarea {
 .clearfix {
     @include clearfix();
 }
+
+
+.swiper-slide.episode {
+  text-align: center;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 0 20px;
+  height: auto;
+  @include aspect-ratio(300, 441, '.inner');
+
+  .heading,
+  .airtime,
+  .season {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    display: block;
+    right: 0;
+    margin: 0 auto;
+    padding: 0 10px;
+    z-index: 10;
+    color: #fff;
+
+    &:after {
+      z-index: -1;
+    }
+  }
+
+  .poster {
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+
+    &-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .heading {
+    font-size: 12px;
+    color: #000;
+
+    &:after {
+      position: absolute;
+      display: block;
+      content: "";
+      top: auto;
+      padding-bottom: 30px;
+      height: 20px;
+      right: 2px;
+      top: -10px;
+      left: 2px;
+      box-shadow: 0 5px 10px -5px rgba(#000, 0.05);
+
+      @include border-radius(0px 0px 180px 180px / 0px 0px 22px 22px);
+      @include vertical-gradient(rgba(#fff, 0.2), rgba(#fff, 0.9));
+    }
+  }
+
+  .airtime {
+    top: auto;
+    font-size: 12px;
+    bottom: 10px;
+
+    &:after {
+      position: absolute;
+      display: block;
+      content: "";
+      top: auto;
+      padding-top: 20px;
+      height: 20px;
+      right: 2px;
+      bottom: -10px;
+      left: 2px;
+
+      @include border-radius(180px 180px 0px 0px / 22px 22px 0px 0px);
+      @include vertical-gradient(rgba(#000, 0.7), rgba(#000, 0.2));
+    }
+  }
+}
