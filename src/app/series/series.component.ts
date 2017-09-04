@@ -19,7 +19,7 @@ export class SeriesComponent implements OnInit {
   private alertSub: any;
   private clearing: any;
 
-  private alerts: any = false;
+  public alerts: any = false;
   private user: any;
 
   private recentSwiper: any;
