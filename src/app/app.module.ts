@@ -54,6 +54,7 @@ import { EqualValidator } from './equal-validator.directive';
 import { ContactComponent } from './shared/contact/contact.component';
 import { BugreportComponent } from './shared/bugreport/bugreport.component';
 import { TestComponent } from './shared/test/test.component';
+import { ShowComponent } from './shared/show/show.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { TestComponent } from './shared/test/test.component';
     BoxComponent,
     ContactComponent,
     BugreportComponent,
-    TestComponent
+    TestComponent,
+    ShowComponent
   ],
   imports: [
     BrowserModule,

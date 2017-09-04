@@ -60,6 +60,13 @@ $icon-heart-full: "\e916";
 }
 
 
+.icon-spin {
+  display: inline-block;
+  @include animation(spinner 1s infinite linear);
+}
+
+
+
 
 .icon-alert {
   &:before {

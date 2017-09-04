@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { SeriesComponent } from './series/series.component';
 import { BugreportComponent } from './shared/bugreport/bugreport.component';
 import { ContactComponent } from './shared/contact/contact.component';
+import { ShowComponent } from './shared/show/show.component';
 import { NotFoundComponent} from './not-found/not-found.component';
 
 import { ActivationComponent } from './shared/activation/activation.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'home',  component: HomeComponent },
   { path: 'activate/:email/:code',  component: ActivationComponent },
   { path: 'reset-password/:code',  component: ResetPasswordComponent },
+  { path: 'show/:slug',  component: ShowComponent },
   { path: 'series',  component: SeriesComponent, canActivate: [ AuthGuardService ] },
   { path: 'report-bug',  component: BugreportComponent },
   { path: 'contact',  component: ContactComponent },

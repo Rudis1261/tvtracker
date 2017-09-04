@@ -13,10 +13,13 @@ declare var Swiper: any;
 })
 export class SeriesComponent implements OnInit {
 
-  private seriesSub: any;
   private recentSub: any;
   private futureSub: any;
   private authSub: any;
+  private alertSub: any;
+  private clearing: any;
+
+  private alerts: any = false;
   private user: any;
 
   private recentSwiper: any;
@@ -46,11 +49,24 @@ export class SeriesComponent implements OnInit {
 
     this.buildSwiper('recent');
     this.buildSwiper('future');
+    this.clearing = {};
 
     this.authSub = this.Auth.userState.subscribe(value => {
       this.user = value;
       this.createRecentSub();
       this.createFutureSub();
+      this.createAlertSub();
+    });
+  }
+
+  createAlertSub() {
+    let endpoint = 'alerts';
+    this.alertSub = this.TRS.apiGetCall(environment.endpoint[endpoint]).subscribe((data) => {
+      if (data && data.data && data.data.items) {
+        this.alerts = data.data.items;
+      } else {
+        this.alerts = false;
+      }
     });
   }
 
@@ -134,12 +150,25 @@ export class SeriesComponent implements OnInit {
     });
   }
 
+  clearAlert(seriesid, e) {
+    if (!seriesid) return false;
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.clearing[seriesid] = true;
+
+    this.TRS.apiGetCall([environment.endpoint['alert-clear'], seriesid].join('/')).subscribe((data) => {
+      this.alerts = data.data.items;
+      this.clearing[seriesid] = false;
+    });
+  }
+
   ngOnInit() {}
 
   ngOnDestroy() {
-    if (this.seriesSub) this.seriesSub.unsubscribe();
     if (this.recentSub) this.recentSub.unsubscribe();
     if (this.futureSub) this.futureSub.unsubscribe();
     if (this.authSub) this.authSub.unsubscribe();
+    if (this.alertSub) this.alertSub.unsubscribe();
   }
 }

@@ -108,6 +108,9 @@ h1, h2, h3, h4, h5 {
     }
 }
 
+.flex-wrap {
+  @include flex-wrap(wrap);
+}
 
 .col-1,
 .col-2,
@@ -122,6 +125,7 @@ h1, h2, h3, h4, h5 {
 .col-11,
 .col-12 {
   padding: 0 10px;
+  margin-bottom: 10px;
   @include respond-to($screenSlim) {
     @include flex(0 0 100%, true);
   }
