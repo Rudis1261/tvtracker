@@ -1,5 +1,23 @@
-<p>
-  show works!
-</p>
+<box type="container" *ngIf="show">
+  <box type="xl" flex="true">
+    <div class="masthead">
+      <div class="poster">
+        <div class="poster-img">
+          <div class="inner">
+            <img [src]="show.image_url" />
+          </div>
+          <div class="network">{{show.network}}</div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="network">{{show.network}}</div>
+        <h3 class="title">{{show.seriesname}}</h3>
+        <div class="overview">{{show.overview}}</div>
+      </div>
+    </div>
+  </box>
+</box>
 
-SHOW: {{slug}}
+<!-- SHOW: {{slug}}
+{{show | json}}
+ -->

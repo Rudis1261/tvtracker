@@ -173,5 +173,8 @@ export class SeriesComponent implements OnInit {
     if (this.futureSub) this.futureSub.unsubscribe();
     if (this.authSub) this.authSub.unsubscribe();
     if (this.alertSub) this.alertSub.unsubscribe();
+
+    if (this.futureSwiper) this.futureSwiper.destroy();
+    if (this.recentSwiper) this.recentSwiper.destroy();
   }
 }

@@ -1,0 +1,123 @@
+@import "../../../assets/scss/mixins";
+@import "../../../assets/scss/settings";
+
+:host {
+
+  .network {
+    color: #fff;
+    background: #000;
+  }
+
+  .masthead {
+    width: 100%;
+    @include flex-display();
+
+    .poster {
+      max-width: 200px;
+      @include flex(0 0 30%);
+
+      .poster-img {
+        @include aspect-ratio(300, 441, '.inner');
+
+        .inner {
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .content {
+      padding: 25px;
+      @include flex(1 0 69%);
+
+      .network {
+        display: none;
+      }
+
+      .title {
+        margin-top: 50px;
+        font-size: 38px;
+        text-align: left;
+      }
+
+      .overview {
+        text-align: left;
+      }
+    }
+  }
+
+  @include mobile {
+
+    box[type="container"] {
+      margin: 0 -10px;
+    }
+
+    .masthead {
+      .poster-img {
+        &:before {
+          padding-bottom: 20px;
+        }
+
+        .inner {
+          top: 20px;
+        }
+
+        .network {
+          position: absolute;
+          z-index: 1;
+          height: 20px;
+          line-height: 20px;
+          font-size: 10px;
+          top: 0;
+          left: 0;
+          right: 0;
+        }
+      }
+      .content {
+        padding: 0 10px;
+
+        .title {
+          margin-top: 0;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  @include desktop {
+    .masthead {
+
+      .poster {
+        .network {
+          display: none;
+        }
+      }
+
+      .content {
+        position: relative;
+
+        .network {
+          display: block;
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          padding: 4px 8px;
+        }
+      }
+    }
+  }
+
+  @include respond-from($screenDesktop) {
+    .masthead {
+      .poster {
+        max-width: 220px;
+      }
+
+      .content {
+        padding: 35px;
+      }
+    }
+  }
+}
