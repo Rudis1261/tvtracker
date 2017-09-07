@@ -62,7 +62,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide episode" *ngFor="let episode of futureEpisodes">
         <div class="swiper-lazy-preloader"></div>
-        <a href="#" class="inner">
+        <a [routerLink]="['/show/', episode.slug]" class="inner">
           <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} - {{episode.key}}</h4>
           <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
           <div class="poster" *ngIf="episode.image_url">
@@ -85,7 +85,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide episode" *ngFor="let episode of recentEpisodes">
         <div class="swiper-lazy-preloader"></div>
-        <a href="#" class="inner" *ngIf="!episode.test">
+        <a [routerLink]="['/show/', episode.slug]" class="inner" *ngIf="!episode.test">
           <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} - {{episode.key}}</h4>
           <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
           <div class="poster" *ngIf="episode.image_url">

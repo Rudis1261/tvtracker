@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ContactService } from '../../services/contact.service';
 import { LoadscriptService } from '../../services/loadscript.service';
 import { AuthService } from '../../services/auth.service';
@@ -12,7 +13,7 @@ declare var window: any;
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
 
   error: any = false;
   success: any = false;
@@ -29,7 +30,7 @@ export class ContactComponent {
   submitSub: any;
   authSub: any;
 
-  constructor(private CS: ContactService, private LS: LoadscriptService, private Auth: AuthService) { 
+  constructor(private CS: ContactService, private LS: LoadscriptService, private Auth: AuthService, private titleService: Title) {
     this.formData = {
       'email': "",
       'description': ""
@@ -52,6 +53,10 @@ export class ContactComponent {
   ngOnDestroy() {
     if (this.submitSub) this.submitSub.unsubscribe();
     if (this.authSub) this.authSub.unsubscribe();
+  }
+
+  ngOnInit() {
+    this.titleService.setTitle('TV Tracker | Contact Us');
   }
 
   pollCaptchaReady() {

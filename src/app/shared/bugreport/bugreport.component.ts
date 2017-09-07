@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ContactService } from '../../services/contact.service';
 import { LoadscriptService } from '../../services/loadscript.service';
 import { AuthService } from '../../services/auth.service';
@@ -12,7 +13,7 @@ declare var window: any;
   templateUrl: './bugreport.component.html',
   styleUrls: ['./bugreport.component.scss']
 })
-export class BugreportComponent {
+export class BugreportComponent implements OnInit {
 
   error: any = false;
   success: any = false;
@@ -29,7 +30,7 @@ export class BugreportComponent {
   submitSub: any;
   authSub: any;
 
-  constructor(private CS: ContactService, private LS: LoadscriptService, private Auth: AuthService) {
+  constructor(private CS: ContactService, private LS: LoadscriptService, private Auth: AuthService, private titleService: Title) {
     this.formData = {
       'description': ""
     };
@@ -48,6 +49,10 @@ export class BugreportComponent {
   ngOnDestroy() {
     if (this.submitSub) this.submitSub.unsubscribe();
     if (this.authSub) this.authSub.unsubscribe();
+  }
+
+  ngOnInit() {
+    this.titleService.setTitle('TV Tracker | Report broken stuff');
   }
 
   pollCaptchaReady() {

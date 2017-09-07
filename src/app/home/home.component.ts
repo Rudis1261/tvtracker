@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenRingService } from '../services/token-ring.service';
 import { environment } from '../../environments/environment';
 import { LoadedService } from '../services/loaded.service';
+import { Title } from '@angular/platform-browser';
 
 declare var Swiper: any;
 
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
     'test': 4
   }];
 
-  constructor(private TRS: TokenRingService, private LS: LoadedService) {
+  constructor(private TRS: TokenRingService, private LS: LoadedService, private titleService: Title) {
     this.poster = this.posters[this.activePoster];
     this.rotate();
 
@@ -137,7 +138,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.titleService.setTitle('TV Tracker | Home');
+  }
 
   ngOnDestroy() {
     if (this.seriesSub) this.seriesSub.unsubscribe();

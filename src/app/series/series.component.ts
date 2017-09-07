@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Title } from '@angular/platform-browser';
 import { TokenRingService } from '../services/token-ring.service';
 import { environment } from '../../environments/environment';
 import { LoadedService } from '../services/loaded.service';
@@ -45,7 +46,7 @@ export class SeriesComponent implements OnInit {
     'test': 4
   }];
 
-  constructor(private Auth: AuthService, private TRS: TokenRingService, private LS: LoadedService) {
+  constructor(private Auth: AuthService, private TRS: TokenRingService, private LS: LoadedService, private titleService: Title) {
 
     this.buildSwiper('recent');
     this.buildSwiper('future');
@@ -163,7 +164,9 @@ export class SeriesComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.titleService.setTitle('TV Tracker | You\'re favorite shows');
+  }
 
   ngOnDestroy() {
     if (this.recentSub) this.recentSub.unsubscribe();
