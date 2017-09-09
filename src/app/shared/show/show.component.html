@@ -6,11 +6,11 @@
           <div class="inner">
             <img [src]="show.image_url" />
           </div>
-          <div class="network">{{show.network}}</div>
+          <div class="network" *ngIf="isMobile">{{show.network}}</div>
         </div>
       </div>
       <div class="content">
-        <div class="network">{{show.network}}</div>
+        <div class="network" *ngIf="!isMobile">{{show.network}}</div>
         <h3 class="title">{{show.seriesname}}</h3>
         <div class="overview">{{show.overview}}</div>
       </div>
@@ -18,6 +18,37 @@
   </box>
 </box>
 
-<!-- SHOW: {{slug}}
-{{show | json}}
- -->
+<box type="container" *ngIf="episodes">
+  <box type="sm" flex="true">
+    <div class="nav-dropdown dropdown" [ngClass]="{'open': dropdownOpen === true}" *ngIf="isMobile">
+      <div (click)="toggleDropDownOpen()">{{(seasons[activeSeason] ? seasons[activeSeason]: 'Select a season')}}</div>
+      <ul class="nav" *ngIf="isMobile">
+        <li
+          *ngFor="let season of seasons | keys"
+          (click)="setActiveSeason(season.key)"
+          [ngClass]="{'active': activeSeason == season.key}"
+        >{{season.value}}</li>
+      </ul>
+    </div>
+
+    <ul class="nav" *ngIf="!isMobile">
+      <li
+        *ngFor="let season of seasons | keys"
+        (click)="setActiveSeason(season.key)"
+        [ngClass]="{'active': activeSeason == season.key}"
+        [appAutofocus]="activeSeason && activeSeason == season.key"
+      >{{season.value}}</li>
+    </ul>
+  </box>
+  <box type="lg" flex="true">
+    <ul class="list">
+      <li
+        *ngFor="let episode of episodes | filter:'s':activeSeason"
+      >
+        <span class="key">{{episode.key}}</span>
+        <span class="name">{{episode.name}}</span>
+        <span class="human_time">{{(episode.date > 0 ? episode.human_time: 'TBD')}}</span>
+      </li>
+    </ul>
+  </box>
+</box>

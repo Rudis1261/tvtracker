@@ -55,6 +55,8 @@ import { ContactComponent } from './shared/contact/contact.component';
 import { BugreportComponent } from './shared/bugreport/bugreport.component';
 import { TestComponent } from './shared/test/test.component';
 import { ShowComponent } from './shared/show/show.component';
+import { KeysPipe } from './pipes/keys.pipe';
+import { AutofocusDirective } from './directives/autofocus.directive';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,9 @@ import { ShowComponent } from './shared/show/show.component';
     ContactComponent,
     BugreportComponent,
     TestComponent,
-    ShowComponent
+    ShowComponent,
+    KeysPipe,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,

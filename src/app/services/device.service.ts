@@ -10,9 +10,14 @@ export class DeviceService {
 
   constructor() {
     this.detect();
+    let that = this;
+    let resizeTimeout;
 
     window.onresize = () => {
-      this.detect();
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function(){
+        that.detect();
+      }, 30);
     };
   }
 
