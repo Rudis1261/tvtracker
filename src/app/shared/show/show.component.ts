@@ -18,6 +18,7 @@ export class ShowComponent implements OnInit {
   show: any = false;
   seasons: any = false;
   activeSeason: any = false;
+  activeEpisode: any = false;
   hasSpecials: any = false;
   dropdownOpen: boolean = false;
 
@@ -57,7 +58,7 @@ export class ShowComponent implements OnInit {
       });
 
       if (this.slug) {
-        this.subEpisodes = this.TRS.apiCall(environment.endpoint['episodes-by-slug'], { 'slug': this.slug }).subscribe((data) => {
+        this.subEpisodes = this.TRS.apiCall(environment.endpoint['episodes-by-slug'], { 'slug': this.slug, 'reverse': true }).subscribe((data) => {
           console.log("EPISODE, data.data.items.length", data.data.items.length);
           if (data && data.data && data.data.items) {
             this.episodes = data.data.items;
@@ -101,13 +102,23 @@ export class ShowComponent implements OnInit {
       if (episode.date > now || episode.data < now + twoWeeks) {
         this.setActiveSeason(episode.s);
       }
-      console.log(index, episode.date, now, "FUTURE", episode.date > now, "PAST", episode.date < now,);
+
+      this.episodes[index].future = episode.date > now && episode.date < (now + twoWeeks);
+      this.episodes[index].recent = episode.date < now && episode.date > (now - twoWeeks);
     });
   }
 
   setActiveSeason(season) {
     this.activeSeason = season;
     this.dropdownOpen = false;
+  }
+
+  setActiveEpisode(episode) {
+    console.log(episode);
+    if (this.activeEpisode && this.activeEpisode == episode) {
+      return this.activeEpisode = false;
+    }
+    this.activeEpisode = episode;
   }
 
   toggleDropDownOpen() {

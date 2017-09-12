@@ -24,6 +24,7 @@
       min-height: 38px;
       width: 100%;
       padding: 6px 15px;
+      cursor: pointer;
       @include flex-display();
       @include flex-wrap(wrap);
 
@@ -41,6 +42,30 @@
       span.name {
         line-height: 18px;
         @include flex(1 0);
+
+        .recent,
+        .future {
+          font-size: 10px;
+          margin-left: 5px;
+          padding: 0 6px;
+          min-height: 26px;
+          background: #333;
+          color: #fff;
+          text-transform: uppercase;
+          min-height: 18px;
+          display: inline-block;
+          position: relative;
+          top: -2px;
+          @include border-radius(4px);
+        }
+
+        .recent {
+          background: $badass;
+        }
+
+        .future {
+          background: $primary;
+        }
       }
 
       span.human_time {
@@ -51,6 +76,19 @@
         margin: 0 0 5px;
         padding-left: 60px;
         @include flex(0 0 100%);
+      }
+
+      .overview {
+        padding: 10px 10px 25px 48px;
+        font-size: 14px;
+        color: #444;
+
+        .inner {
+          border-left: 2px solid $primary;
+          display: inline-block;
+          padding-left: 10px;
+          white-space: pre-wrap;
+        }
       }
     }
   }
@@ -197,8 +235,8 @@
 
     ul.nav {
       margin: 0 -10px;
-      max-height: (38px * 10);
-      overflow-y: scroll;
+      max-height: (38px * 20);
+      overflow-y: auto;
     }
   }
 

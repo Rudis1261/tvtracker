@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit, OnChanges, ElementRef, AfterViewInit } from '@angular/core';
+import { Directive, Input, OnInit, OnChanges, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[appAutofocus]'
@@ -21,8 +21,6 @@ export class AutofocusDirective implements OnInit {
 
     if (this.autoFocus) {
       ele.parentElement.scrollTop = ele.getBoundingClientRect().top;
-      //window.test = ele;
-      //console.log(ele.parentElement.scrollTop, ele.getBoundingClientRect().top);
     }
   }
 

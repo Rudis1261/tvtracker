@@ -44,10 +44,18 @@
     <ul class="list">
       <li
         *ngFor="let episode of episodes | filter:'s':activeSeason"
+        (click)="setActiveEpisode(episode.episodeid)"
       >
         <span class="key">{{episode.key}}</span>
-        <span class="name">{{episode.name}}</span>
+        <span class="name">
+          {{episode.name}}
+          <span class="recent" *ngIf="episode.recent">Recent</span>
+          <span class="future" *ngIf="episode.future">Coming soon</span>
+        </span>
         <span class="human_time">{{(episode.date > 0 ? episode.human_time: 'TBD')}}</span>
+        <div class="overview" *ngIf="activeEpisode && activeEpisode == episode.episodeid">
+          <div class="inner">{{episode.overview}}</div>
+        </div>
       </li>
     </ul>
   </box>
