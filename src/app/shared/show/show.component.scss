@@ -3,6 +3,18 @@
 
 :host {
 
+  .breadcrumbs {
+    a.link {
+      color: $primary;
+
+      &.separator {
+        padding-left: 10px;
+        border-left: 1px solid #e2e2e2;
+        margin-left: 10px;
+      }
+    }
+  }
+
   .network {
     color: #fff;
     background: #000;
@@ -11,6 +23,30 @@
   .masthead {
     width: 100%;
     @include flex-display();
+
+    .content {
+      text-align: left;
+    }
+  }
+
+  .status {
+    display: inline-block;
+    font-size: 12px;
+    background: #000;
+    color: #fff;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 8px;
+    vertical-align: top;
+    margin: 10px 0;
+
+    &.ended {
+      background: maroon;
+    }
+
+    &.continuing {
+      background: $badass;
+    }
   }
 
   ul.list {
@@ -177,33 +213,44 @@
     }
 
     .masthead {
-      .poster-img {
-        &:before {
-          padding-bottom: 20px;
-        }
+      .poster {
+        @include flex(1 0 40%);
 
-        .inner {
-          top: 20px;
-        }
+        .poster-img {
+          &:before {
+            padding-bottom: 20px;
+          }
 
-        .network {
-          position: absolute;
-          z-index: 1;
-          height: 20px;
-          line-height: 20px;
-          font-size: 10px;
-          top: 0;
-          left: 0;
-          right: 0;
-          @include opacity(0.8);
+          .inner {
+            top: 20px;
+          }
+
+          .network {
+            position: absolute;
+            z-index: 1;
+            height: 20px;
+            line-height: 20px;
+            font-size: 10px;
+            top: 0;
+            left: 0;
+            right: 0;
+            @include opacity(0.8);
+          }
         }
       }
       .content {
         padding: 0 10px;
+        @include flex(1 0 60%);
 
         .title {
           margin-top: 0;
           font-size: 18px;
+          line-height: 18px;
+        }
+
+        .overview {
+          font-size: 12px;
+          line-height: 16px;
         }
       }
     }

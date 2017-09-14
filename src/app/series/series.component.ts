@@ -60,6 +60,13 @@ export class SeriesComponent implements OnInit {
     });
   }
 
+  getImagePoster(episode) {
+    if (!episode.image_url || episode.image_url == '') {
+      return 'assets/img/missing.png';
+    }
+    return episode.image_url;
+  }
+
   createAlertSub() {
     let endpoint = 'alerts';
     this.alertSub = this.TRS.apiGetCall(environment.endpoint[endpoint]).subscribe((data) => {

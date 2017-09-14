@@ -12,13 +12,6 @@ declare var Swiper: any;
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  poster: String = "assets/img/posters_all_mobile.png";
-  posters: Array<String> = [
-    "assets/img/posters_all_mobile.png",
-    "assets/img/posters_all_mobile_2.png",
-  ];
-
-  activePoster: any = 0;
 
   private seriesSub: any;
   private recentSub: any;
@@ -48,14 +41,36 @@ export class HomeComponent implements OnInit {
   }];
 
   constructor(private TRS: TokenRingService, private LS: LoadedService, private titleService: Title) {
-    this.poster = this.posters[this.activePoster];
-    this.rotate();
+    this.scaffolding();
+  }
 
-    this.buildSwiper('recent');
-    this.buildSwiper('future');
+  scaffolding() {
+    this.recentEpisodes = [{
+      'test': 1
+    }, {
+      'test': 2
+    }, {
+      'test': 3
+    }, {
+      'test': 4
+    }];
 
-    this.createRecentSub();
-    this.createFutureSub();
+    this.futureEpisodes = [{
+      'test': 1
+    }, {
+      'test': 2
+    }, {
+      'test': 3
+    }, {
+      'test': 4
+    }];
+  }
+
+  getImagePoster(episode) {
+    if (!episode.image_url || episode.image_url == '') {
+      return 'assets/img/missing.png';
+    }
+    return episode.image_url;
   }
 
   createRecentSub() {
@@ -140,6 +155,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('TV Tracker | Home');
+    this.buildSwiper('recent');
+    this.buildSwiper('future');
+    this.createRecentSub();
+    this.createFutureSub();
   }
 
   ngOnDestroy() {
@@ -149,13 +168,5 @@ export class HomeComponent implements OnInit {
 
     if (this.futureSwiper) this.futureSwiper.destroy();
     if (this.recentSwiper) this.recentSwiper.destroy();
-  }
-
-  rotate() {
-    setTimeout(() => {
-      this.activePoster = (this.activePoster == 0) ? 1 : 0;
-      this.poster = this.posters[this.activePoster];
-      this.rotate();
-    }, 10000);
   }
 }

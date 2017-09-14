@@ -1,17 +1,29 @@
+<box type="container" *ngIf="show && isMobile">
+  <box type="xl" flex="true" >
+    <div class="breadcrumbs">
+      <a [routerLink]="['/home/']" class="link">All Shows</a>
+      <a [routerLink]="['/series/']" class="link separator" *ngIf="user">My Shows</a>
+    </div>
+  </box>
+</box>
+
+
 <box type="container" *ngIf="show">
   <box type="xl" flex="true">
     <div class="masthead">
       <div class="poster">
         <div class="poster-img">
           <div class="inner">
-            <img [src]="show.image_url" />
+            <img [src]="getImagePoster(show)" />
           </div>
           <div class="network" *ngIf="isMobile">{{show.network}}</div>
         </div>
+        <div class="status" *ngIf="isMobile" [ngClass]="show.status | lowercase">{{show.status}}</div>
       </div>
       <div class="content">
         <div class="network" *ngIf="!isMobile">{{show.network}}</div>
         <h3 class="title">{{show.seriesname}}</h3>
+        <div class="status" *ngIf="!isMobile" [ngClass]="show.status | lowercase">{{show.status}}</div>
         <div class="overview">{{show.overview}}</div>
       </div>
     </div>
@@ -40,6 +52,7 @@
       >{{season.value}}</li>
     </ul>
   </box>
+
   <box type="lg" flex="true">
     <ul class="list">
       <li

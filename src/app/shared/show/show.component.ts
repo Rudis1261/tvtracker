@@ -5,6 +5,7 @@ import { TokenRingService } from '../../services/token-ring.service';
 import { environment } from '../../../environments/environment';
 import { DeviceService } from '../../services/device.service';
 import { KeysPipe } from '../../pipes/keys.pipe';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-show',
@@ -21,21 +22,28 @@ export class ShowComponent implements OnInit {
   activeEpisode: any = false;
   hasSpecials: any = false;
   dropdownOpen: boolean = false;
+  isMobile: any;
+  user: any;
 
   private subRoute: any;
   private subEpisodes: any;
   private subShow: any;
+  private authSub: any;
   private isMobileSub: any;
-  private isMobile: any;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private TRS: TokenRingService,
     private titleService: Title,
-    private Device: DeviceService
+    private Device: DeviceService,
+    private Auth: AuthService
   ) {
 
+    this.scaffolding();
+  }
+
+  scaffolding() {
     this.show = {
       "seriesname": "..........",
       "network": ".......",
@@ -49,41 +57,13 @@ export class ShowComponent implements OnInit {
     };
 
     this.hasSpecials = false;
+  }
 
-    this.subRoute = this.route.params.subscribe(params => {
-      this.slug = params['slug'];
-
-      this.isMobileSub = Device.isMobile.subscribe((data) => {
-        this.isMobile = data;
-      });
-
-      if (this.slug) {
-        this.subEpisodes = this.TRS.apiCall(environment.endpoint['episodes-by-slug'], { 'slug': this.slug, 'reverse': true }).subscribe((data) => {
-          console.log("EPISODE, data.data.items.length", data.data.items.length);
-          if (data && data.data && data.data.items) {
-            this.episodes = data.data.items;
-            this.processEpisodes();
-          } else {
-            this.episodes = false;
-          }
-        });
-
-        this.subShow = this.TRS.apiCall(environment.endpoint['series-by-slug'], { 'slug': this.slug }).subscribe((data) => {
-          if (data && data.data && data.data.items && data.data.items.id) {
-            this.show = data.data.items;
-            this.titleService.setTitle('TV Tracker | ' + this.show.seriesname);
-          } else {
-            // Show doesn't exist
-            this.show = false;
-            this.router.navigate([ '/404' ]);
-          }
-        });
-
-      // Otherwise we have a 404 on our hands
-      } else {
-        this.router.navigate([ '/404' ]);
-      }
-    });
+  getImagePoster(show) {
+    if (!show.image_url || show.image_url == '') {
+      return 'assets/img/missing.png';
+    }
+    return show.image_url;
   }
 
   processEpisodes() {
@@ -126,7 +106,47 @@ export class ShowComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.authSub = this.Auth.userState.subscribe(value => {
+      this.user = value;
+    });
+
     this.titleService.setTitle('TV Tracker');
+    this.subRoute = this.route.params.subscribe(params => {
+      this.slug = params['slug'];
+
+
+      this.isMobileSub = this.Device.isMobile.subscribe((data) => {
+        this.isMobile = data;
+      });
+
+      if (this.slug) {
+        this.subEpisodes = this.TRS.apiCall(environment.endpoint['episodes-by-slug'], { 'slug': this.slug, 'reverse': true }).subscribe((data) => {
+          console.log("EPISODE, data.data.items.length", data.data.items.length);
+          if (data && data.data && data.data.items) {
+            this.episodes = data.data.items;
+            this.processEpisodes();
+          } else {
+            this.episodes = false;
+          }
+        });
+
+        this.subShow = this.TRS.apiCall(environment.endpoint['series-by-slug'], { 'slug': this.slug }).subscribe((data) => {
+          if (data && data.data && data.data.items && data.data.items.id) {
+            this.show = data.data.items;
+            this.titleService.setTitle('TV Tracker | ' + this.show.seriesname);
+          } else {
+            // Show doesn't exist
+            this.show = false;
+            this.router.navigate([ '/404' ]);
+          }
+        });
+
+      // Otherwise we have a 404 on our hands
+      } else {
+        this.router.navigate([ '/404' ]);
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -134,5 +154,6 @@ export class ShowComponent implements OnInit {
     if (this.subRoute) this.subRoute.unsubscribe();
     if (this.subEpisodes) this.subEpisodes.unsubscribe();
     if (this.subShow) this.subShow.unsubscribe();
+    if (this.authSub) this.authSub.unsubscribe();
   }
 }

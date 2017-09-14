@@ -88,6 +88,11 @@
       background: $badass;
     }
 
+    &.inverse .inner {
+      color: #fff;
+      background: #000;
+    }
+
     &.error .inner {
       color: #fff;
       background: rgba(45, 9, 42, 0.72);

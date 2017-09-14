@@ -7,10 +7,11 @@
 </box>
 
 <box type="container">
-  <box type="sm primary" icon="heart-empty" flex="true">Track your favourite shows</box>
-  <box type="sm" icon="send" flex="true">Get notifications of when your show airs</box>
-  <box type="md poster"><img [src]="poster" /></box>
+  <box type="md primary" icon="heart-empty" flex="true">Track your favourite shows</box>
+  <box type="md" icon="send" flex="true">Get notifications of when your show airs</box>
 </box>
+
+<br />
 
 <div class="container row col swiper-container-outer">
   <h3>Coming Soon</h3>
@@ -25,8 +26,8 @@
         <a [routerLink]="['/show/', episode.slug]" class="inner">
           <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} - {{episode.key}}</h4>
           <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
-          <div class="poster" *ngIf="episode.image_url">
-            <img width="100" height="auto" [attr.data-src]="episode.image_url" class="poster-img swiper-lazy" />
+          <div class="poster" *ngIf="getImagePoster(episode)">
+            <img width="100" height="auto" [attr.data-src]="getImagePoster(episode)" class="poster-img swiper-lazy" />
           </div>
         </a>
       </div>
@@ -48,8 +49,8 @@
         <a [routerLink]="['/show/', episode.slug]" class="inner" *ngIf="!episode.test">
           <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} - {{episode.key}}</h4>
           <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
-          <div class="poster" *ngIf="episode.image_url">
-            <img width="100" height="auto" [attr.data-src]="episode.image_url" class="poster-img swiper-lazy" />
+          <div class="poster" *ngIf="getImagePoster(episode)">
+            <img width="100" height="auto" [attr.data-src]="getImagePoster(episode)" class="poster-img swiper-lazy" />
           </div>
         </a>
       </div>

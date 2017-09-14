@@ -42,7 +42,6 @@ export class BugreportComponent implements OnInit {
 
     this.authSub = this.Auth.userState.subscribe(value => {
       this.user = value;
-      console.log("USER", value);
     });
   }
 
