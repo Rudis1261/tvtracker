@@ -57,6 +57,7 @@ import { TestComponent } from './shared/test/test.component';
 import { ShowComponent } from './shared/show/show.component';
 import { KeysPipe } from './pipes/keys.pipe';
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { AlertsComponent } from './shared/alerts/alerts.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { AutofocusDirective } from './directives/autofocus.directive';
     TestComponent,
     ShowComponent,
     KeysPipe,
-    AutofocusDirective
+    AutofocusDirective,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,

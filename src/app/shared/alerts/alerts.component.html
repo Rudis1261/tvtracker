@@ -1,0 +1,19 @@
+<box type="container" *ngIf="user && alerts && alerts.length">
+  <box type="xl" flex="true">
+    <div class="text-center" style="width: 100%;">
+      <h2>New episodes out</h2>
+      <div class="flex flex-wrap">
+        <div *ngFor="let alert of alerts" class="col-2 col-sm-6 col-md-3 episode-alert" [routerLink]="['/show/', alert.slug]">
+          <div class="inner">
+            <div class="count">{{alert.count}}</div>
+            <img [src]="alert.image_url" />
+            <div class="btn btn-sm" (click)="clearAlert(alert.seriesid, $event)">
+              <span [hidden]="clearing && clearing[alert.seriesid]">Clear</span>
+              <span [hidden]="!clearing || !clearing[alert.seriesid]"><i class="icon-spin icon-spinner"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </box>
+</box>
