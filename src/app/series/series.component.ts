@@ -17,10 +17,17 @@ export class SeriesComponent implements OnInit {
   private recentSub: any;
   private futureSub: any;
   private authSub: any;
-  private user: any;
+  private favSub: any;
 
+  private user: any;
   private recentSwiper: any;
   private futureSwiper: any;
+
+  public search: '';
+  public searching: boolean = false;
+
+  public filter: '';
+  public filtering: boolean = false;
 
   public recentEpisodes: any = [{
     'test': 1
@@ -42,6 +49,16 @@ export class SeriesComponent implements OnInit {
     'test': 4
   }];
 
+  public favorites: any = [{
+    'test': 1
+  }, {
+    'test': 2
+  }, {
+    'test': 3
+  }, {
+    'test': 4
+  }];
+
   constructor(private Auth: AuthService, private TRS: TokenRingService, private LS: LoadedService, private titleService: Title) {
 
     this.buildSwiper('recent');
@@ -51,6 +68,7 @@ export class SeriesComponent implements OnInit {
       this.user = value;
       this.createRecentSub();
       this.createFutureSub();
+      this.createFavSub();
     });
   }
 
@@ -74,6 +92,18 @@ export class SeriesComponent implements OnInit {
     });
   }
 
+  ngOnSubmit() {
+    console.log("FORM SUBMIT");
+  }
+
+  createFavSub() {
+    if (!this.user) return false;
+
+    this.favSub = this.TRS.apiGetCall(environment.endpoint['user-favorites']).subscribe((data) => {
+      this.favorites = data.data.items;
+    });
+  }
+
   createFutureSub() {
     let endpoint = (this.user ? 'episodes-user-future' : 'episodes-future');
     this.futureSub = this.TRS.apiGetCall(environment.endpoint[endpoint]).subscribe((data) => {
@@ -85,6 +115,10 @@ export class SeriesComponent implements OnInit {
         if (this.futureSwiper) this.futureSwiper.slideTo(0);
       }, 300);
     });
+  }
+
+  searchForSeries() {
+    console.log("SEARCH FOR A SHOW", this.search);
   }
 
   buildSwiper(type) {
@@ -149,6 +183,7 @@ export class SeriesComponent implements OnInit {
     if (this.recentSub) this.recentSub.unsubscribe();
     if (this.futureSub) this.futureSub.unsubscribe();
     if (this.authSub) this.authSub.unsubscribe();
+    if (this.favSub) this.favSub.unsubscribe();
 
     if (this.futureSwiper) this.futureSwiper.destroy();
     if (this.recentSwiper) this.recentSwiper.destroy();

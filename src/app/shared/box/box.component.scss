@@ -115,6 +115,7 @@
         @include flex-display();
         @include flex-wrap(wrap);
         @include align-content(center);
+        @include align-items(center);
         @include justify-content(center);
       }
 

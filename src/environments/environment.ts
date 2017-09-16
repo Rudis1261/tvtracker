@@ -24,6 +24,7 @@ export const environment = {
     "episodes-by-slug": "http://dev.tvt2.co.za/episodes/slug",
     "alerts": "http://dev.tvt2.co.za/alerts/all",
     "alert-clear": "http://dev.tvt2.co.za/alerts/clear",
+    "user-favorites": "http://dev.tvt2.co.za/series/favorites",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

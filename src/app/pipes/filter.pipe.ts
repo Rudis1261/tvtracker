@@ -10,7 +10,8 @@ export class FilterPipe implements PipeTransform {
 		// console.log(
 		// 	"FIELD:", field,
 		// 	"VALUE:", value,
-		// 	"ITEMS:", items, items.filter(it => it[field] == value)
+		// 	"ITEMS:", items,
+    //  items.filter(it => it[field] == value)
 		// );
 		if (value && (value == "*" || value == "")) {
 			return items;

@@ -123,7 +123,8 @@ label > textarea {
 }
 
 
-.swiper-slide.episode {
+.swiper-slide.episode,
+.listing .episode {
   text-align: center;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.18);

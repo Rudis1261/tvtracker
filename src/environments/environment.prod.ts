@@ -19,6 +19,7 @@ export const environment = {
     "episodes-by-slug": "https://api.tvtracker.co.za/episodes/slug",
     "alerts": "https://api.tvtracker.co.za/alerts/all",
     "alert-clear": "https://api.tvtracker.co.za/alerts/clear",
+    "user-favorites": "https://api.tvtracker.co.za/series/favorites",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

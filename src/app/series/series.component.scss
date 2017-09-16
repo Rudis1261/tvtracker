@@ -3,15 +3,31 @@
 
 :host {
 
+  h3 {
+    font-weight: normal;
+  }
+
+  .listing {
+    box {
+      margin-bottom: 20px;
+
+      input[type="text"] {
+        margin: 0;
+        background: #efefef;
+      }
+    }
+
+    .row.grid-row {
+      margin: 0 -10px;
+    }
+  }
+
   .swiper-container {
     width: 100%;
     margin: 0 auto;
     height: auto;
 
     &-outer {
-      h3 {
-        font-weight: normal;
-      }
       padding: 0;
     }
 
