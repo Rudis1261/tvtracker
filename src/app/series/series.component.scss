@@ -7,6 +7,30 @@
     font-weight: normal;
   }
 
+  .episode.user-favorites {
+    .btn {
+      position: absolute;
+      bottom: 10px;
+      z-index: 1;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 20px;
+      padding: 0;
+      margin: 0 0 0 -25px;
+      background: rgba(#000, 0.7);
+      border-color: rgba(#000, 0.9);
+      color: #fff;
+      @include transition(all 500ms);
+      @include border-radius(50%);
+
+      &:hover {
+        border-color: maroon;
+        box-shadow: 1px 1px 10px maroon;
+      }
+    }
+  }
+
   .listing {
     box {
       margin-bottom: 20px;
@@ -19,6 +43,30 @@
 
     .row.grid-row {
       margin: 0 -10px;
+    }
+  }
+
+  .input-label {
+    margin-bottom: 5px;
+  }
+
+  .input-group {
+    position: relative;
+
+    input[type="text"] {
+      padding-right: 50px;
+    }
+
+    button {
+      position: absolute;
+      display: inline-block;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 40px;
+      margin: 0;
+      border-left: 1px solid darken($badass, 15%);
     }
   }
 

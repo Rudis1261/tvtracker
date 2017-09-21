@@ -28,6 +28,7 @@ export class SeriesComponent implements OnInit {
 
   public filter: '';
   public filtering: boolean = false;
+  public removing: any;
 
   public recentEpisodes: any = [{
     'test': 1
@@ -61,6 +62,7 @@ export class SeriesComponent implements OnInit {
 
   constructor(private Auth: AuthService, private TRS: TokenRingService, private LS: LoadedService, private titleService: Title) {
 
+    this.removing = {};
     this.buildSwiper('recent');
     this.buildSwiper('future');
 
@@ -89,6 +91,33 @@ export class SeriesComponent implements OnInit {
       setTimeout(() => {
         if (this.recentSwiper) this.recentSwiper.slideTo(0);
       }, 300);
+    });
+  }
+
+  addFavorite(e, series) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!series.seriesid) return false;
+
+    this.TRS.apiPostCall(environment.endpoint['add-favorite'], { 'seriesid': series.seriesid }).subscribe((data) => {
+      console.log("ADD FAVORITE?", data);
+    });
+  }
+
+  removeFavorite(e, series) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!series.seriesid || this.removing[series.seriesid]) return false;
+    this.removing[series.seriesid] = true;
+
+    // Post and update with the response
+    this.TRS.apiPostCall(environment.endpoint['remove-favorite'], { 'seriesid': series.seriesid }).subscribe((data) => {
+      if (data.state == "success") {
+        if (this.favSub) this.favSub.unsubscribe();
+        this.createFavSub();
+      }
+
+      this.removing[series.seriesid] = false;
     });
   }
 

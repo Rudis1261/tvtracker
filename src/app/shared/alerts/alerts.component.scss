@@ -1,5 +1,27 @@
+@import "../../../assets/scss/settings.scss";
+@import "../../../assets/scss/mixins.scss";
+
 :host {
   box {
     margin-bottom: 10px;
+  }
+
+  .episode-alert {
+    .btn {
+      position: absolute;
+      top: 5px;
+      bottom: auto;
+      left: 50%;
+      border-color: transparent;
+      @include transform(translateX(-50%));
+    }
+  }
+
+  @include mobile {
+    .episode-alert .btn {
+      left: auto;
+      right: 16px;
+      @include transform(translateX(0));
+    }
   }
 }

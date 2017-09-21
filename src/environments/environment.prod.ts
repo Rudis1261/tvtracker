@@ -20,6 +20,8 @@ export const environment = {
     "alerts": "https://api.tvtracker.co.za/alerts/all",
     "alert-clear": "https://api.tvtracker.co.za/alerts/clear",
     "user-favorites": "https://api.tvtracker.co.za/series/favorites",
+    "add-favorite": "https://api.tvtracker.co.za/favorites/add",
+    "remove-favorite": "https://api.tvtracker.co.za/favorites/remove",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

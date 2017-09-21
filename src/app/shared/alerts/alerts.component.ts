@@ -32,6 +32,13 @@ export class AlertsComponent implements OnInit {
     });
   }
 
+  getImagePoster(series) {
+    if (!series.image_url || series.image_url == '') {
+      return 'assets/img/missing.png';
+    }
+    return series.image_url;
+  }
+
   clearAlert(seriesid, e) {
     if (!seriesid) return false;
     e.preventDefault();

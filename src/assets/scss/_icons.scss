@@ -1,6 +1,20 @@
 $icomoon-font-path: "assets/scss/fonts" !default;
-$icomoon-font-hash: '692g4h';
+$icomoon-font-hash: '9e03df';
 
+$icon-send: "\e90a";
+$icon-mail: "\e90b";
+$icon-check-outline: "\e90c";
+$icon-check-circle: "\e90d";
+$icon-arrow-up: "\e906";
+$icon-arrow-right: "\e907";
+$icon-arrow-left: "\e908";
+$icon-arrow-down: "\e909";
+$icon-close: "\e914";
+$icon-search: "\e91a";
+$icon-filter: "\e91b";
+$icon-empty-star: "\e91c";
+$icon-star: "\e91d";
+$icon-loading: "\e913";
 $icon-alert: "\e919";
 $icon-check: "\e90e";
 $icon-remove: "\e905";
@@ -15,23 +29,8 @@ $icon-triangle-left: "\e911";
 $icon-triangle-down: "\e912";
 $icon-notification: "\e917";
 $icon-warning: "\e918";
-$icon-send: "\e90a";
-$icon-mail: "\e90b";
-$icon-check-outline: "\e90c";
-$icon-check-circle: "\e90d";
-$icon-close: "\e914";
-$icon-arrow-up: "\e906";
-$icon-arrow-right: "\e907";
-$icon-arrow-left: "\e908";
-$icon-arrow-down: "\e909";
-$icon-close: "\e914";
-$icon-loading: "\e913";
-$icon-remove: "\e905";
-$icon-remove-circle: "\e903";
-$icon-trash: "\e904";
-$icon-spinner: "\e902";
-$icon-heart-empty: "\e915";
-$icon-heart-full: "\e916";
+$icon-empty-hart: "\e915";
+$icon-hart: "\e916";
 
 @font-face {
   font-family: 'icomoon';
@@ -59,7 +58,6 @@ $icon-heart-full: "\e916";
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 .icon-spin {
   display: inline-block;
   @include animation(spinner 1s infinite linear);
@@ -67,7 +65,76 @@ $icon-heart-full: "\e916";
 
 
 
-
+.icon-send {
+  &:before {
+    content: $icon-send;
+  }
+}
+.icon-mail {
+  &:before {
+    content: $icon-mail;
+  }
+}
+.icon-check-outline {
+  &:before {
+    content: $icon-check-outline;
+  }
+}
+.icon-check-circle {
+  &:before {
+    content: $icon-check-circle;
+  }
+}
+.icon-arrow-up {
+  &:before {
+    content: $icon-arrow-up;
+  }
+}
+.icon-arrow-right {
+  &:before {
+    content: $icon-arrow-right;
+  }
+}
+.icon-arrow-left {
+  &:before {
+    content: $icon-arrow-left;
+  }
+}
+.icon-arrow-down {
+  &:before {
+    content: $icon-arrow-down;
+  }
+}
+.icon-close {
+  &:before {
+    content: $icon-close;
+  }
+}
+.icon-search {
+  &:before {
+    content: $icon-search;
+  }
+}
+.icon-filter {
+  &:before {
+    content: $icon-filter;
+  }
+}
+.icon-empty-star {
+  &:before {
+    content: $icon-empty-star;
+  }
+}
+.icon-star {
+  &:before {
+    content: $icon-star;
+  }
+}
+.icon-loading {
+  &:before {
+    content: $icon-loading;
+  }
+}
 .icon-alert {
   &:before {
     content: $icon-alert;
@@ -138,88 +205,14 @@ $icon-heart-full: "\e916";
     content: $icon-warning;
   }
 }
-.icon-send {
+.icon-empty-hart {
   &:before {
-    content: $icon-send;
+    content: $icon-empty-hart;
   }
 }
-.icon-mail {
+.icon-hart {
   &:before {
-    content: $icon-mail;
+    content: $icon-hart;
   }
 }
-.icon-check-outline {
-  &:before {
-    content: $icon-check-outline;
-  }
-}
-.icon-check-circle {
-  &:before {
-    content: $icon-check-circle;
-  }
-}
-.icon-close {
-  &:before {
-    content: $icon-close;
-  }
-}
-.icon-arrow-up {
-  &:before {
-    content: $icon-arrow-up;
-  }
-}
-.icon-arrow-right {
-  &:before {
-    content: $icon-arrow-right;
-  }
-}
-.icon-arrow-left {
-  &:before {
-    content: $icon-arrow-left;
-  }
-}
-.icon-arrow-down {
-  &:before {
-    content: $icon-arrow-down;
-  }
-}
-.icon-close {
-  &:before {
-    content: $icon-close;
-  }
-}
-.icon-loading {
-  &:before {
-    content: $icon-loading;
-  }
-}
-.icon-remove {
-  &:before {
-    content: $icon-remove;
-  }
-}
-.icon-remove-circle {
-  &:before {
-    content: $icon-remove-circle;
-  }
-}
-.icon-trash {
-  &:before {
-    content: $icon-trash;
-  }
-}
-.icon-spinner {
-  &:before {
-    content: $icon-spinner;
-  }
-}
-.icon-heart-empty {
-  &:before {
-    content: $icon-heart-empty;
-  }
-}
-.icon-heart-full {
-  &:before {
-    content: $icon-heart-full;
-  }
-}
+
