@@ -87,10 +87,12 @@ export class SeriesComponent implements OnInit {
 
       this.recentEpisodes = data.data.items;
 
-      if (this.recentSwiper) this.recentSwiper.slideTo(0);
-      setTimeout(() => {
+      if (this.recentEpisodes && this.recentEpisodes.length > 0) {
         if (this.recentSwiper) this.recentSwiper.slideTo(0);
-      }, 300);
+        setTimeout(() => {
+          if (this.recentSwiper) this.recentSwiper.slideTo(0);
+        }, 300);
+      }
     });
   }
 
@@ -139,10 +141,12 @@ export class SeriesComponent implements OnInit {
 
       this.futureEpisodes = data.data.items;
 
-      if (this.futureSwiper) this.futureSwiper.slideTo(0);
-      setTimeout(() => {
+      if (this.futureEpisodes && this.futureEpisodes.length > 0) {
         if (this.futureSwiper) this.futureSwiper.slideTo(0);
-      }, 300);
+        setTimeout(() => {
+          if (this.futureSwiper) this.futureSwiper.slideTo(0);
+        }, 300);
+      }
     });
   }
 
@@ -214,7 +218,7 @@ export class SeriesComponent implements OnInit {
     if (this.authSub) this.authSub.unsubscribe();
     if (this.favSub) this.favSub.unsubscribe();
 
-    if (this.futureSwiper) this.futureSwiper.destroy();
-    if (this.recentSwiper) this.recentSwiper.destroy();
+    if (this.futureSwiper && typeof this.futureSwiper.destroy == 'function') this.futureSwiper.destroy();
+    if (this.recentSwiper && typeof this.recentSwiper.destroy == 'function') this.recentSwiper.destroy();
   }
 }

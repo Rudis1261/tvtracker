@@ -14,7 +14,30 @@
 
 <app-alerts></app-alerts>
 
-<div class="container row col swiper-container-outer">
+<!-- No shows yet, add some now -->
+<div class="listing" *ngIf="!favorites || favorites.length == 0">
+  <box type="container">
+    <box type="xl" flex="true">
+      <form novalidate #searchForm="ngForm" (ngSubmit)="searchForSeries()">
+        <label for="search">
+          <div class="input-label">Find a show to track now</div>
+          <div class="input-group">
+            <input
+              id="search"
+              type="text"
+              placeholder="Game of Thrones"
+              name="search"
+              [(ngModel)]="search"
+            />
+            <button type="submit" value="Search" (click)="searchForSeries()"><i class="icon-search"></i></button>
+          </div>
+        </label>
+      </form>
+    </box>
+  </box>
+</div>
+
+<div class="container row col swiper-container-outer" *ngIf="favorites && favorites.length > 0">
   <h3>Coming Soon</h3>
   <div id="future-pagination" class="swiper-pagination"></div>
   <div id="future-prev" class="swiper-button-prev"></div>
@@ -37,7 +60,7 @@
   </div>
 </div>
 
-<div class="container row col swiper-container-outer">
+<div class="container row col swiper-container-outer" *ngIf="favorites && favorites.length > 0">
   <h3>Recent Episodes</h3>
   <div id="recent-pagination" class="swiper-pagination"></div>
   <div id="recent-prev" class="swiper-button-prev"></div>
@@ -60,7 +83,7 @@
   </div>
 </div>
 
-<div class="listing">
+<div class="listing" *ngIf="favorites && favorites.length > 0">
   <h3>Favorite Shows</h3>
 
   <box type="container">

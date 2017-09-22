@@ -43,7 +43,7 @@ declare var window: any;
                       <i class="icon-login" title="Login Now"></i><span>Login</span>
                     </span>\
                     <span (click)="logoff()" *ngIf="user">
-                      <i class="icon-logout" title="Logoff"></i><span>Logoff</span>
+                      <i class="icon-logout" title="Logoff"></i><span>Logoff {{user.username}}</span>
                     </span>\
                   </li>
                 </ul>
