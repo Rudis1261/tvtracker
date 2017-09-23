@@ -58,6 +58,8 @@ import { ShowComponent } from './shared/show/show.component';
 import { KeysPipe } from './pipes/keys.pipe';
 import { AutofocusDirective } from './directives/autofocus.directive';
 import { AlertsComponent } from './shared/alerts/alerts.component';
+import { TypeaheadComponent } from './shared/typeahead/typeahead.component';
+import { HighlightPipe } from './pipes/highlight.pipe';
 
 @NgModule({
   declarations: [
@@ -92,7 +94,9 @@ import { AlertsComponent } from './shared/alerts/alerts.component';
     ShowComponent,
     KeysPipe,
     AutofocusDirective,
-    AlertsComponent
+    AlertsComponent,
+    TypeaheadComponent,
+    HighlightPipe
   ],
   imports: [
     BrowserModule,

@@ -17,22 +17,8 @@
 <!-- No shows yet, add some now -->
 <div class="listing" *ngIf="!favorites || favorites.length == 0">
   <box type="container">
-    <box type="xl" flex="true">
-      <form novalidate #searchForm="ngForm" (ngSubmit)="searchForSeries()">
-        <label for="search">
-          <div class="input-label">Find a show to track now</div>
-          <div class="input-group">
-            <input
-              id="search"
-              type="text"
-              placeholder="Game of Thrones"
-              name="search"
-              [(ngModel)]="search"
-            />
-            <button type="submit" value="Search" (click)="searchForSeries()"><i class="icon-search"></i></button>
-          </div>
-        </label>
-      </form>
+    <box type="xl" flex="true" class="text-left">
+      <app-typeahead></app-typeahead>
     </box>
   </box>
 </div>
@@ -89,21 +75,7 @@
   <box type="container">
     <box type="md" flex="true">
       <div *ngIf="!searching" class="btn" (click)="searching=true">Find more shows <i class="icon-search"></i></div>
-      <form novalidate #searchForm="ngForm" (ngSubmit)="searchForSeries()" *ngIf="searching">
-        <label for="search">
-          <div class="input-label">Find a new show to track</div>
-          <div class="input-group">
-            <input
-              id="search"
-              type="text"
-              placeholder="Game of Thrones"
-              name="search"
-              [(ngModel)]="search"
-            />
-            <button type="submit" value="Search" (click)="searchForSeries()"><i class="icon-search"></i></button>
-          </div>
-        </label>
-      </form>
+      <app-typeahead *ngIf="searching"></app-typeahead>
     </box>
 
     <box type="md" flex="true">

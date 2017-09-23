@@ -115,22 +115,11 @@ export class ShowComponent implements OnInit {
     this.subRoute = this.route.params.subscribe(params => {
       this.slug = params['slug'];
 
-
       this.isMobileSub = this.Device.isMobile.subscribe((data) => {
         this.isMobile = data;
       });
 
       if (this.slug) {
-        this.subEpisodes = this.TRS.apiCall(environment.endpoint['episodes-by-slug'], { 'slug': this.slug, 'reverse': true }).subscribe((data) => {
-          console.log("EPISODE, data.data.items.length", data.data.items.length);
-          if (data && data.data && data.data.items) {
-            this.episodes = data.data.items;
-            this.processEpisodes();
-          } else {
-            this.episodes = false;
-          }
-        });
-
         this.subShow = this.TRS.apiCall(environment.endpoint['series-by-slug'], { 'slug': this.slug }).subscribe((data) => {
           if (data && data.data && data.data.items && data.data.items.id) {
             this.show = data.data.items;
@@ -139,6 +128,16 @@ export class ShowComponent implements OnInit {
             // Show doesn't exist
             this.show = false;
             this.router.navigate([ '/404' ]);
+          }
+        });
+
+        this.subEpisodes = this.TRS.apiCall(environment.endpoint['episodes-by-slug'], { 'slug': this.slug, 'reverse': true }).subscribe((data) => {
+          console.log("EPISODE, data.data.items.length", data.data.items.length);
+          if (data && data.data && data.data.items) {
+            this.episodes = data.data.items;
+            this.processEpisodes();
+          } else {
+            this.episodes = false;
           }
         });
 

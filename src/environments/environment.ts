@@ -27,6 +27,7 @@ export const environment = {
     "user-favorites": "http://dev.tvt2.co.za/series/favorites",
     "add-favorite": "http://dev.tvt2.co.za/favorites/add",
     "remove-favorite": "http://dev.tvt2.co.za/favorites/remove",
+    "search-list": "http://dev.tvt2.co.za/search/list",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

@@ -50,26 +50,6 @@
     margin-bottom: 5px;
   }
 
-  .input-group {
-    position: relative;
-
-    input[type="text"] {
-      padding-right: 50px;
-    }
-
-    button {
-      position: absolute;
-      display: inline-block;
-      z-index: 1;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 40px;
-      margin: 0;
-      border-left: 1px solid darken($badass, 15%);
-    }
-  }
-
   .swiper-container {
     width: 100%;
     margin: 0 auto;

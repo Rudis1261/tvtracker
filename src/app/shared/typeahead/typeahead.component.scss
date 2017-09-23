@@ -1,0 +1,89 @@
+@import "../../../assets/scss/mixins";
+@import "../../../assets/scss/settings";
+
+:host {
+  $dropDownItemHeight: 44px;
+  width: 100%;
+
+  > div {
+    margin: 0 auto;
+  }
+
+  .input-field {
+    position: relative;
+    margin: 0 auto;
+
+    input {
+      margin: 0 auto;
+      max-width: none;
+      z-index: 2;
+      position: relative;
+    }
+
+    .suggestions {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: auto;
+      left: 0;
+      max-height: $dropDownItemHeight * 7;
+      margin: 57px 0 0;
+      overflow-y: auto;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.17);
+      z-index: 1;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+
+      li {
+        line-height: $dropDownItemHeight;
+        padding: 0 8px;
+
+        &:nth-of-type(odd) {
+          background: darken(#fff, 2%);
+        }
+
+        &:hover {
+          background: darken(#fff, 5%);
+        }
+
+        a {
+          position: relative;
+          display: block;
+          cursor: pointer;
+
+          .track {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            background: $primary;
+            color: #fff;
+            font-size: 12px;
+            line-height: 26px;
+            padding: 0 5px;
+            width: 60px;
+            cursor: pointer;
+            text-align: center;
+            @include border-radius(2px);
+            @include transform(translateY(-50%));
+
+            &:hover {
+              background: darken($primary, 15%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include mobile {
+    .input-field {
+      .suggestions {
+        max-height: $dropDownItemHeight * 6;
+      }
+    }
+  }
+}
