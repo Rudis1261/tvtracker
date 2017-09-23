@@ -96,16 +96,6 @@ export class SeriesComponent implements OnInit {
     });
   }
 
-  addFavorite(e, series) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!series.seriesid) return false;
-
-    this.TRS.apiPostCall(environment.endpoint['add-favorite'], { 'seriesid': series.seriesid }).subscribe((data) => {
-      console.log("ADD FAVORITE?", data);
-    });
-  }
-
   removeFavorite(e, series) {
     e.preventDefault();
     e.stopPropagation();

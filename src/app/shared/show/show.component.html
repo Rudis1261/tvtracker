@@ -31,7 +31,7 @@
 </box>
 
 <box type="container" *ngIf="episodes">
-  <box type="sm" flex="true">
+  <box type="sm" flex="true" flextop="true">
     <div class="nav-dropdown dropdown" [ngClass]="{'open': dropdownOpen === true}" *ngIf="isMobile">
       <div (click)="toggleDropDownOpen()">{{(seasons[activeSeason] ? seasons[activeSeason]: 'Select a season')}}</div>
       <ul class="nav" *ngIf="isMobile">

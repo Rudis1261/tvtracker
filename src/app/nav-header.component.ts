@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
@@ -6,6 +6,9 @@ declare var window: any;
 
 @Component({
   selector: 'nav-header',
+  host: {
+    '(document:click)': 'handleClick($event)',
+  },
   template: `<header>
               <div class="container">
                 <!-- BRAND -->
@@ -91,8 +94,12 @@ export class NavHeaderComponent {
   activeMenu = "";
   user: any = false;
 
+  public elementRef;
+
   // Watch for route changes and ensure that the menu is closed
-  constructor(router: Router, private Auth: AuthService) {
+  constructor(router: Router, private Auth: AuthService, myElement: ElementRef) {
+    this.elementRef = myElement;
+
     router.events.subscribe((event) => {
       if(event instanceof NavigationStart) {
         this.menuOpen = false;
@@ -108,6 +115,22 @@ export class NavHeaderComponent {
       this.menuOpen = false;
     });
   }
+
+  handleClick(event){
+    var clickedComponent = event.target;
+    var inside = false;
+    do {
+      if (clickedComponent === this.elementRef.nativeElement) {
+        inside = true;
+      }
+      clickedComponent = clickedComponent.parentNode;
+    } while (clickedComponent);
+
+    if(!inside){
+      this.menuOpen = false;
+    }
+  }
+
 
   // This toggles the menu open state by adding an open class
   toggleMenu() {

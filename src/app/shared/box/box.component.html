@@ -1,7 +1,7 @@
 <div
   (click)=link(url)
   *ngIf="type!=='container'; else unwrapped"
-  [ngClass]="{'inner': type !== 'container', 'center': center, 'flex-center': flex, 'link': url}"
+  [ngClass]="{'inner': type !== 'container', 'center': center, 'flex-center': flex, 'flex-top': flextop, 'link': url}"
 >
   <i class="icon-{{icon}}" *ngIf="icon"></i>
   <ng-content *ngTemplateOutlet="unwrapped"></ng-content>

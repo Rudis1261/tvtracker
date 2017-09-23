@@ -1,6 +1,7 @@
 <div class="col col-6 col-sm-12 col-md-12 text-left" *ngIf="!emptySet">
+  <div class="message" *ngIf="message && message !== false" [innerHtml]="message"></div>
   <div class="input-field">
-    <label for="series">Find more shows to track
+    <label for="series">Find shows to track
       <input id="series" type="text" placeholder="Game Of Thrones" class="validate filter-input" [(ngModel)]=query (keyup)=filter()>
     </label>
     <div class="suggestions" *ngIf="filteredList.length > 0">

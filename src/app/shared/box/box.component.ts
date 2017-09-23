@@ -21,6 +21,7 @@ export class BoxComponent implements OnInit {
   @Input() container:any = false;
   @Input() center:any = false;
   @Input() flex:any = false;
+  @Input() flextop:any = false;
   @Input() url:any = false;
 
   link(url) {
