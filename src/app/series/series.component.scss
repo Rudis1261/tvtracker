@@ -7,6 +7,10 @@
     font-weight: normal;
   }
 
+  .read-more {
+    margin: 0 auto 20px;
+  }
+
   .episode.user-favorites {
     .btn {
       position: absolute;
@@ -64,7 +68,7 @@
     }
 
     @include desktop {
-      min-height: 272px;
+      min-height: 214px;
     }
 
     @include respond-from($screenJumbo) {

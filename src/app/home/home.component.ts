@@ -28,17 +28,25 @@ export class HomeComponent implements OnInit {
     'test': 3
   }, {
     'test': 4
+  }, {
+    'test': 5
+  }, {
+    'test': 6
   }];
 
   public futureEpisodes: any = [{
     'test': 1
-  }, {
-    'test': 2
-  }, {
-    'test': 3
-  }, {
-    'test': 4
-  }];
+    }, {
+      'test': 2
+    }, {
+      'test': 3
+    }, {
+      'test': 4
+    }, {
+      'test': 5
+    }, {
+      'test': 6
+    }];
 
   constructor(private TRS: TokenRingService, private LS: LoadedService, private titleService: Title) {
     this.scaffolding();
@@ -53,6 +61,10 @@ export class HomeComponent implements OnInit {
       'test': 3
     }, {
       'test': 4
+    }, {
+      'test': 5
+    }, {
+      'test': 6
     }];
 
     this.futureEpisodes = [{
@@ -63,6 +75,10 @@ export class HomeComponent implements OnInit {
       'test': 3
     }, {
       'test': 4
+    }, {
+      'test': 5
+    }, {
+      'test': 6
     }];
   }
 
@@ -110,12 +126,12 @@ export class HomeComponent implements OnInit {
         scrollbar: '.swiper-scrollbar',
         height: 'auto',
         slidesPerColumn: 1,
-        slidesPerView: 4,
+        slidesPerView: 6,
+        slidesPerGroup: 6,
         observer: true,
         initialSlide: 0,
         preloadImages: false,
         lazyLoading: true,
-        slidesPerGroup: 4,
         spaceBetween: 20,
         breakpoints: {
           320: {
@@ -131,6 +147,10 @@ export class HomeComponent implements OnInit {
           768: {
             slidesPerView: 3,
             slidesPerGroup: 3
+          },
+          1024: {
+            slidesPerView: 4,
+            slidesPerGroup: 4
           }
         }
       };

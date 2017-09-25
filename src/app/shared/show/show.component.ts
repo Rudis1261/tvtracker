@@ -18,7 +18,7 @@ export class ShowComponent implements OnInit {
   episodes: any = false;
   show: any = false;
   seasons: any = false;
-  activeSeason: any = false;
+  activeSeason: any;
   activeEpisode: any = false;
   hasSpecials: any = false;
   dropdownOpen: boolean = false;
@@ -74,21 +74,35 @@ export class ShowComponent implements OnInit {
     let now = (new Date().getTime() / 1000);
     let day = (24 * 60 * 60);
     let twoWeeks = (day * 14);
+    let lastSeason = false;
+    let foundSeason = false;
 
     this.seasons = {};
     this.episodes.forEach((episode, index) => {
       this.seasons[episode.s] = (episode.s == 0 ? "Specials" : "Season " + episode.s);
 
       if (episode.date > now || episode.data < now + twoWeeks) {
+        foundSeason = true;
         this.setActiveSeason(episode.s);
       }
 
       this.episodes[index].future = episode.date > now && episode.date < (now + twoWeeks);
       this.episodes[index].recent = episode.date < now && episode.date > (now - twoWeeks);
     });
+
+    // Fall back to the last season if no recent seasons could be matched
+    if (foundSeason == false) {
+      this.episodes.forEach((episode, index) => {
+        if (episode.s > lastSeason) {
+          lastSeason = episode.s;
+        }
+      });
+      this.setActiveSeason(lastSeason);
+    }
   }
 
   setActiveSeason(season) {
+    console.log("SETTING ACTIVE SEASON", season);
     this.activeSeason = season;
     this.dropdownOpen = false;
   }

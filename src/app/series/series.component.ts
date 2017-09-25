@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Title } from '@angular/platform-browser';
 import { TokenRingService } from '../services/token-ring.service';
+import { DeviceService } from '../services/device.service';
 import { environment } from '../../environments/environment';
 import { LoadedService } from '../services/loaded.service';
 
@@ -18,19 +19,22 @@ export class SeriesComponent implements OnInit {
   private futureSub: any;
   private authSub: any;
   private favSub: any;
+  private isMobileSub: any;
 
   private user: any;
   private recentSwiper: any;
   private futureSwiper: any;
 
-  public search: '';
-  public searching: boolean = false;
+  search: '';
+  searching: boolean = false;
+  filter: '';
+  filtering: boolean = false;
+  removing: any;
+  showLoadMore: any;
+  showLoadMorePerPage: any;
+  isMobile: any = false;
 
-  public filter: '';
-  public filtering: boolean = false;
-  public removing: any;
-
-  public recentEpisodes: any = [{
+  recentEpisodes: any = [{
     'test': 1
   }, {
     'test': 2
@@ -38,9 +42,13 @@ export class SeriesComponent implements OnInit {
     'test': 3
   }, {
     'test': 4
+  }, {
+    'test': 5
+  }, {
+    'test': 6
   }];
 
-  public futureEpisodes: any = [{
+  futureEpisodes: any = [{
     'test': 1
   }, {
     'test': 2
@@ -48,9 +56,13 @@ export class SeriesComponent implements OnInit {
     'test': 3
   }, {
     'test': 4
+  }, {
+    'test': 5
+  }, {
+    'test': 6
   }];
 
-  public favorites: any = [{
+  favorites: any = [{
     'test': 1
   }, {
     'test': 2
@@ -58,9 +70,22 @@ export class SeriesComponent implements OnInit {
     'test': 3
   }, {
     'test': 4
+  }, {
+    'test': 5
+  }, {
+    'test': 6
   }];
 
-  constructor(private Auth: AuthService, private TRS: TokenRingService, private LS: LoadedService, private titleService: Title) {
+  constructor(
+    private Auth: AuthService,
+    private TRS: TokenRingService,
+    private LS: LoadedService,
+    private titleService: Title,
+    private Device: DeviceService
+  ) {
+
+    this.showLoadMore = 12;
+    this.showLoadMorePerPage = 12;
 
     this.removing = {};
     this.buildSwiper('recent');
@@ -144,6 +169,10 @@ export class SeriesComponent implements OnInit {
     console.log("SEARCH FOR A SHOW", this.search);
   }
 
+  showMore() {
+    this.showLoadMore = this.showLoadMore + this.showLoadMorePerPage;
+  }
+
   buildSwiper(type) {
     this.LS.waitForLoad('Swiper', () => {
       let swiperParams = {
@@ -155,12 +184,12 @@ export class SeriesComponent implements OnInit {
         scrollbar: '.swiper-scrollbar',
         height: 'auto',
         slidesPerColumn: 1,
-        slidesPerView: 4,
+        slidesPerView: 6,
+        slidesPerGroup: 6,
         observer: true,
         initialSlide: 0,
         preloadImages: false,
         lazyLoading: true,
-        slidesPerGroup: 4,
         spaceBetween: 20,
         breakpoints: {
           320: {
@@ -176,6 +205,10 @@ export class SeriesComponent implements OnInit {
           768: {
             slidesPerView: 3,
             slidesPerGroup: 3
+          },
+          1024: {
+            slidesPerView: 4,
+            slidesPerGroup: 4
           }
         }
       };
@@ -200,6 +233,18 @@ export class SeriesComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('TV Tracker | You\'re favorite shows');
+
+    this.isMobileSub = this.Device.isMobile.subscribe((data) => {
+      this.isMobile = data;
+
+      if (this.isMobile) {
+        this.showLoadMore = 6;
+        this.showLoadMorePerPage = 12;
+      } else {
+        this.showLoadMore = 12;
+        this.showLoadMorePerPage = 12;
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -207,6 +252,7 @@ export class SeriesComponent implements OnInit {
     if (this.futureSub) this.futureSub.unsubscribe();
     if (this.authSub) this.authSub.unsubscribe();
     if (this.favSub) this.favSub.unsubscribe();
+    if (this.isMobileSub) this.isMobileSub.unsubscribe();
 
     if (this.futureSwiper && typeof this.futureSwiper.destroy == 'function') this.futureSwiper.destroy();
     if (this.recentSwiper && typeof this.recentSwiper.destroy == 'function') this.recentSwiper.destroy();

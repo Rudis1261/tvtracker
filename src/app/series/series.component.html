@@ -15,12 +15,57 @@
 <app-alerts></app-alerts>
 
 <!-- No shows yet, add some now -->
-<div class="listing" *ngIf="!favorites || favorites.length == 0">
+<div class="listing">
   <box type="container">
     <box type="xl" flex="true" class="text-left">
       <app-typeahead></app-typeahead>
     </box>
   </box>
+</div>
+
+<div class="listing" *ngIf="favorites && favorites.length > 0">
+  <h3>Favorite Shows</h3>
+  <form novalidate #filterForm="ngForm">
+    <label for="filter">
+      <div class="input-label">Filter my shows</div>
+      <input
+        id="filter"
+        type="text"
+        placeholder="Game of Thrones"
+        name="filter"
+        [(ngModel)]="filter"
+      />
+    </label>
+  </form>
+
+  <div class="row grid-row">
+    <div class="col-sm-6 col-md-3 col-lg-2 col-2" *ngFor="let episode of favorites | search:'seriesname,overview':filter | readMore:showLoadMore">
+      <div class="episode user-favorites">
+        <a [routerLink]="['/show/', episode.slug]" class="inner" *ngIf="!episode.test">
+          <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}}</h4>
+          <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
+          <div class="poster" *ngIf="getImagePoster(episode)">
+            <img width="100" height="auto" [src]="getImagePoster(episode)" class="poster-img swiper-lazy" />
+          </div>
+          <div
+            (click)="removeFavorite($event, episode)"
+            title="Untrack {{episode.seriesname}}"
+            class="btn action"
+          >
+            <i class="icon-empty-hart" *ngIf="!removing[episode.seriesid]"></i>
+            <i class="icon-spin icon-spinner" *ngIf="removing[episode.seriesid]"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row grid-row text-center">
+    <div
+      class="btn btn-default read-more"
+      (click)="showMore()"
+      *ngIf="favorites && favorites.length > 0 && showLoadMore < favorites.length"
+    >Show more <span class="plus">&#43;</span> <span class="small">{{showLoadMore}} - {{favorites.length}}</span></div>
+  </div>
 </div>
 
 <div class="container row col swiper-container-outer" *ngIf="favorites && favorites.length > 0">
@@ -66,54 +111,5 @@
       </div>
     </div>
     <div class="swiper-scrollbar"></div>
-  </div>
-</div>
-
-<div class="listing" *ngIf="favorites && favorites.length > 0">
-  <h3>Favorite Shows</h3>
-
-  <box type="container">
-    <box type="md" flex="true">
-      <div *ngIf="!searching" class="btn" (click)="searching=true">Find more shows <i class="icon-search"></i></div>
-      <app-typeahead *ngIf="searching"></app-typeahead>
-    </box>
-
-    <box type="md" flex="true">
-      <div *ngIf="!filtering" class="btn" (click)="filtering=true">Filter my shows <i class="icon-filter"></i></div>
-      <form novalidate #filterForm="ngForm" *ngIf="filtering">
-        <label for="filter">
-          <div class="input-label">Filter my shows</div>
-          <input
-            id="filter"
-            type="text"
-            placeholder="Game of Thrones"
-            name="filter"
-            [(ngModel)]="filter"
-          />
-        </label>
-      </form>
-    </box>
-  </box>
-
-  <div class="row grid-row">
-    <div class="col-sm-6 col-md-3 col-lg-2 col-2" *ngFor="let episode of favorites | search:'seriesname,overview':filter">
-      <div class="episode user-favorites">
-        <a [routerLink]="['/show/', episode.slug]" class="inner" *ngIf="!episode.test">
-          <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}}</h4>
-          <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
-          <div class="poster" *ngIf="getImagePoster(episode)">
-            <img width="100" height="auto" [src]="getImagePoster(episode)" class="poster-img swiper-lazy" />
-          </div>
-          <div
-            (click)="removeFavorite($event, episode)"
-            title="Untrack {{episode.seriesname}}"
-            class="btn action"
-          >
-            <i class="icon-empty-hart" *ngIf="!removing[episode.seriesid]"></i>
-            <i class="icon-spin icon-spinner" *ngIf="removing[episode.seriesid]"></i>
-          </div>
-        </a>
-      </div>
-    </div>
   </div>
 </div>

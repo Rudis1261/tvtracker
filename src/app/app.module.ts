@@ -60,6 +60,7 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 import { AlertsComponent } from './shared/alerts/alerts.component';
 import { TypeaheadComponent } from './shared/typeahead/typeahead.component';
 import { HighlightPipe } from './pipes/highlight.pipe';
+import { ReadMorePipe } from './pipes/read-more.pipe';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { HighlightPipe } from './pipes/highlight.pipe';
     AutofocusDirective,
     AlertsComponent,
     TypeaheadComponent,
-    HighlightPipe
+    HighlightPipe,
+    ReadMorePipe
   ],
   imports: [
     BrowserModule,

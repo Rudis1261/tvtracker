@@ -87,7 +87,8 @@
           display: block;
           cursor: pointer;
 
-          .track {
+          .track,
+          .searching {
             position: absolute;
             right: 5px;
             top: 50%;
@@ -105,6 +106,11 @@
             &:hover {
               background: darken($primary, 15%);
             }
+          }
+
+          .searching {
+            width: 90px;
+            background: #333;
           }
         }
       }

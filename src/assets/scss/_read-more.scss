@@ -1,0 +1,15 @@
+.read-more {
+  span.plus {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    background: $primary;
+    color: #fff;
+    @include border-radius(50%);
+  }
+
+  span.small {
+    font-size: 9px;
+  }
+}

@@ -4,12 +4,24 @@
     <label for="series">Find shows to track
       <input id="series" type="text" placeholder="Game Of Thrones" class="validate filter-input" [(ngModel)]=query (keyup)=filter()>
     </label>
-    <div class="suggestions" *ngIf="filteredList.length > 0">
+    <div class="suggestions" *ngIf="query && query !== ''">
       <ul>
         <li *ngFor="let item of filteredList">
           <a (click)="select(item)">
-            <span [innerHtml]="item.seriesname | highlight:query"></span>
+            <span [innerHtml]="item.seriesname + (item.network !== '' ? ' - ' + item.network : '') | highlight:query"></span>
             <span title="Track {{item.seriesname}} now" class="track" (click)="trackSeries($event, item)">Track <i class="icon-hart"></i></span>
+          </a>
+        </li>
+        <li *ngFor="let item of extendedSearchList">
+          <a (click)="select(item, true)">
+            <span [innerHtml]="item.seriesname + (item.network !== '' ? ' - ' + item.network : '') | highlight:query"></span>
+            <span title="Track {{item.seriesname}} now" class="track" (click)="trackSeries($event, item)">Track <i class="icon-hart"></i></span>
+          </a>
+        </li>
+        <li *ngIf="extendedSearchList.length == 0">
+          <a (click)="extendedSearch(query)">
+            <span>Extended search <small>(Takes longer)</small></span>
+            <span *ngIf="extendedSearching" title="Searching" class="searching">Searching <i class="icon-spin icon-loading"></i></span>
           </a>
         </li>
       </ul>

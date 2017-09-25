@@ -15,13 +15,15 @@ import { HighlightPipe } from '../../pipes/highlight.pipe';
 })
 export class TypeaheadComponent implements OnInit {
 
-  public query = '';
-  public series = [];
-  public filteredList = [];
-  public elementRef;
-  public emptySet = false;
-  public user: any = false;
-  public message: any = false;
+  query = '';
+  series = [];
+  filteredList = [];
+  extendedSearchList = [];
+  elementRef;
+  emptySet = false;
+  user: any = false;
+  message: any = false;
+  extendedSearching: any = false;
 
   public searchListSub: any;
   private authSub: any;
@@ -38,6 +40,7 @@ export class TypeaheadComponent implements OnInit {
   filter() {
     if (this.query !== ""){
       let filteredByName = this.series.filter(function(el){
+        this.extendedSearchList = [];
         return el.seriesname.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
       }.bind(this));
 
@@ -72,11 +75,39 @@ export class TypeaheadComponent implements OnInit {
 
     if(!inside){
       this.filteredList = [];
+      this.extendedSearchList = [];
     }
   }
 
-  select(item){
-    this.Router.navigate([ '/show', item.slug ]);
+  select(item, ignore = false){
+    if (ignore == false) {
+      this.Router.navigate([ '/show', item.slug ]);
+    }
+  }
+
+  extendedSearch(term) {
+    if (this.extendedSearching || !term || term == '') return false;
+    this.extendedSearchList = [];
+    this.extendedSearching = true;
+
+    this.TRS.apiPostCall(environment.endpoint['search-extended'] + "/" + term).subscribe((data) => {
+      if (data.state == "success") {
+        this.extendedSearchList = data.data['items'];
+      }
+
+      if (data && data.data && data.data['items'] && data.data['items'].length == 0){
+        this.message = data.message;
+        if (this.extendedSearchList.length == 0 && this.filteredList.length == 0) {
+          this.query = '';
+        }
+      }
+
+      setTimeout(() => {
+        this.message = false;
+      }, 3000);
+
+      this.extendedSearching = false;
+    });
   }
 
   trackSeries(e, item) {
@@ -86,12 +117,19 @@ export class TypeaheadComponent implements OnInit {
     this.message = false;
 
     if (!this.user) {
-      alert("Login to track shows, and get notification");
+      this.message = "Login to add " + item.seriesname;
+      setTimeout(() => {
+        this.message = false;
+      }, 3000);
       return false;
     }
 
     // Otherwise add the episode
     this.filteredList = [];
+    this.extendedSearchList = [];
+    this.query = '';
+    this.message = 'Tracking <i class="icon-spin icon-loading"></i><small>This can take a while if you\'re the first</small>';
+
     this.TRS.apiPostCall(environment.endpoint['add-favorite'], { 'seriesid': item.seriesid }).subscribe((data) => {
       if (data.state == "success") {
         this.message = "Successfully tracked " + item.seriesname + " <i class='icon-check-outline'></i>";

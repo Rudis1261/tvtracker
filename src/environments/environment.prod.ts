@@ -28,6 +28,7 @@ export const environment = {
     "add-favorite": "https://api.tvtracker.co.za/favorites/add",
     "remove-favorite": "https://api.tvtracker.co.za/favorites/remove",
     "search-list": "https://api.tvtracker.co.za/search/list",
+    "search-extended": "https://api.tvtracker.co.za/search/extended",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

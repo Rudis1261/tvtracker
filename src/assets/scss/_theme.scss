@@ -35,25 +35,38 @@ a.small {
 }
 
 .message {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+
+  &.success {
+    background: $badass;
+    color: #fff;
+    font-size: 16px;
+    line-height: 18px;
+    border: none;
+  }
+
+  &.error {
+    background: rgba(#ea0000, 0.02);
     padding: 10px;
-    border: 1px solid #ccc;
-    font-size: 15px;
+    border-radius: 0;
+    border-color: #ea0000;
+    color: darken(#ea0000, 2%);
+  }
 
-    &.success {
-      background: $badass;
-      color: #fff;
-      font-size: 16px;
-      line-height: 18px;
-      border: none;
-    }
+  .icon-spin {
+    width: 40px;
+    height: 40px;
+    line-height: 42px;
+  }
 
-    &.error {
-        background: rgba(#ea0000, 0.02);
-        padding: 10px;
-        border-radius: 0;
-        border-color: #ea0000;
-        color: darken(#ea0000, 2%);
-    }
+  small {
+    font-size: 12px;
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
 }
 
 .container.page-heading {
