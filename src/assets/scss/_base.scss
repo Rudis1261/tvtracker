@@ -83,29 +83,30 @@ a.external {
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: $headingFont;
+  font-family: $headingFont;
+  font-weight: normal;
 }
 
 .row {
-    @include flex-display();
-    @include flex-wrap(wrap);
-    margin-bottom: 10px;
-    &:last-of-type {
-        margin-bottom: 0;
-    }
+  @include flex-display();
+  @include flex-wrap(wrap);
+  margin-bottom: 10px;
+  &:last-of-type {
+      margin-bottom: 0;
+  }
 
-    &.center {
-        .col {
-            margin: 0 auto 15px;
-        }
-    }
+  &.center {
+      .col {
+          margin: 0 auto 15px;
+      }
+  }
 
-    @include respond-to($screenSlim) {
-        @include flex-wrap(wrap);
-        input {
-            margin: 0 auto 10px;
-        }
-    }
+  @include respond-to($screenSlim) {
+      @include flex-wrap(wrap);
+      input {
+          margin: 0 auto 10px;
+      }
+  }
 }
 
 .flex-wrap {

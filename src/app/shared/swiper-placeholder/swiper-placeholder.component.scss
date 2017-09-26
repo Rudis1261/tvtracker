@@ -1,0 +1,29 @@
+@import "../../../assets/scss/settings.scss";
+@import "../../../assets/scss/mixins.scss";
+
+:host {
+  > h1,
+  > h2,
+  > h3 {
+    font-weight: normal;
+    min-width: 100%;
+    @include flex(0 0 100%);
+  }
+
+  .row.grid-row {
+    margin: 0 -10px;
+
+    .col-sm-6,
+    .col-md-3
+    .col-lg-2
+    .col-2 {
+      margin-bottom: 0;
+    }
+  }
+
+  @include respond-from($screenJumbo) {
+    .row.grid-row {
+      margin: 0 -10px 20px;
+    }
+  }
+}

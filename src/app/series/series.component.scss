@@ -67,8 +67,30 @@
       min-height: 220px;
     }
 
+    @include mobile {
+      .swiper-slide {
+        max-width: 50%;
+      }
+    }
+
     @include desktop {
       min-height: 214px;
+
+      .swiper-slide {
+        max-width: (100% / 3);
+      }
+    }
+
+    @include respond-between($screenTablet, $screenDesktop) {
+      .swiper-slide {
+        max-width: (100% / 4);
+      }
+    }
+
+    @include respond-from($screenDesktop) {
+      .swiper-slide {
+        max-width: (100% / 6);
+      }
     }
 
     @include respond-from($screenJumbo) {

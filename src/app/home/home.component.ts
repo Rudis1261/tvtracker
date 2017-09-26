@@ -20,66 +20,16 @@ export class HomeComponent implements OnInit {
   private recentSwiper: any;
   private futureSwiper: any;
 
-  public recentEpisodes: any = [{
-    'test': 1
-  }, {
-    'test': 2
-  }, {
-    'test': 3
-  }, {
-    'test': 4
-  }, {
-    'test': 5
-  }, {
-    'test': 6
-  }];
-
-  public futureEpisodes: any = [{
-    'test': 1
-    }, {
-      'test': 2
-    }, {
-      'test': 3
-    }, {
-      'test': 4
-    }, {
-      'test': 5
-    }, {
-      'test': 6
-    }];
+  recentEpisodes: any = [];
+  futureEpisodes: any = [];
 
   constructor(private TRS: TokenRingService, private LS: LoadedService, private titleService: Title) {
     this.scaffolding();
   }
 
   scaffolding() {
-    this.recentEpisodes = [{
-      'test': 1
-    }, {
-      'test': 2
-    }, {
-      'test': 3
-    }, {
-      'test': 4
-    }, {
-      'test': 5
-    }, {
-      'test': 6
-    }];
-
-    this.futureEpisodes = [{
-      'test': 1
-    }, {
-      'test': 2
-    }, {
-      'test': 3
-    }, {
-      'test': 4
-    }, {
-      'test': 5
-    }, {
-      'test': 6
-    }];
+    this.recentEpisodes = [];
+    this.futureEpisodes = [];
   }
 
   getImagePoster(episode) {
@@ -92,26 +42,22 @@ export class HomeComponent implements OnInit {
   createRecentSub() {
     let endpoint = 'episodes-recent';
     this.recentSub = this.TRS.apiGetCall(environment.endpoint[endpoint]).subscribe((data) => {
-
       this.recentEpisodes = data.data.items;
 
-      if (this.recentSwiper) this.recentSwiper.slideTo(0);
       setTimeout(() => {
-        if (this.recentSwiper) this.recentSwiper.slideTo(0);
-      }, 300);
+        this.buildSwiper('recent');
+      }, 100);
     });
   }
 
   createFutureSub() {
     let endpoint = 'episodes-future';
     this.futureSub = this.TRS.apiGetCall(environment.endpoint[endpoint]).subscribe((data) => {
-
       this.futureEpisodes = data.data.items;
 
-      if (this.futureSwiper) this.futureSwiper.slideTo(0);
       setTimeout(() => {
-        if (this.futureSwiper) this.futureSwiper.slideTo(0);
-      }, 300);
+        this.buildSwiper('future');
+      }, 100);
     });
   }
 
@@ -175,8 +121,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('TV Tracker | Home');
-    this.buildSwiper('recent');
-    this.buildSwiper('future');
     this.createRecentSub();
     this.createFutureSub();
   }

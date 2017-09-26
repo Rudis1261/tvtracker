@@ -38,7 +38,8 @@
     </label>
   </form>
 
-  <div class="row grid-row">
+  <app-swiper-placeholder *ngIf="!favorites || favorites.length == 0"></app-swiper-placeholder>
+  <div class="row grid-row" *ngIf="favorites && favorites.length > 0">
     <div class="col-sm-6 col-md-3 col-lg-2 col-2" *ngFor="let episode of favorites | search:'seriesname,overview':filter | readMore:showLoadMore">
       <div class="episode user-favorites">
         <a [routerLink]="['/show/', episode.slug]" class="inner" *ngIf="!episode.test">
@@ -59,6 +60,7 @@
       </div>
     </div>
   </div>
+
   <div class="row grid-row text-center">
     <div
       class="btn btn-default read-more"
@@ -68,7 +70,10 @@
   </div>
 </div>
 
-<div class="container row col swiper-container-outer" *ngIf="favorites && favorites.length > 0">
+<app-swiper-placeholder *ngIf="favorites && favorites.length > 0 && futureEpisodes.length == 0">
+  <h3>Coming Soon</h3>
+</app-swiper-placeholder>
+<div class="container row col swiper-container-outer" *ngIf="favorites && favorites.length > 0 && futureEpisodes.length > 0">
   <h3>Coming Soon</h3>
   <div id="future-pagination" class="swiper-pagination"></div>
   <div id="future-prev" class="swiper-button-prev"></div>
@@ -91,7 +96,10 @@
   </div>
 </div>
 
-<div class="container row col swiper-container-outer" *ngIf="favorites && favorites.length > 0">
+<app-swiper-placeholder *ngIf="favorites && favorites.length > 0 && recentEpisodes.length == 0">
+  <h3>Recent Episodes</h3>
+</app-swiper-placeholder>
+<div class="container row col swiper-container-outer" *ngIf="favorites && favorites.length > 0 && recentEpisodes.length > 0">
   <h3>Recent Episodes</h3>
   <div id="recent-pagination" class="swiper-pagination"></div>
   <div id="recent-prev" class="swiper-button-prev"></div>

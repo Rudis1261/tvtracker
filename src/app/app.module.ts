@@ -61,6 +61,7 @@ import { AlertsComponent } from './shared/alerts/alerts.component';
 import { TypeaheadComponent } from './shared/typeahead/typeahead.component';
 import { HighlightPipe } from './pipes/highlight.pipe';
 import { ReadMorePipe } from './pipes/read-more.pipe';
+import { SwiperPlaceholderComponent } from './shared/swiper-placeholder/swiper-placeholder.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { ReadMorePipe } from './pipes/read-more.pipe';
     AlertsComponent,
     TypeaheadComponent,
     HighlightPipe,
-    ReadMorePipe
+    ReadMorePipe,
+    SwiperPlaceholderComponent
   ],
   imports: [
     BrowserModule,

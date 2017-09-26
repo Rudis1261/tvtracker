@@ -19,7 +19,10 @@
 
 <app-alerts></app-alerts>
 
-<div class="container row col swiper-container-outer">
+<app-swiper-placeholder *ngIf="futureEpisodes.length == 0">
+  <h3>Coming Soon</h3>
+</app-swiper-placeholder>
+<div class="container row col swiper-container-outer" *ngIf="futureEpisodes.length > 0">
   <h3>Coming Soon</h3>
   <div id="future-pagination" class="swiper-pagination"></div>
   <div id="future-prev" class="swiper-button-prev"></div>
@@ -42,7 +45,10 @@
   </div>
 </div>
 
-<div class="container row col swiper-container-outer">
+<app-swiper-placeholder *ngIf="recentEpisodes.length == 0">
+  <h3>Recent Episodes</h3>
+</app-swiper-placeholder>
+<div class="container row col swiper-container-outer" *ngIf="recentEpisodes.length > 0">
   <h3>Recent Episodes</h3>
   <div id="recent-pagination" class="swiper-pagination"></div>
   <div id="recent-prev" class="swiper-button-prev"></div>

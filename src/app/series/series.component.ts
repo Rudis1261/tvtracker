@@ -34,47 +34,9 @@ export class SeriesComponent implements OnInit {
   showLoadMorePerPage: any;
   isMobile: any = false;
 
-  recentEpisodes: any = [{
-    'test': 1
-  }, {
-    'test': 2
-  }, {
-    'test': 3
-  }, {
-    'test': 4
-  }, {
-    'test': 5
-  }, {
-    'test': 6
-  }];
-
-  futureEpisodes: any = [{
-    'test': 1
-  }, {
-    'test': 2
-  }, {
-    'test': 3
-  }, {
-    'test': 4
-  }, {
-    'test': 5
-  }, {
-    'test': 6
-  }];
-
-  favorites: any = [{
-    'test': 1
-  }, {
-    'test': 2
-  }, {
-    'test': 3
-  }, {
-    'test': 4
-  }, {
-    'test': 5
-  }, {
-    'test': 6
-  }];
+  recentEpisodes: any = [];
+  futureEpisodes: any = [];
+  favorites: any = [];
 
   constructor(
     private Auth: AuthService,
@@ -88,8 +50,6 @@ export class SeriesComponent implements OnInit {
     this.showLoadMorePerPage = 12;
 
     this.removing = {};
-    this.buildSwiper('recent');
-    this.buildSwiper('future');
 
     this.authSub = this.Auth.userState.subscribe(value => {
       this.user = value;
@@ -109,15 +69,10 @@ export class SeriesComponent implements OnInit {
   createRecentSub() {
     let endpoint = (this.user ? 'episodes-user-recent' : 'episodes-recent');
     this.recentSub = this.TRS.apiGetCall(environment.endpoint[endpoint]).subscribe((data) => {
-
       this.recentEpisodes = data.data.items;
-
-      if (this.recentEpisodes && this.recentEpisodes.length > 0) {
-        if (this.recentSwiper) this.recentSwiper.slideTo(0);
-        setTimeout(() => {
-          if (this.recentSwiper) this.recentSwiper.slideTo(0);
-        }, 300);
-      }
+      setTimeout(() => {
+        this.buildSwiper('recent');
+      }, 300);
     });
   }
 
@@ -153,15 +108,10 @@ export class SeriesComponent implements OnInit {
   createFutureSub() {
     let endpoint = (this.user ? 'episodes-user-future' : 'episodes-future');
     this.futureSub = this.TRS.apiGetCall(environment.endpoint[endpoint]).subscribe((data) => {
-
       this.futureEpisodes = data.data.items;
-
-      if (this.futureEpisodes && this.futureEpisodes.length > 0) {
-        if (this.futureSwiper) this.futureSwiper.slideTo(0);
-        setTimeout(() => {
-          if (this.futureSwiper) this.futureSwiper.slideTo(0);
-        }, 300);
-      }
+      setTimeout(() => {
+        this.buildSwiper('future');
+      }, 300);
     });
   }
 
