@@ -2,10 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenRingService } from '../../services/token-ring.service';
+import { AuthService } from '../../services/auth.service';
 import { environment } from '../../../environments/environment';
 import { DeviceService } from '../../services/device.service';
 import { KeysPipe } from '../../pipes/keys.pipe';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-show',
@@ -35,9 +35,9 @@ export class ShowComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private TRS: TokenRingService,
+    private Auth: AuthService,
     private titleService: Title,
     private Device: DeviceService,
-    private Auth: AuthService
   ) {
 
     this.scaffolding();

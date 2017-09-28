@@ -74,6 +74,13 @@ export class NavHeaderComponent {
     "admin": false,
     "loggedIn": true
   }, {
+    "label": "Admin",
+    "slug": "/admin",
+    "external": false,
+    "logo": false,
+    "admin": true,
+    "loggedIn": true
+  }, {
     "label": "Report Bug",
     "slug": "/report-bug",
     "external": false,
@@ -147,7 +154,7 @@ export class NavHeaderComponent {
 
   canShowMenuItem(item) {
     if (!this.user && item.loggedIn) return false;
-
+    if ((!this.user && item.admin) || (this.user && item.admin && this.user.admin == false)) return false;
     return true;
   }
 

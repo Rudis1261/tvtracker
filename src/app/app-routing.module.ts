@@ -10,6 +10,7 @@ import { NotFoundComponent} from './not-found/not-found.component';
 import { ActivationComponent } from './shared/activation/activation.component';
 import { ResetPasswordComponent } from './shared/reset-password/reset-password.component';
 import { TestComponent } from './shared/test/test.component';
+import { AdminComponent } from './shared/admin/admin.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'series',  component: SeriesComponent, canActivate: [ AuthGuardService ] },
   { path: 'report-bug',  component: BugreportComponent },
   { path: 'contact',  component: ContactComponent },
+  { path: 'admin',  component: AdminComponent, canActivate: [ AuthGuardService ], data: { roles: 'admin' } },
+  { path: 'admin/:type',  component: AdminComponent, canActivate: [ AuthGuardService ], data: { roles: 'admin' } },
   { path: 'test',  component: TestComponent, canActivate: [ AuthGuardService ], data: { roles: 'admin' } },
   { path: '404',  component: NotFoundComponent },
   { path: '**', redirectTo: '/404' }

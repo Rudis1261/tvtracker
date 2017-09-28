@@ -62,6 +62,8 @@ import { TypeaheadComponent } from './shared/typeahead/typeahead.component';
 import { HighlightPipe } from './pipes/highlight.pipe';
 import { ReadMorePipe } from './pipes/read-more.pipe';
 import { SwiperPlaceholderComponent } from './shared/swiper-placeholder/swiper-placeholder.component';
+import { AdminComponent } from './shared/admin/admin.component';
+import { UcfirstPipe } from './pipes/ucfirst.pipe';
 
 @NgModule({
   declarations: [
@@ -100,7 +102,9 @@ import { SwiperPlaceholderComponent } from './shared/swiper-placeholder/swiper-p
     TypeaheadComponent,
     HighlightPipe,
     ReadMorePipe,
-    SwiperPlaceholderComponent
+    SwiperPlaceholderComponent,
+    AdminComponent,
+    UcfirstPipe
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,58 @@
+<box type="container">
+  <box type="xl" flex="true" >
+    <div class="breadcrumbs">
+      <a [routerLink]="['/admin/users']" class="link" [ngClass]="{'active': type == 'users'}">Users</a>
+      <a [routerLink]="['/admin/shows']" class="link separator" [ngClass]="{'active': type == 'shows'}">Shows</a>
+      <a [routerLink]="['/admin/posters']" class="link separator" [ngClass]="{'active': type == 'posters'}">Posters</a>
+    </div>
+  </box>
+</box>
+
+<br />
+
+<app-msg-box [(success)]="success" [(error)]="error" [autoHide]="true">
+  {{success.message}}{{error.message}}
+</app-msg-box>
+
+<h3>{{type | ucfirst}}</h3>
+
+<box type="container">
+  <box type="xl" flex="true" >
+    <div *ngIf="data && data.items && type !== 'users'">{{data | json}}</div>
+
+    <!-- Users -->
+    <div *ngIf="data && data.items && type == 'users'">
+      <!--{{data | json}} <br> -->
+      <ul class="list clearfix">
+        <li>
+          <span class="list-item list-item-head list-item-xs">ID</span>
+          <span class="list-item list-item-head list-item-lg">Username</span>
+          <span class="list-item list-item-head list-item-lg">Email</span>
+          <span class="list-item list-item-head list-item-sm">Admin</span>
+          <span class="list-item list-item-head list-item-sm">Active</span>
+          <span class="list-item list-item-head list-item-sm">Last Login</span>
+          <span class="list-item list-item-head list-item-sm">Last Active</span>
+        </li>
+        <li *ngFor="let userData of data.items">
+          <span class="list-item list-item-xs">{{userData.id}}</span>
+          <span class="list-item list-item-lg">{{userData.username}}</span>
+          <span class="list-item list-item-lg">{{userData.email}}</span>
+          <span class="list-item list-item-sm">
+            <span *ngIf="userData.level == 'admin'" class="success"><i class="icon-check-outline"></i></span>
+            <span *ngIf="userData.level !== 'admin'">&nbsp;</span>
+          </span>
+          <span class="list-item list-item-sm">
+            <span *ngIf="userData.activated === true" (click)="deactivate(userData.id)" class="success" title="Deactivate account">
+              <i class="icon-check-outline"></i>
+            </span>
+            <span *ngIf="userData.activated === false" (click)="activate(userData.id)" class="failure" title="Activate account">
+              <i class="icon-remove-circle"></i>
+            </span>
+          </span>
+          <span class="list-item list-item-sm"><small>{{userData.login}}</small></span>
+          <span class="list-item list-item-sm"><small>{{userData.active}}</small></span>
+        </li>
+      </ul>
+    </div>
+  </box>
+</box>
