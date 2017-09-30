@@ -9,9 +9,15 @@
 
   .read-more {
     margin: 0 auto 20px;
+
+    .inactive {
+      background: #ccc;
+    }
   }
 
   .episode.user-favorites {
+    cursor: pointer;
+
     .btn {
       position: absolute;
       bottom: 10px;
@@ -33,6 +39,8 @@
         box-shadow: 1px 1px 10px maroon;
       }
     }
+
+    margin-bottom: 10px;
   }
 
   .listing {

@@ -1,12 +1,4 @@
 <box type="container">
-  <box type="xl error" icon="warning" flex="true" url="https://tvtracker.co.za">
-    <div class="text-center" style="width: 100%;">
-      <h3 class="text-center">BETA SITE</h3>
-    </div><br>Currently a work in progress. For the current site go to https://tvtracker.co.za
-  </box>
-</box>
-
-<box type="container">
   <box type="md primary" icon="empty-hart" flex="true">Track your favourite shows</box>
   <box type="md" icon="send" flex="true">Get notifications of when your show airs</box>
 </box>
@@ -18,6 +10,7 @@
 </box>
 
 <app-alerts></app-alerts>
+<app-series-info-box [(series)]="activeSeries" [(open)]="activeSeries"></app-series-info-box>
 
 <app-swiper-placeholder *ngIf="futureEpisodes.length == 0">
   <h3>Coming Soon</h3>
@@ -32,7 +25,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide episode" *ngFor="let episode of futureEpisodes">
         <div class="swiper-lazy-preloader"></div>
-        <a [routerLink]="['/show/', episode.slug]" class="inner">
+        <a (click)="setActiveSeries(episode)" class="inner">
           <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} - {{episode.key}}</h4>
           <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
           <div class="poster" *ngIf="getImagePoster(episode)">
@@ -58,7 +51,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide episode" *ngFor="let episode of recentEpisodes">
         <div class="swiper-lazy-preloader"></div>
-        <a [routerLink]="['/show/', episode.slug]" class="inner" *ngIf="!episode.test">
+        <a (click)="setActiveSeries(episode)" class="inner" *ngIf="!episode.test">
           <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} - {{episode.key}}</h4>
           <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
           <div class="poster" *ngIf="getImagePoster(episode)">

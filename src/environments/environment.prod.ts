@@ -12,6 +12,7 @@ export const environment = {
   activateEndPoint: "https://api.tvtracker.co.za/auth/activate",
   resetPasswordEndPoint: "https://api.tvtracker.co.za/auth/resetpassword",
   newPasswordEndPoint: "https://api.tvtracker.co.za/auth/newpassword",
+  streamingServiceUrl: "http://ewatchseries.to/serie/",
   endpoint: {
     "contact": "https://api.tvtracker.co.za/contact",
     "bug-report": "https://api.tvtracker.co.za/contact/bugreport",

@@ -1,18 +1,5 @@
-<box type="container">
-  <box type="xl error" icon="warning" flex="true" url="https://tvtracker.co.za">
-    <div class="text-center" style="width: 100%;">
-      <h3 class="text-center">BETA SITE</h3>
-    </div><br>Currently a work in progress. For the current site go to https://tvtracker.co.za
-  </box>
-</box>
-
-<box type="container">
-  <box type="xl" flex="true">
-    Soon enough you will be able to keep track of your favourite shows, and know exactly when that next episode will be coming out.
-  </box>
-</box>
-
 <app-alerts></app-alerts>
+<app-series-info-box [(series)]="activeSeries" [(open)]="activeSeries"></app-series-info-box>
 
 <!-- No shows yet, add some now -->
 <div class="listing">
@@ -42,11 +29,11 @@
   <div class="row grid-row" *ngIf="favorites && favorites.length > 0">
     <div class="col-sm-6 col-md-3 col-lg-2 col-2" *ngFor="let episode of favorites | search:'seriesname,overview':filter | readMore:showLoadMore">
       <div class="episode user-favorites">
-        <a [routerLink]="['/show/', episode.slug]" class="inner" *ngIf="!episode.test">
+        <a (click)="setActiveSeries(episode)" class="inner" *ngIf="!episode.test">
           <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}}</h4>
           <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
           <div class="poster" *ngIf="getImagePoster(episode)">
-            <img width="100" height="auto" [src]="getImagePoster(episode)" class="poster-img swiper-lazy" />
+            <lazy width="100" height="100%" [img]="getImagePoster(episode)" class="poster-img swiper-lazy"></lazy>
           </div>
           <div
             (click)="removeFavorite($event, episode)"
@@ -61,12 +48,16 @@
     </div>
   </div>
 
-  <div class="row grid-row text-center">
+  <div class="row grid-row text-center" *ngIf="!filter || filter == ''">
     <div
       class="btn btn-default read-more"
       (click)="showMore()"
-      *ngIf="favorites && favorites.length > 0 && showLoadMore < favorites.length"
-    >Show more <span class="plus">&#43;</span> <span class="small">{{showLoadMore}} - {{favorites.length}}</span></div>
+      *ngIf="favorites && favorites.length > 0"
+    >
+      Show more
+      <span class="plus" [ngClass]="{'inactive': showLoadMore >= favorites.length}">&#43;</span>
+      <span class="small">{{showLoadMore}} - {{favorites.length}}</span>
+    </div>
   </div>
 </div>
 
@@ -83,7 +74,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide episode" *ngFor="let episode of futureEpisodes">
         <div class="swiper-lazy-preloader"></div>
-        <a [routerLink]="['/show/', episode.slug]" class="inner">
+        <a (click)="setActiveSeries(episode)" class="inner">
           <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} - {{episode.key}}</h4>
           <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
           <div class="poster" *ngIf="getImagePoster(episode)">
@@ -109,7 +100,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide episode" *ngFor="let episode of recentEpisodes">
         <div class="swiper-lazy-preloader"></div>
-        <a [routerLink]="['/show/', episode.slug]" class="inner" *ngIf="!episode.test">
+        <a (click)="setActiveSeries(episode)" class="inner" *ngIf="!episode.test">
           <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} - {{episode.key}}</h4>
           <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
           <div class="poster" *ngIf="getImagePoster(episode)">

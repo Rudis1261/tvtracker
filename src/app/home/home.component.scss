@@ -8,6 +8,10 @@
     margin: 0 auto;
     height: auto;
 
+    .swiper-slide {
+      cursor: pointer;
+    }
+
     &-outer {
       h3 {
         font-weight: normal;

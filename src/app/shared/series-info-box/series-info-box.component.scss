@@ -1,0 +1,207 @@
+@import "../../../assets/scss/settings.scss";
+@import "../../../assets/scss/mixins.scss";
+
+:host {
+  .background {
+    text-align: left;
+    display: none;
+
+    &.open {
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 10000;
+      background: rgba(#fff, 0.7);
+    }
+
+    .inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      padding: 10px;
+      display: block;
+      background: #fff;
+      box-shadow: 2px 2px 60px rgba(#000, 0.3);
+      @include transform(translateY(-50%) translateX(-50%));
+
+      .action-buttons {
+        @include flex-display();
+        @include align-items(center);
+        @include align-content(center);
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 40px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        overflow: hidden;
+        color: #ccc;
+        cursor: pointer;
+        z-index: 1;
+
+        &:hover {
+          background: #efefef;
+        }
+      }
+
+      .poster {
+        float: left;
+      }
+
+      .overview {
+        font-size: 12px;
+      }
+
+      .action {
+        position: absolute;
+        z-index: 1;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .status {
+        display: inline-block;
+        font-size: 12px;
+        background: #000;
+        color: #fff;
+        height: 20px;
+        line-height: 20px;
+        padding: 0 8px;
+        vertical-align: top;
+        margin: 10px 0;
+
+        &.ended {
+          background: maroon;
+        }
+
+        &.continuing {
+          background: $badass;
+        }
+      }
+
+      .poster-img {
+        @include aspect-ratio(300, 441, '.poster-inner');
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  @include mobile {
+    .background.open {
+      .inner {
+        top: 10px;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        @include transform(none);
+
+        .poster {
+          text-align: center;
+        }
+
+        .poster-img {
+          width: 100px;
+        }
+
+        .content {
+          position: absolute;
+          left: 130px;
+
+          .title {
+            margin-top: 65px;
+          }
+        }
+
+        .overview {
+          top: 205px;
+          position: absolute;
+          padding: 0 10px;
+        }
+
+        .status {
+          margin: 5px 0;
+        }
+
+        .network {
+          position: absolute;
+          top: 0;
+          font-size: 10px;
+          background: rgba(0, 0, 0, 0.69);
+          color: #fff;
+          line-height: 18px;
+          left: 0;
+          right: 0;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  @include desktop {
+    .background.open {
+      .inner {
+        min-height: 300px;
+        min-width: 700px;
+        max-width: 800px;
+
+        .poster-img {
+          width: 150px;
+        }
+
+        .content {
+          position: absolute;
+          left: 170px;
+
+          .network {
+            color: #fff;
+            background: #000;
+            padding: 2px 4px;
+            position: relative;
+            top: -3px;
+            font-weight: bold;
+            font-size: 15px;
+            display: inline-block;
+          }
+        }
+
+        .overview {
+          font-size: 14px;
+          padding: 0 10px 0 0;
+        }
+      }
+    }
+  }
+
+  @include respond-from($screenDesktop) {
+    .background.open {
+      .inner {
+        min-width: 900px;
+        max-width: 1000px;
+
+        .poster-img {
+          width: 250px;
+        }
+
+        .content {
+          left: 270px;
+
+          .title {
+            margin-top: 50px;
+          }
+        }
+      }
+    }
+  }
+}

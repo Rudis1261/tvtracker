@@ -64,6 +64,9 @@ import { ReadMorePipe } from './pipes/read-more.pipe';
 import { SwiperPlaceholderComponent } from './shared/swiper-placeholder/swiper-placeholder.component';
 import { AdminComponent } from './shared/admin/admin.component';
 import { UcfirstPipe } from './pipes/ucfirst.pipe';
+import { SeriesInfoBoxComponent } from './shared/series-info-box/series-info-box.component';
+import { PromptComponent } from './shared/prompt/prompt.component';
+import { FavButtonComponent } from './shared/fav-button/fav-button.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +107,10 @@ import { UcfirstPipe } from './pipes/ucfirst.pipe';
     ReadMorePipe,
     SwiperPlaceholderComponent,
     AdminComponent,
-    UcfirstPipe
+    UcfirstPipe,
+    SeriesInfoBoxComponent,
+    PromptComponent,
+    FavButtonComponent
   ],
   imports: [
     BrowserModule,

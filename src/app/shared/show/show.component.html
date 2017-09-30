@@ -25,6 +25,13 @@
         <h3 class="title">{{show.seriesname}}</h3>
         <div class="status" *ngIf="!isMobile" [ngClass]="show.status | lowercase">{{show.status}}</div>
         <div class="overview">{{show.overview}}</div>
+        <div class="action-buttons">
+          <div class="btn stream" *ngIf="show.stream_service" (click)="setShowWarning()" title="Watch {{show.seriesname}} now">
+            <app-prompt [(open)]="showWarning" [(link)]="streamingServiceUrl + show.stream_service" message="Warning! Please ensure you have addblock enabled, these streaming services have allot of adverts"></app-prompt>
+            <i class="icon-triangle-right"></i>
+          </div>
+          <app-fav-button [(series)]="show"></app-fav-button>
+        </div>
       </div>
     </div>
   </box>

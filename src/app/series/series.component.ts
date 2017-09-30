@@ -33,6 +33,7 @@ export class SeriesComponent implements OnInit {
   showLoadMore: any;
   showLoadMorePerPage: any;
   isMobile: any = false;
+  activeSeries: any = false;
 
   recentEpisodes: any = [];
   futureEpisodes: any = [];
@@ -120,7 +121,15 @@ export class SeriesComponent implements OnInit {
   }
 
   showMore() {
+    if (this.showLoadMore > this.favorites.length) return false;
     this.showLoadMore = this.showLoadMore + this.showLoadMorePerPage;
+  }
+
+  setActiveSeries(episode) {
+    this.activeSeries = false;
+    setTimeout(() => {
+      this.activeSeries = episode;
+    }, 10);
   }
 
   buildSwiper(type) {

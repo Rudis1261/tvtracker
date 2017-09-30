@@ -24,6 +24,8 @@ export class ShowComponent implements OnInit {
   dropdownOpen: boolean = false;
   isMobile: any;
   user: any;
+  streamingServiceUrl: any = false;
+  showWarning: any = false;
 
   private subRoute: any;
   private subEpisodes: any;
@@ -39,8 +41,15 @@ export class ShowComponent implements OnInit {
     private titleService: Title,
     private Device: DeviceService,
   ) {
-
     this.scaffolding();
+    this.streamingServiceUrl = environment.streamingServiceUrl;
+  }
+
+  setShowWarning() {
+    this.showWarning = false;
+    setTimeout(() => {
+      this.showWarning = true;
+    }, 100);
   }
 
   scaffolding() {
@@ -121,6 +130,8 @@ export class ShowComponent implements OnInit {
 
   ngOnInit() {
 
+    this.showWarning = false;
+
     this.authSub = this.Auth.userState.subscribe(value => {
       this.user = value;
     });
@@ -145,7 +156,7 @@ export class ShowComponent implements OnInit {
           }
         });
 
-        this.subEpisodes = this.TRS.apiCall(environment.endpoint['episodes-by-slug'], { 'slug': this.slug, 'reverse': true }).subscribe((data) => {
+        this.subEpisodes = this.TRS.apiCall(environment.endpoint['episodes-by-slug'], { 'slug': this.slug }).subscribe((data) => {
           console.log("EPISODE, data.data.items.length", data.data.items.length);
           if (data && data.data && data.data.items) {
             this.episodes = data.data.items;

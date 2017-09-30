@@ -23,6 +23,7 @@ export class TypeaheadComponent implements OnInit {
   emptySet = false;
   user: any = false;
   message: any = false;
+  activeSeries: any = false;
   extendedSearching: any = false;
 
   public searchListSub: any;
@@ -80,8 +81,16 @@ export class TypeaheadComponent implements OnInit {
   }
 
   select(item, ignore = false){
+    this.activeSeries = false;
+
     if (ignore == false) {
-      this.Router.navigate([ '/show', item.slug ]);
+      this.filteredList = [];
+      this.extendedSearchList = [];
+      this.query = '';
+
+      setTimeout(() => {
+        this.activeSeries = item;
+      }, 100);
     }
   }
 

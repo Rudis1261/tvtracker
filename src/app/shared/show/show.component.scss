@@ -15,6 +15,12 @@
     }
   }
 
+  .action-buttons {
+    @include flex-display();
+    @include align-items(center);
+    @include align-content(center);
+  }
+
   .network {
     color: #fff;
     background: #000;

@@ -10,12 +10,14 @@ import { environment } from '../../../environments/environment';
 })
 export class AlertsComponent implements OnInit {
 
+  alerts: any = false;
+  user: any;
+  activeSeries: any = false;
+
   private alertSub: any;
   private authSub: any;
 
   private clearing: any;
-  public alerts: any = false;
-  public user: any;
 
   constructor(private Auth: AuthService, private TRS: TokenRingService) {
     this.clearing = {};
@@ -30,6 +32,13 @@ export class AlertsComponent implements OnInit {
         this.alerts = false;
       }
     });
+  }
+
+  setActiveSeries(episode) {
+    this.activeSeries = false;
+    setTimeout(() => {
+      this.activeSeries = episode;
+    }, 10);
   }
 
   getImagePoster(series) {

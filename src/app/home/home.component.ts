@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   private recentSwiper: any;
   private futureSwiper: any;
 
+  activeSeries: any = false;
   recentEpisodes: any = [];
   futureEpisodes: any = [];
 
@@ -123,6 +124,14 @@ export class HomeComponent implements OnInit {
     this.titleService.setTitle('TV Tracker | Home');
     this.createRecentSub();
     this.createFutureSub();
+    this.activeSeries = false;
+  }
+
+  setActiveSeries(series) {
+    this.activeSeries = false;
+    setTimeout(() => {
+      this.activeSeries = series;
+    }, 100);
   }
 
   ngOnDestroy() {

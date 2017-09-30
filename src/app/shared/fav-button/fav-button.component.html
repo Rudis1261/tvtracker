@@ -1,0 +1,15 @@
+<div
+  *ngIf="series"
+  (click)="toggle()"
+  title="{{(series.user_ids && series.user_ids.indexOf(user.id) == -1 ? 'Track this show' : 'Untrack this show')}}"
+  class="btn favorite"
+  [ngClass]="{
+    'success': series.user_ids && series.user_ids.indexOf(user.id) == -1,
+    'failure': series.user_ids && series.user_ids.indexOf(user.id) !== -1
+  }"
+>
+  <div class="confirmation" *ngIf="message">{{message}}</div>
+  <i class="icon-hart" *ngIf="!processing[series.seriesid] && series.user_ids && series.user_ids.indexOf(user.id) == -1"></i>
+  <i class="icon-empty-hart" *ngIf="!processing[series.seriesid] && series.user_ids && series.user_ids.indexOf(user.id) !== -1"></i>
+  <i class="icon-spin icon-spinner" *ngIf="processing[series.seriesid]"></i>
+</div>
