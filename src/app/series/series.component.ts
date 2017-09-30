@@ -116,10 +116,6 @@ export class SeriesComponent implements OnInit {
     });
   }
 
-  searchForSeries() {
-    console.log("SEARCH FOR A SHOW", this.search);
-  }
-
   showMore() {
     if (this.showLoadMore > this.favorites.length) return false;
     this.showLoadMore = this.showLoadMore + this.showLoadMorePerPage;

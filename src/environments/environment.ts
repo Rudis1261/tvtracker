@@ -31,6 +31,8 @@ export const environment = {
     "search-list": "http://dev.tvt2.co.za/search/list",
     "search-extended": "http://dev.tvt2.co.za/search/extended",
     "user-list": "http://dev.tvt2.co.za/users/list",
+    "poster-admin": "http://dev.tvt2.co.za/posters/admin",
+    "poster-update": "http://dev.tvt2.co.za/posters/update",
     "user-activate": "http://dev.tvt2.co.za/users/activate",
     "user-deactivate": "http://dev.tvt2.co.za/users/deactivate",
   },

@@ -17,6 +17,11 @@ export class AdminComponent implements OnInit {
   error: any = false;
   success: any = false;
   dataEndPoints: any = false;
+  filter: any = '';
+  activeSeries: any = false;
+  showLoadMore: any;
+  showLoadMorePerPage: any;
+  processing: any = false;
 
   private subRoute: any = false;
   private subAuth: any = false;
@@ -31,7 +36,7 @@ export class AdminComponent implements OnInit {
     this.dataEndPoints = {
       'users': "user-list",
       'shows': "user-list",
-      'posters': "user-list",
+      'posters': "poster-admin",
     }
   }
 
@@ -47,11 +52,72 @@ export class AdminComponent implements OnInit {
       this.type = params['type'] || 'users';
       this.success = false;
       this.getData();
+      this.activeSeries = false;
+    });
+
+    this.showLoadMore = 24;
+    this.showLoadMorePerPage = 24;
+  }
+
+  showMore() {
+    if (this.showLoadMore > this.data.length) return false;
+    this.showLoadMore = this.showLoadMore + this.showLoadMorePerPage;
+  }
+
+  getImagePoster(episode) {
+    if (!episode) return '';
+    if (!episode.image_url || episode.image_url == '') {
+      return 'assets/img/missing.png';
+    }
+    return episode.image_url;
+  }
+
+  getProvidePoster(poster) {
+    if (!this.data || !this.data.options) return false;
+    return this.data.options.poster_url.replace('%s', poster);
+  }
+
+  setShowPoster(item, poster) {
+    if (!item || !item.seriesid || !poster || this.processing) {
+      return false;
+    }
+
+    this.processing = poster;
+
+    let params = {
+      "seriesid": item.seriesid,
+      "poster": poster
+    };
+
+    this.TRS.apiCall(environment.endpoint['poster-update'], params).subscribe((data) => {
+      if (!data || data.state !== 'success') {
+        this.error = {
+          "message": data.message
+        };
+        return false;
+      }
+
+      this.activeSeries = false;
+      this.success = {
+        "message": "Poster updated"
+      };
+
+      this.getData();
+      this.processing = false;
     });
   }
 
+  setActiveSeries(series) {
+    this.activeSeries = series;
+  }
+
   getData() {
-    if (!this.type) return false;
+    if (!this.type) {
+      return false;
+    }
+
+    this.data = false;
+
     this.subData = this.TRS.apiCall(environment.endpoint[this.dataEndPoints[this.type]]).subscribe((data) => {
       // Print out when shit hits the fan
       if (!data || data.state !== 'success') {

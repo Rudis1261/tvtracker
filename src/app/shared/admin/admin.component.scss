@@ -1,4 +1,83 @@
+@import "../../../assets/scss/settings.scss";
+@import "../../../assets/scss/mixins.scss";
+
+
 :host {
+
+  .listing {
+    .row.grid-row {
+      margin: 0 -10px;
+
+      > div {
+        margin-bottom: 0;
+      }
+    }
+
+    > box {
+      h3 {
+        width: 100%;
+      }
+      margin-bottom: 30px;
+    }
+
+    .episode.user-favorites {
+      cursor: pointer;
+    }
+
+    .read-more {
+      margin: 0 auto;
+    }
+  }
+
+  .poster-admin-container {
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.18), 1px 1px 50px rgba(0, 0, 0, 0.1);
+
+    .inner {
+      position: relative;
+      .close {
+        cursor: pointer;
+        display: block;
+        text-align: center;
+        color: #eee;
+        font-size: 40px;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        @include transition(300ms all);
+
+        &:hover {
+          color: #999;
+        }
+      }
+    }
+
+    .poster {
+      cursor: pointer;
+      float: left;
+      margin: 0 10px 10px 0;
+      position: relative;
+
+      &.active:after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(#fff, 0.7);
+        content: "Busy...";
+        font-size: 12px;
+        font-weight: bold;
+        @include flex-display();
+        @include align-items(center);
+        @include justify-content(center);
+      }
+    }
+  }
+
   box {
     .breadcrumbs {
       height: 32px;

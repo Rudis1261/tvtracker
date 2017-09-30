@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'activate/:email/:code',  component: ActivationComponent },
   { path: 'reset-password/:code',  component: ResetPasswordComponent },
   { path: 'show/:slug',  component: ShowComponent },
+  { path: 'Series/View/:slug',  component: ShowComponent },
   { path: 'series',  component: SeriesComponent, canActivate: [ AuthGuardService ] },
   { path: 'report-bug',  component: BugreportComponent },
   { path: 'contact',  component: ContactComponent },

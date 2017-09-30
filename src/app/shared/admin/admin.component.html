@@ -2,7 +2,6 @@
   <box type="xl" flex="true" >
     <div class="breadcrumbs">
       <a [routerLink]="['/admin/users']" class="link" [ngClass]="{'active': type == 'users'}">Users</a>
-      <a [routerLink]="['/admin/shows']" class="link separator" [ngClass]="{'active': type == 'shows'}">Shows</a>
       <a [routerLink]="['/admin/posters']" class="link separator" [ngClass]="{'active': type == 'posters'}">Posters</a>
     </div>
   </box>
@@ -16,13 +15,10 @@
 
 <h3>{{type | ucfirst}}</h3>
 
-<box type="container">
+<!-- Users -->
+<box type="container" *ngIf="data && data.items && type == 'users'">
   <box type="xl" flex="true" >
-    <div *ngIf="data && data.items && type !== 'users'">{{data | json}}</div>
-
-    <!-- Users -->
-    <div *ngIf="data && data.items && type == 'users'">
-      <!--{{data | json}} <br> -->
+    <div>
       <ul class="list clearfix">
         <li>
           <span class="list-item list-item-head list-item-xs">ID</span>
@@ -56,3 +52,72 @@
     </div>
   </box>
 </box>
+
+<!-- Posters -->
+<div class="listing" *ngIf="data && data.items && type == 'posters'">
+  <box type="container">
+    <box type="xl" flex="true" >
+      <h3>Find a show by name</h3>
+      <form novalidate #filterForm="ngForm">
+        <label for="filter">
+          <div class="input-label">Filter my shows</div>
+          <input
+            id="filter"
+            type="text"
+            placeholder="Game of Thrones"
+            name="filter"
+            [(ngModel)]="filter"
+          />
+        </label>
+      </form>
+    </box>
+  </box>
+
+  <div class="poster-admin-container" *ngIf="activeSeries">
+    <div class="inner clearfix">
+      <div class="close" (click)="activeSeries=false"><i class="icon-close"></i></div>
+
+      <div class="poster main" *ngIf="getImagePoster(activeSeries)">
+        <lazy width="319px" height="auto" [img]="getImagePoster(activeSeries)" class="poster-img swiper-lazy"></lazy>
+      </div>
+
+      <div *ngIf="activeSeries.posters && activeSeries.posters.length > 0">
+        <div
+          class="poster"
+          (click)="setShowPoster(activeSeries, poster)"
+          *ngFor="let poster of activeSeries.posters" title="Set this image as the poster for the show"
+          [ngClass]="{'active': processing && processing == poster}"
+        >
+          <lazy width="100px" height="auto" [img]="getProvidePoster(poster)" class="poster-img swiper-lazy"></lazy>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-swiper-placeholder *ngIf="!data.items || data.items.length == 0 && !activeSeries"></app-swiper-placeholder>
+  <div class="row grid-row" *ngIf="data.items && data.items.length > 0 && !activeSeries">
+    <div class="col col-sm-6 col-md-3 col-lg-2 col-2" *ngFor="let episode of data.items | search:'seriesname,overview':filter | readMore:showLoadMore">
+      <div class="episode user-favorites">
+        <a (click)="setActiveSeries(episode)" class="inner">
+          <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}}</h4>
+          <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
+          <div class="poster" *ngIf="getImagePoster(episode)">
+            <lazy width="100" height="100%" [img]="getImagePoster(episode)" class="poster-img swiper-lazy"></lazy>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row grid-row text-center" *ngIf="(!filter || filter == '') && !activeSeries">
+    <div
+      class="btn btn-default read-more"
+      (click)="showMore()"
+      *ngIf="data.items && data.items.length > 0"
+    >
+      Show more
+      <span class="plus" [ngClass]="{'inactive': showLoadMore >= data.items.length}">&#43;</span>
+      <span class="small">{{showLoadMore}} - {{data.items.length}}</span>
+    </div>
+  </div>
+</div>

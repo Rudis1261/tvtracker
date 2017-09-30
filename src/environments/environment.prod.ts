@@ -31,6 +31,8 @@ export const environment = {
     "search-list": "https://api.tvtracker.co.za/search/list",
     "search-extended": "https://api.tvtracker.co.za/search/extended",
     "user-list": "https://api.tvtracker.co.za/users/list",
+    "poster-admin": "https://api.tvtracker.co.za/posters/admin",
+    "poster-update": "https://api.tvtracker.co.za/posters/update",
     "user-activate": "https://api.tvtracker.co.za/users/activate",
     "user-deactivate": "https://api.tvtracker.co.za/users/deactivate",
   },
