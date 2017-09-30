@@ -16,7 +16,7 @@
     <div class="content">
       <h3 class="title">{{series.seriesname}} <div class="network" *ngIf="!isMobile">{{series.network}}</div></h3>
       <div class="status" *ngIf="!isMobile" [ngClass]="series.status | lowercase">{{series.status}}</div>
-      <div class="overview" *ngIf="!isMobile">{{series.overview}}</div>
+      <div class="overview" *ngIf="!isMobile">{{series.series_overview || series.overview}}</div>
       <div class="action-buttons">
         <div class="btn stream" *ngIf="series.stream_service" (click)="setShowWarning()" title="Watch {{series.seriesname}} now">
           <app-prompt [(open)]="showWarning" [(link)]="streamingServiceUrl + series.stream_service" message="Warning! Please ensure you have addblock enabled, these streaming services have allot of adverts"></app-prompt>
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="overview" *ngIf="isMobile">{{series.overview}}</div>
+    <div class="overview" *ngIf="isMobile">{{series.series_overview || series.overview}}</div>
 
     <div class="action">
       <a [routerLink]="['/show/', series.slug]" class="btn btn-lg">View show page</a>
