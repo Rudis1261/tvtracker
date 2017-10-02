@@ -129,6 +129,7 @@
         float: left;
         display: inline-block;
         overflow: hidden;
+        height: 44px;
 
         .success {
           color: #bada55;
@@ -143,6 +144,10 @@
           &.icon-remove-circle {
             font-size: 18px;
           }
+        }
+
+        &.small {
+          font-size: 12px;
         }
 
         .failure {

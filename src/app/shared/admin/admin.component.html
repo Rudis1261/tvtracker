@@ -24,20 +24,21 @@
           <span class="list-item list-item-head list-item-xs">ID</span>
           <span class="list-item list-item-head list-item-lg">Username</span>
           <span class="list-item list-item-head list-item-lg">Email</span>
-          <span class="list-item list-item-head list-item-sm">Admin</span>
-          <span class="list-item list-item-head list-item-sm">Active</span>
+          <span class="list-item list-item-head list-item-xs" title="Admin"><i class="icon-login" style="font-size: 16px;"></i></span>
+          <span class="list-item list-item-head list-item-xs" title="Active"><i class="icon-notification" style="font-size: 18px;"></i></span>
+          <span class="list-item list-item-head list-item-xs" title="User favorites"><i class="icon-hart" style="font-size: 16px;"></i></span>
           <span class="list-item list-item-head list-item-sm">Last Login</span>
           <span class="list-item list-item-head list-item-sm">Last Active</span>
         </li>
         <li *ngFor="let userData of data.items">
-          <span class="list-item list-item-xs">{{userData.id}}</span>
-          <span class="list-item list-item-lg">{{userData.username}}</span>
-          <span class="list-item list-item-lg">{{userData.email}}</span>
-          <span class="list-item list-item-sm">
+          <span class="list-item list-item-xs" [title]="userData.id">{{userData.id}}</span>
+          <span class="list-item list-item-lg" [title]="userData.username">{{userData.username}}</span>
+          <span class="list-item list-item-lg" [title]="userData.email">{{userData.email}}</span>
+          <span class="list-item list-item-xs">
             <span *ngIf="userData.level == 'admin'" class="success"><i class="icon-check-outline"></i></span>
             <span *ngIf="userData.level !== 'admin'">&nbsp;</span>
           </span>
-          <span class="list-item list-item-sm">
+          <span class="list-item list-item-xs">
             <span *ngIf="userData.activated === true" (click)="deactivate(userData.id)" class="success" title="Deactivate account">
               <i class="icon-check-outline"></i>
             </span>
@@ -45,8 +46,9 @@
               <i class="icon-remove-circle"></i>
             </span>
           </span>
-          <span class="list-item list-item-sm"><small>{{userData.login}}</small></span>
-          <span class="list-item list-item-sm"><small>{{userData.active}}</small></span>
+          <span class="list-item list-item-xs">{{userData.favorite_count}}</span>
+          <span class="list-item list-item-sm small" [title]="userData.login"><small>{{userData.login}}</small></span>
+          <span class="list-item list-item-sm small" [title]="userData.active"><small>{{userData.active}}</small></span>
         </li>
       </ul>
     </div>
