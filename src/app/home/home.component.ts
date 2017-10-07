@@ -127,7 +127,12 @@ export class HomeComponent implements OnInit {
     this.activeSeries = false;
   }
 
-  setActiveSeries(series) {
+  setActiveSeries(series, e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     this.activeSeries = false;
     setTimeout(() => {
       this.activeSeries = series;

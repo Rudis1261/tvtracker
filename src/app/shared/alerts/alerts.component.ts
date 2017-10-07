@@ -34,7 +34,12 @@ export class AlertsComponent implements OnInit {
     });
   }
 
-  setActiveSeries(episode) {
+  setActiveSeries(episode, e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     this.activeSeries = false;
     setTimeout(() => {
       this.activeSeries = episode;

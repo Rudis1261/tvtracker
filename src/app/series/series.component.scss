@@ -71,6 +71,10 @@
       padding: 0;
     }
 
+    .swiper-slide {
+      cursor: pointer;
+    }
+
     @include respond-from(480px) {
       min-height: 220px;
     }

@@ -121,7 +121,12 @@ export class SeriesComponent implements OnInit {
     this.showLoadMore = this.showLoadMore + this.showLoadMorePerPage;
   }
 
-  setActiveSeries(episode) {
+  setActiveSeries(episode, e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     this.activeSeries = false;
     setTimeout(() => {
       this.activeSeries = episode;
