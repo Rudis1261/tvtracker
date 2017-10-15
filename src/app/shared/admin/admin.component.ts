@@ -157,6 +157,41 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  hasOption(data, option) {
+    if (data & option) {
+      return true;
+    }
+    return false;
+  }
+
+  enableNotifications(id) {
+    if (!id) return false;
+
+    this.TRS.apiCall(environment.endpoint['user-enable-notifications'], { "id": id }).subscribe((data) => {
+      if (!data || data.state !== 'success') {
+        this.error = {
+          "message": data.message
+        };
+        return false;
+      }
+      this.getData();
+    });
+  }
+
+  disableNotifications(id) {
+    if (!id) return false;
+
+    this.TRS.apiCall(environment.endpoint['user-disable-notifications'], { "id": id }).subscribe((data) => {
+      if (!data || data.state !== 'success') {
+        this.error = {
+          "message": data.message
+        };
+        return false;
+      }
+      this.getData();
+    });
+  }
+
   ngOnDestroy() {
     if (this.subRoute) this.subRoute.unsubscribe();
     if (this.subAuth) this.subAuth.unsubscribe();

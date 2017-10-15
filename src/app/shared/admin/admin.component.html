@@ -26,6 +26,7 @@
           <span class="list-item list-item-head list-item-lg">Email</span>
           <span class="list-item list-item-head list-item-xs" title="Admin"><i class="icon-login" style="font-size: 16px;"></i></span>
           <span class="list-item list-item-head list-item-xs" title="Active"><i class="icon-notification" style="font-size: 18px;"></i></span>
+          <span class="list-item list-item-head list-item-xs" title="Notifications Enabled"><i class="icon-mail" style="font-size: 18px;"></i></span>
           <span class="list-item list-item-head list-item-xs" title="User favorites"><i class="icon-hart" style="font-size: 16px;"></i></span>
           <span class="list-item list-item-head list-item-sm">Last Login</span>
           <span class="list-item list-item-head list-item-sm">Last Active</span>
@@ -43,6 +44,14 @@
               <i class="icon-check-outline"></i>
             </span>
             <span *ngIf="userData.activated === false" (click)="activate(userData.id)" class="failure" title="Activate account">
+              <i class="icon-remove-circle"></i>
+            </span>
+          </span>
+          <span class="list-item list-item-xs">
+            <span *ngIf="hasOption(userData.options, 1)" (click)="disableNotifications(userData.id)" class="success" title="Disable Noticafations">
+              <i class="icon-check-outline"></i>
+            </span>
+            <span *ngIf="!hasOption(userData.options, 1)" (click)="enableNotifications(userData.id)" class="failure" title="Enable Notifications">
               <i class="icon-remove-circle"></i>
             </span>
           </span>
