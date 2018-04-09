@@ -22,6 +22,12 @@ export class AuthService {
     this.userState.next(this.user);
     this.tokenSub = this.trs.apiToken.subscribe((data) => {
       this.token = data;
+      if (this.token === false && this.user) {
+        console.log("Logout triggered, but user still exists, trashing user");
+        this.user = null;
+        localStorage.removeItem('user');
+        this.userState.next(null);
+      }
     });
   }
 

@@ -13,7 +13,7 @@ export class TokenRingService {
   public apiToken = new BehaviorSubject(null);
   public fcmToken: any = localStorage.getItem('fcm_token') || false;
 
-  constructor(private http: Http) {
+  constructor( private http: Http ) {
     this.token = localStorage.getItem('token') || false;
     this.apiToken.next(this.token);
   }
@@ -75,8 +75,10 @@ export class TokenRingService {
   }
 
   checkLoggedIn(res) {
-    let token = this.getToken();
-    if (res && res.user === false && token !== false) {
+    let token = localStorage.getItem('token');
+    let user = localStorage.getItem('user');
+    if (res && res.user === false && (token || user)) {
+      console.log("THIS USER SHOULDN'T be logged in, their session has expired, logging out");
       this.setToken(false);
     }
   }
