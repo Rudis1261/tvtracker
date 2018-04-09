@@ -77,7 +77,6 @@ export class TokenRingService {
   checkLoggedIn(res) {
     let token = this.getToken();
     if (res && res.user === false && token !== false) {
-      console.log("USER NEEDS TO BE LOGGED OUT");
       this.setToken(false);
     }
   }
