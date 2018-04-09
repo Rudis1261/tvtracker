@@ -144,7 +144,7 @@ export class HomeComponent implements OnInit {
     if (this.recentSub) this.recentSub.unsubscribe();
     if (this.futureSub) this.futureSub.unsubscribe();
 
-    if (this.futureSwiper) this.futureSwiper.destroy();
-    if (this.recentSwiper) this.recentSwiper.destroy();
+    if (this.futureSwiper && typeof this.futureSwiper.destroy == 'function') this.futureSwiper.destroy();
+    if (this.recentSwiper && typeof this.recentSwiper.destroy == 'function') this.recentSwiper.destroy();
   }
 }

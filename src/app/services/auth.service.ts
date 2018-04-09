@@ -1,6 +1,7 @@
 import { Http, Response, RequestOptions } from '@angular/http';
 import { Injectable } from "@angular/core";
 import { environment as ENV } from "../../environments/environment";
+import { Router } from '@angular/router';
 import { Observable } from "rxjs/Rx";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 import { TokenRingService } from "./token-ring.service"
@@ -16,7 +17,7 @@ export class AuthService {
   public user: any;
   public userState = new BehaviorSubject(null);
 
-  constructor(private http: Http, private trs: TokenRingService) {
+  constructor(private http: Http, private trs: TokenRingService, private router: Router) {
     this.user = JSON.parse(localStorage.getItem('user')) || false;
     this.options = this.trs.getHeaders();
     this.userState.next(this.user);
@@ -27,6 +28,7 @@ export class AuthService {
         this.user = null;
         localStorage.removeItem('user');
         this.userState.next(null);
+        this.router.navigate([ '/home' ]);
       }
     });
   }
