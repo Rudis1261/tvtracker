@@ -74,12 +74,22 @@ export class TokenRingService {
     return this.options;
   }
 
+  checkLoggedIn(res) {
+    let token = this.getToken();
+    if (res && res.user === false && token !== false) {
+      console.log("USER NEEDS TO BE LOGGED OUT");
+      this.setToken(false);
+    }
+  }
+
   apiCall(url, params={}) {
     this.options = this.getHeaders();
     params = this.addFCMToken(params);
     return this.http.post(url, params, this.options)
                     .map((res:Response) => {
-                      return res.json();
+                      let json = res.json();
+                      this.checkLoggedIn(json);
+                      return json;
                     })
                     .catch((error:any) => this.errorHandler(error));
   }
@@ -89,7 +99,9 @@ export class TokenRingService {
     params = this.addFCMToken(params);
     return this.http.get(url, this.options)
                     .map((res:Response) => {
-                      return res.json();
+                      let json = res.json();
+                      this.checkLoggedIn(json);
+                      return json;
                     })
                     .catch((error:any) => this.errorHandler(error));
   }
