@@ -15,6 +15,32 @@
     }
   }
 
+  .episode.episode-swiper-holder {
+    .btn.btn-download {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      background: rgba(#000, 0.7);
+      border: 1px solid #000;
+      color: white;
+      font-size: 24px;
+      padding: 0;
+      line-height: 37px;
+      box-shadow: 0 0 3px 2px $colorPrimary, 1px 1px 10px navy;
+      width: 40px;
+      height: 40px;
+      z-index: 10;
+      @include border-radius(50%);
+      @include transform(translateX(-50%));
+
+      &:hover {
+        background: rgba(#000, 0.85);
+        border-color: $colorPrimary;
+        box-shadow: 0 0 3px 10px rgba($colorPrimary, 0.4);
+      }
+    }
+  }
+
   .episode.user-favorites {
     cursor: pointer;
 

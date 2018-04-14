@@ -3,6 +3,7 @@ import { TokenRingService } from '../services/token-ring.service';
 import { environment } from '../../environments/environment';
 import { LoadedService } from '../services/loaded.service';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../services/auth.service';
 
 declare var Swiper: any;
 
@@ -24,8 +25,19 @@ export class HomeComponent implements OnInit {
   recentEpisodes: any = [];
   futureEpisodes: any = [];
 
-  constructor(private TRS: TokenRingService, private LS: LoadedService, private titleService: Title) {
+  user: any = false;
+
+  constructor(
+    private TRS: TokenRingService,
+    private LS: LoadedService,
+    private titleService: Title,
+    private Auth: AuthService
+  ) {
     this.scaffolding();
+
+    this.Auth.userState.subscribe(value => {
+      this.user = value;
+    });
   }
 
   scaffolding() {
@@ -128,15 +140,19 @@ export class HomeComponent implements OnInit {
   }
 
   setActiveSeries(series, e) {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+    if (e.target.className == 'icon-download' || e.target.className == 'btn btn-download') {
+      this.activeSeries = false;
+    } else {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
-    this.activeSeries = false;
-    setTimeout(() => {
-      this.activeSeries = series;
-    }, 100);
+      this.activeSeries = false;
+      setTimeout(() => {
+        this.activeSeries = series;
+      }, 100);
+    }
   }
 
   ngOnDestroy() {

@@ -1,36 +1,42 @@
 $icomoon-font-path: "assets/scss/fonts" !default;
-$icomoon-font-hash: '9e03df';
+$icomoon-font-hash: 'mwvl05';
 
-$icon-send: "\e90a";
-$icon-mail: "\e90b";
-$icon-check-outline: "\e90c";
-$icon-check-circle: "\e90d";
-$icon-arrow-up: "\e906";
-$icon-arrow-right: "\e907";
-$icon-arrow-left: "\e908";
-$icon-arrow-down: "\e909";
-$icon-close: "\e914";
-$icon-search: "\e91a";
-$icon-filter: "\e91b";
-$icon-empty-star: "\e91c";
-$icon-star: "\e91d";
-$icon-loading: "\e913";
-$icon-alert: "\e919";
-$icon-check: "\e90e";
-$icon-remove: "\e905";
-$icon-remove-circle: "\e903";
-$icon-trash: "\e904";
-$icon-spinner: "\e902";
-$icon-logout: "\e901";
-$icon-login: "\e900";
-$icon-triangle-up: "\e90f";
-$icon-triangle-right: "\e910";
-$icon-triangle-left: "\e911";
-$icon-triangle-down: "\e912";
-$icon-notification: "\e917";
-$icon-warning: "\e918";
-$icon-empty-hart: "\e915";
-$icon-hart: "\e916";
+$icon-download: \e91e;
+$icon-arrow-up: \e906;
+$icon-arrow-right: \e907;
+$icon-arrow-left: \e908;
+$icon-arrow-down: \e909;
+$icon-close: \e914;
+$icon-search: \e91a;
+$icon-filter: \e91b;
+$icon-empty-star: \e91c;
+$icon-star: \e91d;
+$icon-send: \e90a;
+$icon-mail: \e90b;
+$icon-check-outline: \e90c;
+$icon-check-circle: \e90d;
+$icon-close: \e914;
+$icon-search: \e91a;
+$icon-filter: \e91b;
+$icon-empty-star: \e91c;
+$icon-star: \e91d;
+$icon-loading: \e913;
+$icon-alert: \e919;
+$icon-check: \e90e;
+$icon-remove: \e905;
+$icon-remove-circle: \e903;
+$icon-trash: \e904;
+$icon-spinner: \e902;
+$icon-logout: \e901;
+$icon-login: \e900;
+$icon-triangle-up: \e90f;
+$icon-triangle-right: \e910;
+$icon-triangle-left: \e911;
+$icon-triangle-down: \e912;
+$icon-notification: \e917;
+$icon-warning: \e918;
+$icon-empty-hart: \e915;
+$icon-hart: \e916;
 
 @font-face {
   font-family: 'icomoon';
@@ -65,154 +71,187 @@ $icon-hart: "\e916";
 
 
 
-.icon-send {
-  &:before {
-    content: $icon-send;
-  }
+@function unicode($str) {
+  @return unquote("\"") + $str + unquote("\"");
 }
-.icon-mail {
+
+.icon-download {
   &:before {
-    content: $icon-mail;
-  }
-}
-.icon-check-outline {
-  &:before {
-    content: $icon-check-outline;
-  }
-}
-.icon-check-circle {
-  &:before {
-    content: $icon-check-circle;
+    content: unicode($icon-download);
   }
 }
 .icon-arrow-up {
   &:before {
-    content: $icon-arrow-up;
+    content: unicode($icon-arrow-up);
   }
 }
 .icon-arrow-right {
   &:before {
-    content: $icon-arrow-right;
+    content: unicode($icon-arrow-right);
   }
 }
 .icon-arrow-left {
   &:before {
-    content: $icon-arrow-left;
+    content: unicode($icon-arrow-left);
   }
 }
 .icon-arrow-down {
   &:before {
-    content: $icon-arrow-down;
+    content: unicode($icon-arrow-down);
   }
 }
 .icon-close {
   &:before {
-    content: $icon-close;
+    content: unicode($icon-close);
   }
 }
 .icon-search {
   &:before {
-    content: $icon-search;
+    content: unicode($icon-search);
   }
 }
 .icon-filter {
   &:before {
-    content: $icon-filter;
+    content: unicode($icon-filter);
   }
 }
 .icon-empty-star {
   &:before {
-    content: $icon-empty-star;
+    content: unicode($icon-empty-star);
   }
 }
 .icon-star {
   &:before {
-    content: $icon-star;
+    content: unicode($icon-star);
+  }
+}
+.icon-send {
+  &:before {
+    content: unicode($icon-send);
+  }
+}
+.icon-mail {
+  &:before {
+    content: unicode($icon-mail);
+  }
+}
+.icon-check-outline {
+  &:before {
+    content: unicode($icon-check-outline);
+  }
+}
+.icon-check-circle {
+  &:before {
+    content: unicode($icon-check-circle);
+  }
+}
+.icon-close {
+  &:before {
+    content: unicode($icon-close);
+  }
+}
+.icon-search {
+  &:before {
+    content: unicode($icon-search);
+  }
+}
+.icon-filter {
+  &:before {
+    content: unicode($icon-filter);
+  }
+}
+.icon-empty-star {
+  &:before {
+    content: unicode($icon-empty-star);
+  }
+}
+.icon-star {
+  &:before {
+    content: unicode($icon-star);
   }
 }
 .icon-loading {
   &:before {
-    content: $icon-loading;
+    content: unicode($icon-loading);
   }
 }
 .icon-alert {
   &:before {
-    content: $icon-alert;
+    content: unicode($icon-alert);
   }
 }
 .icon-check {
   &:before {
-    content: $icon-check;
+    content: unicode($icon-check);
   }
 }
 .icon-remove {
   &:before {
-    content: $icon-remove;
+    content: unicode($icon-remove);
   }
 }
 .icon-remove-circle {
   &:before {
-    content: $icon-remove-circle;
+    content: unicode($icon-remove-circle);
   }
 }
 .icon-trash {
   &:before {
-    content: $icon-trash;
+    content: unicode($icon-trash);
   }
 }
 .icon-spinner {
   &:before {
-    content: $icon-spinner;
+    content: unicode($icon-spinner);
   }
 }
 .icon-logout {
   &:before {
-    content: $icon-logout;
+    content: unicode($icon-logout);
   }
 }
 .icon-login {
   &:before {
-    content: $icon-login;
+    content: unicode($icon-login);
   }
 }
 .icon-triangle-up {
   &:before {
-    content: $icon-triangle-up;
+    content: unicode($icon-triangle-up);
   }
 }
 .icon-triangle-right {
   &:before {
-    content: $icon-triangle-right;
+    content: unicode($icon-triangle-right);
   }
 }
 .icon-triangle-left {
   &:before {
-    content: $icon-triangle-left;
+    content: unicode($icon-triangle-left);
   }
 }
 .icon-triangle-down {
   &:before {
-    content: $icon-triangle-down;
+    content: unicode($icon-triangle-down);
   }
 }
 .icon-notification {
   &:before {
-    content: $icon-notification;
+    content: unicode($icon-notification);
   }
 }
 .icon-warning {
   &:before {
-    content: $icon-warning;
+    content: unicode($icon-warning);
   }
 }
 .icon-empty-hart {
   &:before {
-    content: $icon-empty-hart;
+    content: unicode($icon-empty-hart);
   }
 }
 .icon-hart {
   &:before {
-    content: $icon-hart;
+    content: unicode($icon-hart);
   }
 }
-

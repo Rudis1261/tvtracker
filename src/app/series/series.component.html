@@ -98,13 +98,21 @@
 
   <div class="swiper-container swiper-container-recent">
     <div class="swiper-wrapper">
-      <div class="swiper-slide episode" *ngFor="let episode of recentEpisodes">
+      <div class="swiper-slide episode episode-swiper-holder" *ngFor="let episode of recentEpisodes">
         <div class="swiper-lazy-preloader"></div>
         <a (click)="setActiveSeries(episode, $event)" href="{{'/show/' + episode.slug}}" class="inner" *ngIf="!episode.test">
           <h4 class="heading" *ngIf="episode.seriesname">{{episode.seriesname}} - {{episode.key}}</h4>
           <div class="airtime" *ngIf="episode.human_time">{{episode.human_time}}</div>
           <div class="poster" *ngIf="getImagePoster(episode)">
             <img width="100" height="auto" [attr.data-src]="getImagePoster(episode)" class="poster-img swiper-lazy" />
+            <a
+              [href]="episode.download_url"
+              target="_blank"
+              class="btn btn-download"
+              *ngIf="episode.download_url && episode.download_url !== ''"
+            >
+              <i class="icon-download"></i>
+            </a>
           </div>
         </a>
       </div>

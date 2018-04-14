@@ -121,16 +121,20 @@ export class SeriesComponent implements OnInit {
     this.showLoadMore = this.showLoadMore + this.showLoadMorePerPage;
   }
 
-  setActiveSeries(episode, e) {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+  setActiveSeries(series, e) {
+    if (e.target.className == 'icon-download' || e.target.className == 'btn btn-download') {
+      this.activeSeries = false;
+    } else {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
-    this.activeSeries = false;
-    setTimeout(() => {
-      this.activeSeries = episode;
-    }, 10);
+      this.activeSeries = false;
+      setTimeout(() => {
+        this.activeSeries = series;
+      }, 100);
+    }
   }
 
   buildSwiper(type) {
