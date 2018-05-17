@@ -37,6 +37,8 @@ export const environment = {
     "user-deactivate": "http://dev.tvt2.co.za/users/deactivate",
     "user-enable-notifications": "http://dev.tvt2.co.za/users/enableNotifications",
     "user-disable-notifications": "http://dev.tvt2.co.za/users/disableNotifications",
+    "duplicates": "http://dev.tvt2.co.za/episodes/duplicates",
+    "dedupe": "http://dev.tvt2.co.za/episodes/dedupe",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

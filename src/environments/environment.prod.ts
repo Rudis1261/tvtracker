@@ -37,6 +37,8 @@ export const environment = {
     "user-deactivate": "https://api.tvtracker.co.za/users/deactivate",
     "user-enable-notifications": "https://api.tvtracker.co.za/users/enableNotifications",
     "user-disable-notifications": "https://api.tvtracker.co.za/users/disableNotifications",
+    "duplicates": "https://api.tvtracker.co.za/episodes/duplicates",
+    "dedupe": "https://api.tvtracker.co.za/episodes/dedupe",
   },
   recaptchaScript: "https://www.google.com/recaptcha/api.js",
   recapchaKey: "6LcI3ygUAAAAAPwNo2dGuR9WryiXbJ16AhEiZJzz",

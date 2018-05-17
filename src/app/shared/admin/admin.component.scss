@@ -107,6 +107,8 @@
     margin: 10px 0;
     border: 2px solid #ddd;
     display: inline-block;
+    max-height: 500px;
+    overflow-y: auto;
 
     li {
       line-height: 44px;
@@ -191,6 +193,11 @@
         &-xl {
           padding: 0 15px;
           width: 350px;
+        }
+
+        &-xxl {
+          padding: 0 15px;
+          width: 450px;
         }
       }
     }

@@ -3,6 +3,7 @@
     <div class="breadcrumbs">
       <a [routerLink]="['/admin/users']" class="link" [ngClass]="{'active': type == 'users'}">Users</a>
       <a [routerLink]="['/admin/posters']" class="link separator" [ngClass]="{'active': type == 'posters'}">Posters</a>
+      <a [routerLink]="['/admin/duplicates']" class="link separator" [ngClass]="{'active': type == 'duplicates'}">Duplicate Shows</a>
     </div>
   </box>
 </box>
@@ -13,7 +14,7 @@
   {{success.message}}{{error.message}}
 </app-msg-box>
 
-<h3>{{type | ucfirst}}</h3>
+<h3 *ngIf="error == false">{{type | ucfirst}}</h3>
 
 <!-- Users -->
 <box type="container" *ngIf="data && data.items && type == 'users'">
@@ -63,6 +64,41 @@
     </div>
   </box>
 </box>
+
+<!-- Duplicate Shows -->
+<div class="listing" *ngIf="data && data.length > 0 && type == 'duplicates'">
+  <box type="container">
+    <box type="xl" flex="true" >
+      <div>
+        <a [routerLink]="['/admin/dedupe']" class="btn" >Deduplicate Shows</a>
+        <ul class="list clearfix">
+          <li>
+            <span class="list-item list-item-head list-item-lg">Series</span>
+            <span class="list-item list-item-head list-item-sm">Episode</span>
+            <span class="list-item list-item-head list-item-xxl">Overview</span>
+          </li>
+          <li *ngFor="let episode of data">
+            <span class="list-item list-item-lg">{{episode.seriesname}}</span>
+            <span class="list-item list-item-sm">{{episode.key}}</span>
+            <span class="list-item  list-item-xxl">{{episode.overview}}</span>
+          </li>
+        </ul>
+      </div>
+    </box>
+  </box>
+</div>
+
+<!-- Dedupe Shows -->
+<div class="listing" *ngIf="data && type == 'dedupe'">
+  <box type="container">
+    <box type="xl" flex="true" >
+      <div>
+        <h4>RESPONSE:</h4>
+        {{data | json}}
+      </div>
+    </box>
+  </box>
+</div>
 
 <!-- Posters -->
 <div class="listing" *ngIf="data && data.items && type == 'posters'">

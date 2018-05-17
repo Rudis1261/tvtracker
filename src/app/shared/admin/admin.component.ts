@@ -37,6 +37,8 @@ export class AdminComponent implements OnInit {
       'users': "user-list",
       'shows': "user-list",
       'posters': "poster-admin",
+      'duplicates': "duplicates",
+      'dedupe': "dedupe",
     }
   }
 
