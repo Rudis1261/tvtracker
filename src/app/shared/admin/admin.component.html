@@ -70,17 +70,21 @@
   <box type="container">
     <box type="xl" flex="true" >
       <div>
-        <a [routerLink]="['/admin/dedupe']" class="btn" >Deduplicate Shows</a>
+        <div class="clearfix">
+          <a [routerLink]="['/admin/dedupe']" class="btn">Deduplicate Shows</a>
+        </div>
         <ul class="list clearfix">
           <li>
             <span class="list-item list-item-head list-item-lg">Series</span>
             <span class="list-item list-item-head list-item-sm">Episode</span>
-            <span class="list-item list-item-head list-item-xxl">Overview</span>
+            <span class="list-item list-item-head list-item-md">Name</span>
+            <span class="list-item list-item-head list-item-xl">Overview</span>
           </li>
           <li *ngFor="let episode of data">
             <span class="list-item list-item-lg">{{episode.seriesname}}</span>
             <span class="list-item list-item-sm">{{episode.key}}</span>
-            <span class="list-item  list-item-xxl">{{episode.overview}}</span>
+            <span class="list-item list-item-md">{{episode.name}}</span>
+            <span class="list-item  list-item-xl">{{episode.overview}}</span>
           </li>
         </ul>
       </div>
