@@ -9,53 +9,8 @@ declare var window: any;
   host: {
     '(document:click)': 'handleClick($event)',
   },
-  template: `<header>
-              <div class="container">
-                <!-- BRAND -->
-                <ul class="brand clickable" [routerLink]="['/home']">
-                  <li class="logo-container">
-                    <span class="logo">
-                      <img src="assets/img/logo_small.png" width="39" height="39" alt="logo" />
-                    </span>
-                  </li>
-                  <li class="brand-name">
-                    Tracker<span class="dot">&nbsp;</span><div>.co.za</div>
-                   </li>
-                </ul>
-
-                <!-- BURGER MENU -->
-                <ul class="menu" (click)="toggleMenu()" [class.open]="menuOpen">
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-
-                <!-- THE MENU THAT POPS OPEN -->
-                <ul class="nav" [class.open]="menuOpen">
-                  <li *ngFor="let menuItem of menuItems">
-                    <a *ngIf="!menuItem.externals && canShowMenuItem(menuItem)" [routerLink]="[menuItem.slug]" [class.active]="menuItem.slug == activeMenu">
-                      {{menuItem.label}}
-                    </a>
-                    <a *ngIf="menuItem.external" target="_blank" href="{{menuItem.slug}}" [class.active]="menuItem.slug == activeMenu">
-                      <img *ngIf="menuItem.logo" [src]="menuItem.logo" /> {{menuItem.label}}
-                    </a>
-                  </li>
-                  <!-- Login / Logout -->
-                  <li class="login">
-                    <span *ngIf="!user" (click)="showModal = !showModal">
-                      <i class="icon-login" title="Login Now"></i><span>Login</span>
-                    </span>\
-                    <span (click)="logoff()" *ngIf="user">
-                      <i class="icon-logout" title="Logoff"></i><span>Logoff {{user.username}}</span>
-                    </span>\
-                  </li>
-                </ul>
-              </div>
-            </header>
-
-            <app-modal [(visible)]="showModal">
-              <app-login (onCloseModal)="onCloseModal()"></app-login>
-            </app-modal>`
+  styleUrls: ['nav-header.component.scss'],
+  templateUrl: 'nav-header.component.html'
 })
 export class NavHeaderComponent {
 
@@ -98,6 +53,7 @@ export class NavHeaderComponent {
 
   menuOpen = false;
   showModal = false;
+  donationModalVisible = false;
   activeMenu = "";
   user: any = false;
 
@@ -146,6 +102,10 @@ export class NavHeaderComponent {
 
   onCloseModal() {
     this.showModal = false;
+  }
+
+  showDonationModal() {
+    this.donationModalVisible = true;
   }
 
   logoff() {

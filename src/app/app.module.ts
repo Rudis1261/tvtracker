@@ -67,6 +67,7 @@ import { UcfirstPipe } from './pipes/ucfirst.pipe';
 import { SeriesInfoBoxComponent } from './shared/series-info-box/series-info-box.component';
 import { PromptComponent } from './shared/prompt/prompt.component';
 import { FavButtonComponent } from './shared/fav-button/fav-button.component';
+import { DonateComponent } from './shared/donate/donate.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { FavButtonComponent } from './shared/fav-button/fav-button.component';
     UcfirstPipe,
     SeriesInfoBoxComponent,
     PromptComponent,
-    FavButtonComponent
+    FavButtonComponent,
+    DonateComponent
   ],
   imports: [
     BrowserModule,

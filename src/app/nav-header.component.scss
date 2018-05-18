@@ -1,0 +1,23 @@
+@import "../assets/scss/settings.scss";
+@import "../assets/scss/mixins.scss";
+:host {
+  .dollar {
+    display: inline-block;
+    background: #bada55;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    width: 22px;
+    height: 22px;
+    position: relative;
+    top: -2px;
+    @include border-radius(50%);
+  }
+  @include respond-between($screenTablet, $screenDesktop) {
+    .dollar {
+      display: none;
+    }
+  }
+}
