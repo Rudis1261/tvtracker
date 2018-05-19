@@ -1,7 +1,20 @@
-<lazy [img]="data.logo" width="137" height="30" *ngIf="data && data.logo"></lazy>
-<br />
-<p>Goodness look at you! Thanks for being awesome and supporting this little endevour of mine</p>
+<div *ngIf="!paid" class="unpaid">
+    <lazy [img]="data.logo" width="137" height="30" *ngIf="data && data.logo"></lazy>
+    <br />
+    <p>Goodness look at you! Thanks for being awesome and supporting this little endevour of mine. Every bit goes along way :-)</p>
 
-<div class="qr-code">
-    <lazy [img]="data.qr" width="120" height="120" *ngIf="data && data.qr"></lazy>
+    <h2 class="donation">R{{donationAmount}}.00</h2>
+
+    <div class="qr-code">
+        <lazy [img]="data.qr" width="120" height="120" *ngIf="data && data.qr"></lazy>
+    </div>
+
+    <div class="paid-loader">
+        <div class="bar" [style.width]="progress"></div>
+    </div>
+</div>
+
+<div *ngIf="paid" class="paid">
+    <app-msg-box success="success">Donation confirmed, thank you!!</app-msg-box>
+    <p>Your support is invaluable! I hope to continue to improve this site all the time. Please feel free to make suggestions on what you would like to see.</p>
 </div>

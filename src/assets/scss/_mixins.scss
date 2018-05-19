@@ -5,6 +5,15 @@
   @return map-get($colors, $key);
 }
 
+@mixin noselect() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 @mixin vertical-align($margin: -0.25em) {
   &:before {
     content: '';

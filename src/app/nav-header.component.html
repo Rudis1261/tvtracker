@@ -52,8 +52,8 @@
 </app-modal>
     
 <!-- Donation Modal -->
-<app-modal [(visible)]="donationModalVisible" type="modal-large" title="Donate">
+<app-modal [(visible)]="donationModalVisible" type="modal-large">
     <div class="modal-inner">
-        <app-donate></app-donate>
+        <app-donate [(open)]="donationModalVisible"></app-donate>
     </div>
 </app-modal>
