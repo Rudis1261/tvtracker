@@ -1,8 +1,16 @@
 import {
-  Component, OnInit, Input, Output,
-  OnChanges, EventEmitter, trigger,
-  state, style, animate, transition
+  Component,
+  OnInit, 
+  Input
 } from '@angular/core'
+
+import {
+  trigger,
+  state, 
+  style, 
+  animate, 
+  transition
+} from '@angular/animations'
 
 declare var window: any;
 

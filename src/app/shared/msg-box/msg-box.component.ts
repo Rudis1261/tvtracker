@@ -1,9 +1,17 @@
 import {
-  Component, OnInit, Input, Output,
-  OnChanges, EventEmitter, trigger,
-  state, style, animate, transition,
+  Component, 
+  OnInit, 
+  Input,
   SimpleChanges
 } from '@angular/core'
+
+import {
+  trigger,
+  state, 
+  style, 
+  animate, 
+  transition
+} from '@angular/animations'
 
 @Component({
   selector: 'app-msg-box',

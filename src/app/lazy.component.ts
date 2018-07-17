@@ -1,4 +1,8 @@
-import { Component, OnInit, Input, Output, OnChanges, EventEmitter, trigger } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  Input
+} from '@angular/core';
 
 declare var Image:any;
 

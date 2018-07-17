@@ -1,7 +1,17 @@
-import { Component, OnInit, Input, Output,
-  OnChanges, EventEmitter, trigger,
-  state, style, animate, transition,
-  SimpleChanges, ElementRef } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  Input,
+  ElementRef 
+} from '@angular/core';
+
+import {
+  trigger,
+  state,
+  style,
+  animate, 
+  transition
+} from '@angular/animations'
 
 import { environment } from '../../../environments/environment';
 import { DeviceService } from '../../services/device.service';
